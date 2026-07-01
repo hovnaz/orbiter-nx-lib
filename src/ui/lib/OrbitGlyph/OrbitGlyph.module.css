@@ -1,0 +1,30 @@
+.root {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 8px rgba(7, 47, 96, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.icon {
+  width: calc(var(--size) * 0.58);
+  height: calc(var(--size) * 0.58);
+}
+
+.dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 2px var(--text-on-accent);
+}

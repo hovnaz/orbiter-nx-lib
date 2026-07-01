@@ -1,0 +1,99 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  transition:
+    background 120ms var(--ease-out),
+    box-shadow 120ms var(--ease-out),
+    transform 120ms var(--ease-out),
+    opacity 120ms var(--ease-out);
+}
+
+/* Sizes */
+.root[data-size='sm'] {
+  height: 32px;
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.root[data-size='md'] {
+  height: 40px;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.root[data-size='lg'] {
+  height: 48px;
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+/* Variants */
+.root[data-variant='primary'] {
+  background: var(--teal);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-brand-sm);
+}
+.root[data-variant='primary']:hover:not(:disabled) {
+  background: var(--teal-hover);
+  box-shadow: var(--shadow-brand-md);
+  transform: translateY(-1px);
+}
+.root[data-variant='primary']:active:not(:disabled) {
+  background: var(--teal-pressed);
+  transform: none;
+}
+
+.root[data-variant='secondary'] {
+  background: var(--navy);
+  color: var(--text-on-accent);
+}
+.root[data-variant='secondary']:hover:not(:disabled) {
+  background: var(--navy-hover);
+}
+
+.root[data-variant='ghost'] {
+  background: transparent;
+  color: var(--text-primary);
+}
+.root[data-variant='ghost']:hover:not(:disabled) {
+  background: var(--bg-section);
+}
+
+.root[data-variant='outline'] {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+.root[data-variant='outline']:hover:not(:disabled) {
+  background: var(--bg-section);
+}
+
+.root[data-variant='danger'] {
+  background: var(--danger);
+  color: var(--text-on-accent);
+}
+.root[data-variant='danger']:hover:not(:disabled) {
+  background: var(--danger-pressed);
+}
+
+/* Modifiers */
+.root[data-full='true'] {
+  width: 100%;
+}
+
+.root:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.root:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-glow);
+}

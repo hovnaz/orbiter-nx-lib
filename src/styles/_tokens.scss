@@ -1,0 +1,181 @@
+/* Orbiter design tokens — sourced from brand spec. */
+:root {
+  --teal: #3BBCA7;
+  --teal-hover: #2FA48F;
+  --teal-pressed: #248672;
+  --teal-soft: #E8F7F4;
+
+  --navy: #072F60;
+  --navy-hover: #0A3F7C;
+  --navy-soft: #EEF3FA;
+
+  --gold: #FFB606;
+  --gold-soft: #FFF6DB;
+
+  --text-primary: #1E2845;
+  --text-secondary: #4A5468;
+  --text-muted: #838383;
+  /* Text/icon colour on saturated accent fills (teal/navy/danger buttons). */
+  --text-on-accent: #FFFFFF;
+
+  --bg-page: #F6F7F9;
+  --bg-section: #EFF1F4;
+  --bg-subtle: #F1F3F6;
+  --bg-dark: #1E2845;
+  --bg-elevated: #FFFFFF;
+  --bg-translucent: rgba(246, 247, 249, 0.82);
+
+  --neutral-soft: #F0F2F5;
+  --shadow-brand-sm: 0 2px 6px rgba(59, 188, 167, 0.25);
+  --shadow-brand-md: 0 6px 18px rgba(59, 188, 167, 0.35);
+  --scrollbar-thumb: rgba(31, 41, 66, 0.22);
+  --scrollbar-thumb-hover: rgba(31, 41, 66, 0.42);
+
+  --border: #E4E7EC;
+  --border-subtle: #F0F2F5;
+
+  --success: #22C55E;
+  --success-soft: #E7F9EE;
+  --success-pressed: #16833F;
+  --warning: #F59E0B;
+  --warning-soft: #FFF4DD;
+  --warning-pressed: #92400E;
+  --danger: #EF4444;
+  --danger-soft: #FDE8E8;
+  --danger-pressed: #B91C1C;
+  --info: #3B82F6;
+  --info-soft: #E6EFFF;
+  --info-pressed: #1D4ED8;
+
+  --coral: #F87171;
+  --coral-soft: #FDE8E8;
+  --coral-pressed: #B91C1C;
+  --amber: #F59E0B;
+  --amber-soft: #FFF4DD;
+  --amber-pressed: #92400E;
+
+  --ink-50: #F6F7F9;
+  --ink-100: #EEF0F3;
+  --ink-200: #E4E7EC;
+  --ink-300: #CBD1DA;
+  --ink-900: #1E2845;
+
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl: 28px;
+  --r-pill: 999px;
+
+  --sh-xs: 0 1px 2px rgba(7, 47, 96, 0.04);
+  --sh-sm: 0 2px 6px rgba(7, 47, 96, 0.06);
+  --sh-md: 0 6px 18px rgba(7, 47, 96, 0.08);
+  --sh-lg: 0 18px 40px rgba(7, 47, 96, 0.12);
+  --sh-xl: 0 28px 68px rgba(7, 47, 96, 0.18);
+  --sh-glow: 0 0 0 4px rgba(59, 188, 167, 0.18);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-inout: cubic-bezier(0.6, 0, 0.4, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --font-display: 'Red Hat Display', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Heebo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+/* Dark theme — neutral charcoal; closer to true-black so brand colours pop. */
+[data-theme='dark'] {
+  /* Tell the browser to render native form controls (dropdowns,
+   * scrollbars, date pickers, spell-check underline, focus rings) in
+   * dark mode. Without this the OS draws a white <select> dropdown
+   * panel over our dark surfaces — bad contrast, looks foreign. */
+  color-scheme: dark;
+
+  --text-primary: #F0F2F6;
+  --text-secondary: #B0B6C2;
+  --text-muted: #6E7686;
+
+  --bg-page: #0B0E14;
+  --bg-section: #11141C;
+  --bg-subtle: #14171F;
+  --bg-elevated: #161A23;
+  --bg-dark: #06080C;
+  --bg-translucent: rgba(11, 14, 20, 0.82);
+
+  --neutral-soft: #1F2430;
+  --shadow-brand-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-brand-md: 0 6px 16px rgba(0, 0, 0, 0.55);
+  --scrollbar-thumb: rgba(176, 182, 194, 0.18);
+  --scrollbar-thumb-hover: rgba(176, 182, 194, 0.38);
+
+  --border: #242935;
+  --border-subtle: #1A1E27;
+
+  --teal-soft: #16322F;
+  --navy-soft: #14223F;
+  --gold-soft: #3A2D10;
+  --success-soft: #112B22;
+  --warning-soft: #2F2410;
+  --danger-soft: #2F1818;
+  --info-soft: #131F3D;
+  --coral-soft: #2F1818;
+  --amber-soft: #2F2410;
+
+  --ink-50: #11141C;
+  --ink-100: #161A23;
+  --ink-200: #242935;
+  --ink-300: #36404F;
+
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --sh-sm: 0 2px 6px rgba(0, 0, 0, 0.55);
+  --sh-md: 0 6px 18px rgba(0, 0, 0, 0.65);
+  --sh-lg: 0 18px 40px rgba(0, 0, 0, 0.75);
+  --sh-xl: 0 28px 68px rgba(0, 0, 0, 0.85);
+}
+
+/* Dark Blue theme — navy-tinted; the version that matched the early screenshot. */
+[data-theme='dark-blue'] {
+  color-scheme: dark;
+
+  --text-primary: #E6EAF2;
+  --text-secondary: #B6BECC;
+  --text-muted: #8A93A4;
+
+  --bg-page: #0E1525;
+  --bg-section: #14203A;
+  --bg-subtle: #1A2540;
+  --bg-elevated: #182242;
+  --bg-dark: #0B1120;
+  --bg-translucent: rgba(14, 21, 37, 0.82);
+
+  --neutral-soft: #232F4D;
+  --shadow-brand-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-brand-md: 0 6px 16px rgba(0, 0, 0, 0.55);
+  --scrollbar-thumb: rgba(182, 190, 204, 0.20);
+  --scrollbar-thumb-hover: rgba(182, 190, 204, 0.40);
+
+  --border: #28324F;
+  --border-subtle: #1F2942;
+
+  --teal-soft: #1F4A45;
+  --navy-soft: #122B57;
+  --gold-soft: #4A3A12;
+  --success-soft: #14352A;
+  --warning-soft: #3A2C12;
+  --danger-soft: #3A1F1F;
+  --info-soft: #15244B;
+  --coral-soft: #3A1F1F;
+  --amber-soft: #3A2C12;
+
+  --ink-50: #14203A;
+  --ink-100: #1A2540;
+  --ink-200: #28324F;
+  --ink-300: #3A4566;
+
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --sh-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --sh-md: 0 6px 18px rgba(0, 0, 0, 0.55);
+  --sh-lg: 0 18px 40px rgba(0, 0, 0, 0.6);
+  --sh-xl: 0 28px 68px rgba(0, 0, 0, 0.7);
+}

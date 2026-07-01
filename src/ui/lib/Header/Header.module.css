@@ -1,0 +1,160 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 64px;
+  background: var(--bg-translucent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: default;
+  color: inherit;
+  font: inherit;
+}
+.logo[data-clickable='true'] {
+  cursor: pointer;
+}
+
+.logoText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+/* Role pill (static) and role-switcher trigger (button) share base styling */
+.rolePill {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+}
+
+.roleTrigger {
+  gap: 4px;
+  padding: 4px 6px 4px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    background 120ms var(--ease-out),
+    border-color 120ms var(--ease-out);
+}
+.roleTrigger[data-open='true'] {
+  background: var(--bg-section);
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.navItem {
+  padding: 8px 12px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  transition:
+    background 120ms var(--ease-out),
+    color 120ms var(--ease-out);
+}
+.navItem[data-active='true'] {
+  color: var(--text-primary);
+  background: var(--bg-section);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.iconBtn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition:
+    background 120ms var(--ease-out),
+    color 120ms var(--ease-out);
+}
+.iconBtn:hover {
+  background: var(--bg-section);
+  color: var(--text-primary);
+}
+
+.avatarBtn {
+  padding: 2px;
+  border-radius: 50%;
+  box-shadow: none;
+  transition: box-shadow 120ms var(--ease-out);
+}
+.avatarBtn[data-open='true'] {
+  box-shadow: var(--sh-glow);
+}
+
+.menuHeader {
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 6px;
+}
+
+.menuName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.menuEmail {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.menuDivider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 6px 4px;
+}
+
+.checkSpacer {
+  width: 14px;
+}

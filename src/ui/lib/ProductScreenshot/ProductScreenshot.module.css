@@ -1,0 +1,79 @@
+.root {
+  position: relative;
+  max-width: var(--ps-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.glow {
+  position: absolute;
+  inset: -12% -8% -16%;
+  border-radius: 50%;
+  background: var(--ps-glow);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.frame {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--r-lg, 14px);
+  box-shadow: var(--ps-shadow);
+  transform-origin: center;
+}
+
+.frame[data-tilt] {
+  transform: var(--ps-tilt);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-position: top center;
+}
+
+.image[data-ratio] {
+  aspect-ratio: var(--ps-ratio);
+  object-fit: cover;
+}
+
+.caption {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  aspect-ratio: var(--ps-ratio, 16 / 10);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-section) 0 12px,
+    var(--bg-page) 12px 24px
+  );
+  color: var(--text-muted);
+  text-align: center;
+  padding: 24px;
+}
+
+.fallbackLabel {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fallbackSrc {
+  font-size: 11.5px;
+  opacity: 0.8;
+  font-family: var(--font-mono);
+}

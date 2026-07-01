@@ -1,0 +1,94 @@
+{
+  "name": "orbiter-nx-lib",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Orbiter shared library — UI components, auth/login services, data-access (RTK Query), i18n and design tokens. Ships source; consumed by Next.js apps via transpilePackages.",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    "./ui": {
+      "types": "./src/ui/index.ts",
+      "import": "./src/ui/index.ts",
+      "default": "./src/ui/index.ts"
+    },
+    "./auth": {
+      "types": "./src/auth/index.ts",
+      "import": "./src/auth/index.ts",
+      "default": "./src/auth/index.ts"
+    },
+    "./data-access": {
+      "types": "./src/data-access/index.ts",
+      "import": "./src/data-access/index.ts",
+      "default": "./src/data-access/index.ts"
+    },
+    "./types": {
+      "types": "./src/types/index.ts",
+      "import": "./src/types/index.ts",
+      "default": "./src/types/index.ts"
+    },
+    "./i18n": {
+      "types": "./src/i18n/index.ts",
+      "import": "./src/i18n/index.ts",
+      "default": "./src/i18n/index.ts"
+    },
+    "./utils": {
+      "types": "./src/utils/index.ts",
+      "import": "./src/utils/index.ts",
+      "default": "./src/utils/index.ts"
+    },
+    "./styles/tokens.css": "./src/styles/orbiter-design-tokens.css",
+    "./styles/global.scss": "./src/styles/global.scss",
+    "./package.json": "./package.json"
+  },
+  "imports": {
+    "#ui": "./src/ui/index.ts",
+    "#auth": "./src/auth/index.ts",
+    "#data-access": "./src/data-access/index.ts",
+    "#types": "./src/types/index.ts",
+    "#i18n": "./src/i18n/index.ts",
+    "#utils": "./src/utils/index.ts",
+    "#styles": "./src/styles/orbiter-design-tokens.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\" --allow-empty-input"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@reduxjs/toolkit": "^2.11.2",
+    "react-redux": "^9.2.0",
+    "i18next": "^26.0.8",
+    "react-i18next": "^17.0.6"
+  },
+  "dependencies": {
+    "axios": "^1.15.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.9.0",
+    "react-router-dom": "^6.30.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/node": "^20.19.9",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@reduxjs/toolkit": "^2.11.2",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "i18next": "^26.0.8",
+    "prettier": "^3.8.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^17.0.6",
+    "react-redux": "^9.2.0",
+    "sass": "^1.99.0",
+    "stylelint": "^17.9.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.40.0"
+  }
+}

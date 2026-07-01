@@ -1,0 +1,3732 @@
+{
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "save": "Save",
+    "delete": "Delete",
+    "remove": "Remove",
+    "open": "Open",
+    "tryAgain": "Try again in a moment.",
+    "back": "Back",
+    "loading": "Loading...",
+    "syncing": "syncing"
+  },
+  "validation": {
+    "required": "Required field",
+    "minLength": "At least {{min}} characters",
+    "maxLength": "At most {{max}} characters",
+    "slugFormat": "Only lowercase letters, digits and dashes; must start with a letter or a digit",
+    "integer": "Enter a whole number",
+    "min": "Minimum value: {{min}}",
+    "max": "Maximum value: {{max}}",
+    "email": "Invalid email",
+    "phone": "Use E.164 format like +14155552671",
+    "dateFormat": "Date in YYYY-MM-DD format",
+    "dateInvalid": "Date doesn't exist",
+    "endBeforeStart": "End date can't be before start",
+    "minItems": "Minimum {{min}}",
+    "maxItems": "Maximum {{max}}",
+    "urlHttp": "Must start with http:// or https://"
+  },
+  "auth": {
+    "noOrganization": {
+      "title": "No organization linked",
+      "description": "Your account isn't linked to any organization with access to this product.",
+      "descriptionFor": "Your account isn't linked to any organization with access to {{product}}.",
+      "hint": "Ask your administrator to add you to an organization and try signing in again.",
+      "signOut": "Sign out"
+    },
+    "backendUnavailable": {
+      "title": "Service temporarily unavailable",
+      "description": "Our server isn't responding right now. A deploy or short maintenance window is the most likely cause.",
+      "descriptionWithStatus": "Our server isn't responding right now (error {{status}}). A deploy or short maintenance window is the most likely cause.",
+      "hint": "Give it a minute and try again. If it still doesn't work, contact support.",
+      "retry": "Try again",
+      "retrying": "Retrying…"
+    },
+    "noRoles": {
+      "title": "No access yet",
+      "description": "Your account doesn't have any roles in {{product}}.",
+      "descriptionFor": "Your account doesn't have any roles in {{org}} for {{product}}.",
+      "hint": "Ask your organization administrator to grant you a role and try again.",
+      "signOut": "Sign out"
+    },
+    "login": {
+      "eyebrow": "Sign in",
+      "title": "Good to see you again",
+      "subtitle": "Sign in with your Orbiter email.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@orbiter.school",
+      "passwordLabel": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "loginFailed": "Login failed",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "register": {
+      "eyebrow": "Sign up",
+      "title": "Create your School account",
+      "subtitle": "Tell us about you and your school — we'll create your organization and activate the School product.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phoneNumber": "Phone",
+      "organizationId": "Organization ID",
+      "organizationIdHint": "UUID of the organization to activate School for.",
+      "organizationName": "School / organization name",
+      "organizationNamePlaceholder": "Acme Academy",
+      "organizationSlug": "Workspace address",
+      "organizationSlugHint": "school.orbiter.am/o/{{slug}} — lowercase letters, digits and hyphens.",
+      "slugInvalid": "Use lowercase latin letters, digits and hyphens (e.g. my-school).",
+      "submit": "Sign up",
+      "submitting": "Signing up…",
+      "failed": "Couldn't complete sign-up",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in →",
+      "successTitle": "All set!",
+      "successDesc": "We created your organization and sent an invitation to {{email}}. Check your inbox and sign in with the temporary password.",
+      "goToLogin": "Go to sign in"
+    },
+    "forgot": {
+      "eyebrow": "Recover",
+      "title": "Forgot your password?",
+      "subtitle": "Enter your email and we'll send a one-time code to reset it.",
+      "submit": "Send code",
+      "submitting": "Sending…",
+      "back": "Back to sign in",
+      "noticeSent": "If that email exists, we've sent a code to it."
+    },
+    "reset": {
+      "eyebrow": "New password",
+      "title": "Confirm code",
+      "subtitle": "Enter the code from the email and pick a new password.",
+      "codeLabel": "Code from email",
+      "codeHint": "Email may take a moment. Check your spam folder.",
+      "newPasswordLabel": "New password",
+      "newPasswordHint": "At least 8 characters, one uppercase, one lowercase and a digit.",
+      "confirmPasswordLabel": "Repeat password",
+      "mismatch": "Passwords don't match",
+      "submit": "Save new password",
+      "submitting": "Confirming…",
+      "resend": "Send code again",
+      "resendNotice": "Code resent.",
+      "successNotice": "Password updated. Sign in with the new password.",
+      "back": "Back to sign in"
+    },
+    "newPassword": {
+      "eyebrow": "Security",
+      "title": "Set a new password",
+      "subtitle": "You need to change the temporary password before continuing.",
+      "submit": "Set password and continue",
+      "submitting": "Saving…",
+      "unexpectedChallenge": "Unexpected challenge: {{name}}",
+      "back": "Back to sign in"
+    },
+    "passwordIssue": {
+      "prefix": "Missing:",
+      "tooShort": "at least 8 characters",
+      "noLower": "lowercase letter",
+      "noUpper": "uppercase letter",
+      "noDigit": "digit"
+    },
+    "changePassword": {
+      "title": "Change password",
+      "subtitle": "Use a strong password you don't reuse anywhere else.",
+      "collapsedHint": "Change your sign-in password.",
+      "openButton": "Change password",
+      "cancel": "Cancel",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Update password",
+      "successTitle": "Password updated",
+      "mismatch": "Passwords don't match",
+      "sameAsCurrent": "New password must differ from the current one",
+      "wrongCurrent": "Current password is incorrect",
+      "policy": "Password doesn't meet the required policy"
+    },
+    "hero": {
+      "release": "v2.4 · April release",
+      "titleLine1": "One platform.",
+      "titleAccent": "Every product",
+      "titleLine2Suffix": " for your team.",
+      "subtitle": "School, Jira, CRM — sign in once, switch between Orbiter products in a single workspace.",
+      "topRightInvite": "New here?",
+      "topRightCta": "Request an invite →",
+      "products": {
+        "school": "School",
+        "schoolHint": "Cohorts, courses, submissions",
+        "jira": "Jira",
+        "jiraHint": "Boards, tasks, drag & drop",
+        "crm": "CRM",
+        "crmHint": "Records, contacts, custom fields"
+      }
+    }
+  },
+  "header": {
+    "goHome": "Go home",
+    "profile": "Profile",
+    "calendar": "Open calendar",
+    "signOut": "Sign out"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "classroom": "Classroom",
+    "classrooms": "Classrooms",
+    "courses": "Courses",
+    "users": "Users",
+    "reviews": "Reviews",
+    "permissions": "Permissions",
+    "crm": "CRM",
+    "preview": "Preview",
+    "backToUsers": "Back to users",
+    "courseEditor": "Course · {{slug}}"
+  },
+  "preview": {
+    "title": "Preview mode",
+    "subtitle": "You're exploring the product with sample data.",
+    "exit": "Exit preview",
+    "viewingAs": "Viewing as",
+    "roles": {
+      "STUDENT": "Student",
+      "MENTOR": "Mentor",
+      "HR": "HR",
+      "ADMIN": "Admin"
+    },
+    "chooser": {
+      "title": "What would you like to explore?",
+      "subtitle": "Pick an area — the tour will walk you through it."
+    },
+    "topics": {
+      "student": {
+        "title": "Student pages",
+        "desc": "How a student learns: classes, modules, materials and submitting work."
+      },
+      "profile": {
+        "title": "Profile page",
+        "desc": "Account details, language and theme."
+      },
+      "reviews": {
+        "title": "Reviews",
+        "desc": "How a mentor reviews student submissions: inbox, filters and the review panel."
+      },
+      "courseEditing": {
+        "title": "Course editing",
+        "desc": "Creating and editing courses (needs course permissions)."
+      }
+    },
+    "tour": {
+      "title": "Product tour",
+      "intro": "Walk through the main stages and see how everything fits together.",
+      "step": "Stage {{current}} of {{total}}",
+      "back": "Back",
+      "next": "Next",
+      "finish": "Finish",
+      "navigation": {
+        "title": "Navigation menu",
+        "desc": "The top menu is your map: jump to your dashboard, classrooms, reviews, courses, calendar and profile from here."
+      },
+      "entry": {
+        "student": {
+          "title": "Where to start",
+          "desc": "Learning starts from the dashboard — open it from the top menu."
+        },
+        "profile": {
+          "title": "Opening your profile",
+          "desc": "Your profile opens from the user menu on the right."
+        },
+        "courseEditing": {
+          "title": "Opening courses",
+          "desc": "Courses open from this menu item."
+        },
+        "reviews": {
+          "title": "Opening reviews",
+          "desc": "Reviews open from this menu item."
+        }
+      },
+      "reviews": {
+        "inbox": {
+          "title": "Review inbox",
+          "desc": "Every student submission awaiting review is gathered here."
+        },
+        "filters": {
+          "title": "Filters & search",
+          "desc": "Filter by status or classroom and search by student or material."
+        },
+        "card": {
+          "title": "A submission",
+          "desc": "Click a submission to open the review panel — see the work, approve it, request changes or leave feedback."
+        }
+      },
+      "course": {
+        "coursesList": {
+          "title": "All courses",
+          "desc": "Every course you manage — filter by language and search."
+        },
+        "openEditor": {
+          "title": "Course editor",
+          "desc": "Open a course to edit it."
+        },
+        "tabs": {
+          "title": "Course sections",
+          "desc": "Switch between modules & materials, settings and enrollments."
+        },
+        "addModule": {
+          "title": "Add a module",
+          "desc": "A module is a section of the course — add one with this button."
+        },
+        "moduleEditor": {
+          "title": "Module & materials",
+          "desc": "Edit the module (title, visibility, hard lock) or delete it; its materials are listed below."
+        },
+        "addMaterial": {
+          "title": "Add a material",
+          "desc": "Add a material to the module — a lecture, reading, practice or review."
+        },
+        "materialRow": {
+          "title": "A material",
+          "desc": "Click a material to edit it; the ⋯ menu duplicates or deletes it."
+        },
+        "settings": {
+          "title": "Course settings",
+          "desc": "Slug, visibility and deleting the course. A private course isn't visible to students."
+        },
+        "matActions": {
+          "title": "Editor actions",
+          "desc": "Save, reset, preview and delete the material — top right."
+        }
+      },
+      "profile": {
+        "title": "Your profile",
+        "desc": "Your account details, language and theme all live here."
+      },
+      "student": {
+        "classrooms": {
+          "title": "Your classrooms",
+          "desc": "See the classrooms you're enrolled in, with their courses and mentors. Open one to start learning."
+        },
+        "modules": {
+          "title": "Modules & progress",
+          "desc": "A course is split into modules that unlock in order. Each module shows its status: current, passed or locked."
+        },
+        "materials": {
+          "title": "Studying materials",
+          "desc": "Inside a module are materials — lectures, readings, practice and quizzes. Mark them complete as you go."
+        },
+        "sidebar": {
+          "title": "Module side panel",
+          "desc": "Click a module — a side panel opens on the right with everything inside it."
+        },
+        "materialLocked": {
+          "title": "Locked materials",
+          "desc": "Some materials stay locked until you finish the earlier ones."
+        },
+        "materialRead": {
+          "title": "Read it right here",
+          "desc": "Open a material to read it without leaving the panel."
+        },
+        "submission": {
+          "title": "Submitting work",
+          "desc": "For materials that need review, attach files or a note and send your work to a mentor. It then goes to review — you'll see the status change: submitted, in review, approved or changes requested."
+        },
+        "review": {
+          "title": "Review & feedback",
+          "desc": "Book a live session with a mentor or wait for an async review. The mentor approves your work or returns it with changes."
+        },
+        "roadmap": {
+          "title": "Course roadmap",
+          "desc": "Modules are laid out as a path — work through them from top to bottom."
+        },
+        "passed": {
+          "title": "Completed modules",
+          "desc": "Modules you've already passed are marked as completed."
+        },
+        "inprogress": {
+          "title": "Module in progress",
+          "desc": "The module you're working on right now is highlighted as current."
+        },
+        "locked": {
+          "title": "Locked modules",
+          "desc": "These modules aren't open yet — they unlock as you progress."
+        },
+        "deadline": {
+          "title": "Deadlines",
+          "desc": "A module can have a deadline — keep an eye on the due date."
+        },
+        "continue": {
+          "title": "Continue learning",
+          "desc": "This button takes you straight back into your current module."
+        },
+        "reader": {
+          "title": "Inside a material",
+          "desc": "Open a material to study the content, track your progress and move on when you're done."
+        },
+        "overdue": {
+          "title": "Overdue deadline",
+          "desc": "A module whose deadline has passed is flagged as overdue — submit it as soon as you can."
+        },
+        "proceed": {
+          "title": "Move forward",
+          "desc": "Use the bar at the bottom to move between materials and finish the current one."
+        }
+      },
+      "mentor": {
+        "classrooms": {
+          "title": "Your classrooms",
+          "desc": "The groups of students you mentor. Open a classroom to see its members and their progress."
+        },
+        "inbox": {
+          "title": "Review inbox",
+          "desc": "Every student submission awaiting review is gathered in one place with filters and search."
+        },
+        "createCourse": {
+          "title": "Creating a course",
+          "desc": "Click to open the create dialog and fill in the new course: name, slug, description, language and visibility. Without the permission this step is skipped."
+        },
+        "courseEditor": {
+          "title": "Editing a course",
+          "desc": "Open a course to edit its modules and materials."
+        },
+        "claim": {
+          "title": "Claiming a submission",
+          "desc": "Take a submission so colleagues can see it's already being handled by you."
+        },
+        "check": {
+          "title": "Reviewing the work",
+          "desc": "Open the student's files and note, and ask clarifying questions when needed."
+        },
+        "slots": {
+          "title": "Slots & live review",
+          "desc": "Open free slots in your calendar — students book live reviews and the sessions appear in your schedule."
+        },
+        "decision": {
+          "title": "Decision & feedback",
+          "desc": "Approve the work or request changes and leave feedback. Review time is tracked automatically."
+        }
+      }
+    }
+  },
+  "profile": {
+    "account": "Account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "appearance": "Appearance",
+    "themeDescription": "Pick a theme. System follows your operating system.",
+    "theme": "Theme",
+    "language": "Language",
+    "savedOnAccount": "Saved on your account.",
+    "uiLanguage": "UI language",
+    "couldntLoad": "Couldn't load your profile",
+    "tryRefresh": "Try refreshing the page in a moment.",
+    "couldntUpdateTheme": "Couldn't update theme",
+    "couldntUpdateLanguage": "Couldn't update language",
+    "tryAgain": "Try again in a moment.",
+    "themes": {
+      "light": "Light",
+      "dark": "Dark",
+      "darkBlue": "Dark blue",
+      "system": "System"
+    },
+    "languages": {
+      "EN": "English",
+      "RU": "Русский"
+    },
+    "tabs": {
+      "general": "General",
+      "security": "Security",
+      "integrations": "Integrations"
+    },
+    "integrations": {
+      "couldntLoadStatus": "Couldn't load integration status. Try refreshing.",
+      "googleCalendar": {
+        "title": "Google Calendar",
+        "description": "Connect your Google account so Orbiter can read and write events on your calendar.",
+        "connectedBadge": "connected",
+        "notConnectedBadge": "not connected",
+        "connect": "Connect Google Calendar",
+        "connectedAsPrefix": "Connected as",
+        "since": "since {{date}}",
+        "syncNow": "Sync now",
+        "syncComingSoon": "Available soon",
+        "lastSync": "Last sync {{when}}",
+        "neverSynced": "Never synced yet",
+        "scopeReadWrite": "Read & write scope",
+        "disconnect": "Disconnect",
+        "disconnectConfirmTitle": "Disconnect Google Calendar?",
+        "disconnectConfirmBody": "Future calendar events will not be synced.",
+        "disconnectConfirm": "Disconnect"
+      },
+      "connectSuccess": "Google Calendar connected",
+      "connectError": "Couldn't connect Google Calendar",
+      "disconnectSuccess": "Google Calendar disconnected",
+      "disconnectError": "Couldn't disconnect Google Calendar",
+      "errors": {
+        "accessDenied": "You declined Google access. Try again if it was unintended.",
+        "invalidState": "Connection link expired. Please try again.",
+        "exchangeFailed": "Could not complete connection with Google. Please try again.",
+        "generic": "Failed to connect Google Calendar. Please try again."
+      }
+    }
+  },
+  "dashboard": {
+    "learningSpace": "Your learning space",
+    "greetingPrefix": "Good orbit,"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "eyebrow": "My calendar",
+    "heroPrefix": "Your",
+    "heroAccent": "schedule",
+    "heroDescription": "Office hours, 1:1 reviews, lectures, and deadlines — all in one place.",
+    "today": "Today",
+    "newEvent": "New event",
+    "allFilter": "All",
+    "views": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month"
+    },
+    "selectedDay": "Selected day",
+    "eventsOfTheDay": "Events",
+    "eventsCount_one": "1 event",
+    "eventsCount_other": "{{count}} events",
+    "noSlotsThisDay": "No events scheduled on this day.",
+    "upcoming": "Upcoming",
+    "noUpcoming": "Nothing upcoming.",
+    "moreCount": "+{{count}} more",
+    "activeCalendar": "Active calendar: {{name}}",
+    "weekdays": {
+      "mon": "MON",
+      "tue": "TUE",
+      "wed": "WED",
+      "thu": "THU",
+      "fri": "FRI",
+      "sat": "SAT",
+      "sun": "SUN"
+    },
+    "weekdaysShort": {
+      "mon": "Mo",
+      "tue": "Tu",
+      "wed": "We",
+      "thu": "Th",
+      "fri": "Fr",
+      "sat": "Sa",
+      "sun": "Su"
+    },
+    "create": "Create",
+    "otherCalendars": "Other calendars",
+    "rowActions": "Calendar actions",
+    "addCalendar": "Add calendar",
+    "googleCalendars": "Google calendars",
+    "emptySection": "Nothing here yet.",
+    "myCalendars": "My calendars",
+    "sharedWithOrg": "Shared with org",
+    "newCalendar": "New calendar",
+    "editCalendar": "Edit calendar",
+    "deleteCalendar": "Delete calendar",
+    "newSlot": "New slot",
+    "editSlot": "Edit slot",
+    "selectCalendar": "Select a calendar from the sidebar",
+    "noCalendarsTitle": "No calendars yet",
+    "noCalendarsDesc": "Create your first calendar to start scheduling.",
+    "noSlots": "No slots in this period",
+    "default": "Default",
+    "readOnly": "Read-only — calendar of {{owner}}",
+    "readOnlyShort": "Read-only",
+    "couldntLoad": "Couldn't load calendars",
+    "couldntLoadSlots": "Couldn't load slots. Try a different range.",
+    "from": "From",
+    "to": "To",
+    "ranges": {
+      "thisMonth": "This month",
+      "nextMonth": "Next month",
+      "custom": "Custom"
+    },
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "color": "Color",
+      "visibility": "Visibility",
+      "visibilityPrivate": "Private — only you",
+      "visibilityOrg": "Organization — read-only for members",
+      "organization": "Organization",
+      "isDefault": "Set as default",
+      "title": "Title",
+      "calendar": "Calendar",
+      "location": "Location",
+      "startAt": "Starts",
+      "endAt": "Ends",
+      "allDay": "All day",
+      "endBeforeStart": "End must be after start"
+    },
+    "createSuccess": "Calendar created",
+    "updateSuccess": "Calendar updated",
+    "deleteSuccess": "Calendar deleted",
+    "deleteConfirmTitle": "Delete this calendar?",
+    "deleteConfirmBody": "All slots in this calendar will be lost. This cannot be undone.",
+    "slotCreateSuccess": "Slot created",
+    "slotUpdateSuccess": "Slot updated",
+    "slotDeleteSuccess": "Slot deleted",
+    "slotDeleteConfirmTitle": "Delete this slot?",
+    "slotCancelled": "Cancelled",
+    "errors": {
+      "permissionDenied": "You don't have permission for this action.",
+      "notFound": "Calendar not found.",
+      "generic": "Something went wrong. Please try again."
+    },
+    "typePicker": {
+      "title": "What kind of calendar?",
+      "regularTitle": "Regular calendar",
+      "regularDesc": "Personal or organization-shared events with custom title, description and color.",
+      "bookableTitle": "Mentor slots",
+      "bookableDesc": "Slots students can book to submit a learning material for review. Only one per mentor."
+    },
+    "bookable": {
+      "calendarName": "Mentor booking",
+      "newTitle": "New mentor slots calendar",
+      "editTitle": "Edit mentor slots calendar",
+      "deleteConfirmTitle": "Delete mentor slots calendar?",
+      "deleteConfirmBody": "All bookings on this calendar will be cancelled. This cannot be undone.",
+      "alreadyExists": "You already have a mentor slots calendar — only one is allowed.",
+      "helpText": "Bookable calendars host slots that students reserve to submit a learning material for review. The calendar's display name comes from its slot bookings, so name and description are not editable.",
+      "defaultCapacity": "Default capacity",
+      "defaultCapacityHint": "Maximum students that can book the same slot. New slots inherit this value unless overridden.",
+      "cancellationLeadHours": "Cancellation lead-time (hours)",
+      "cancellationLeadHoursHint": "Students may cancel their own booking only when the slot still starts at least this many hours in the future. Mentors and admins can cancel without restriction.",
+      "slotCapacity": "Slot capacity",
+      "slotCapacityHint": "Override how many students can book this specific slot.",
+      "openSlot": "Open slot",
+      "materialSlot": "Material slot",
+      "duration": "Duration",
+      "minutesShort": "{{count}} min",
+      "hoursShort_one": "{{count}} h",
+      "hoursShort_other": "{{count}} h",
+      "bookings": "Bookings",
+      "noBookings": "No bookings yet.",
+      "bookingMaterial": "Material: {{material}}",
+      "unknownStudent": "Student",
+      "unknownMaterial": "untitled"
+    },
+    "import": {
+      "fromGoogle": "Import from Google",
+      "syncEvents": "Sync events from Google",
+      "title": "Import calendars from Google",
+      "primary": "primary",
+      "alreadyImported": "Already imported",
+      "couldntLoad": "Couldn't load Google calendars. Try again.",
+      "empty": "No Google calendars available.",
+      "action_one": "Import (1)",
+      "action_other": "Import ({{count}})",
+      "progress": "Importing {{done}} / {{total}}…",
+      "successCount_one": "Imported 1 calendar from Google",
+      "successCount_other": "Imported {{count}} calendars from Google",
+      "partialTitle": "Imported {{done}} of {{total}}",
+      "errorGeneric": "Try again in a moment.",
+      "connectTitle": "Connect Google Calendar",
+      "connectBody": "To import calendars from Google, first connect your Google account in Settings → Integrations.",
+      "openSettings": "Open settings",
+      "eventsNoChanges": "No changes from Google",
+      "eventsSummary": "Imported {{imported}} new events, updated {{updated}}",
+      "eventsSummaryWithCancelled": "Imported {{imported}}, updated {{updated}}, {{cancelled}} cancelled",
+      "notLinked": "This calendar is not linked to Google."
+    }
+  },
+  "classrooms": {
+    "title": "Classrooms",
+    "yourClassrooms": "Your classrooms",
+    "availableClassrooms": "Available classrooms",
+    "noClassroomsYet": "No classrooms yet.",
+    "notEnrolled": "You're not enrolled in any classrooms yet.",
+    "noneAvailable": "You don't have any available classrooms yet.",
+    "couldntLoad": "Couldn't load classrooms. Try again later.",
+    "newClassroom": "New classroom",
+    "notFound": "Classroom not found",
+    "notFoundDesc": "Classroom \"{{slug}}\" doesn't exist or you don't have access to it.",
+    "couldntLoadDetail": "Couldn't load classroom. Try again later.",
+    "filters": {
+      "all": "All",
+      "active": "Active",
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "status": {
+      "ACTIVE": "active",
+      "COMPLETED": "completed",
+      "PLANNED": "starts soon",
+      "ARCHIVED": "archived"
+    },
+    "summary": "{{active}} active · {{planned}} upcoming · {{completed}} completed",
+    "pagination": {
+      "summary": "Page {{page}} of {{total}} · {{count}} total",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "stats": {
+      "courses": "Courses",
+      "cohort": "Cohort",
+      "starts": "Starts",
+      "ends": "Ends"
+    },
+    "inThisClassroom": "in this classroom",
+    "courseCount_one": "1 course",
+    "courseCount_other": "{{count}} courses",
+    "mentorCount_one": "1 mentor",
+    "mentorCount_other": "{{count}} mentors",
+    "startsDate": "starts {{date}}",
+    "endsDate": "ends {{date}}",
+    "peers": "peers",
+    "students": "Students",
+    "course": "Course",
+    "capacity": "Capacity",
+    "mentors": "Mentors",
+    "noCourses": "No courses",
+    "noCoursesYet": "No courses in this classroom yet.",
+    "couldntLoadCourses": "Couldn't load courses. Try again later.",
+    "management": {
+      "studentsCount": "{{enrolled}}{{capacity}} students",
+      "capacityOf": " / {{capacity}}",
+      "settings": {
+        "discardChanges": "Discard changes",
+        "saveChanges": "Save changes",
+        "basics": "Basics",
+        "classroomName": "Classroom name",
+        "classroomNamePlaceholder": "Backend · Spring 2026",
+        "slug": "Slug",
+        "slugHint": "Lowercase letters, digits, hyphens; min 2 chars.",
+        "slugPlaceholder": "classroom-slug",
+        "status": "Status",
+        "lifecycleStatus": "Lifecycle status",
+        "statuses": {
+          "PLANNED": "Planned",
+          "ACTIVE": "Active",
+          "COMPLETED": "Completed",
+          "ARCHIVED": "Archived"
+        },
+        "scheduleAndCapacity": "Schedule & capacity",
+        "startDate": "Start date",
+        "endDate": "End date (optional)",
+        "capacity": "Capacity (optional)",
+        "capacityPlaceholder": "e.g. 20",
+        "capacityHint": "Whole number ≥ 1. Leave blank for no limit.",
+        "required": "Required.",
+        "endAfterStart": "Must be after start date.",
+        "capacityInvalid": "Must be a non-negative number.",
+        "dangerZone": "Danger zone",
+        "deleteHeading": "Delete this classroom",
+        "deleteDesc": "Permanently removes the classroom together with its enrollments, mentor assignments and attached courses (the courses themselves stay in the catalog). Students lose access. This cannot be undone.",
+        "deleteClassroom": "Delete classroom",
+        "deleteConfirmTitle": "Delete this classroom?",
+        "deleteConfirmBody": "You are about to permanently delete {{name}}. All enrollments, mentor assignments and course attachments for this classroom will be wiped. This cannot be undone.",
+        "saved": "Classroom saved",
+        "savedMessage": "Updated \"{{name}}\".",
+        "couldntSave": "Couldn't save classroom",
+        "deleted": "Classroom deleted",
+        "deletedMessage": "Removed \"{{name}}\".",
+        "couldntDelete": "Couldn't delete classroom"
+      },
+      "announcement": "Announcement",
+      "tabs": {
+        "overview": "Overview",
+        "students": "Students",
+        "mentors": "Mentors",
+        "reviews": "Reviews",
+        "settings": "Settings"
+      },
+      "stats": {
+        "students": "Students",
+        "studentsSub": "of {{capacity}} capacity",
+        "courses": "Courses",
+        "coursesSub": "in classroom",
+        "mentors": "Mentors",
+        "mentorsSub": "assigned",
+        "status": "Status"
+      },
+      "cohortProgress": "Cohort progress",
+      "seatsFilled": "Seats filled",
+      "lifecycleLabel": "Lifecycle",
+      "lifecycle": {
+        "INVITED": "Invited",
+        "ACTIVE": "Active",
+        "PAUSED": "Paused",
+        "DROPPED": "Dropped",
+        "GRADUATED": "Graduated"
+      },
+      "mentorsTitle": "Mentors",
+      "noMentorsAssigned": "No mentors assigned.",
+      "addMentor": "Add mentor",
+      "mentorActions": "Mentor actions",
+      "removeFromClassroom": "Remove from classroom",
+      "coursesInClassroom": "Courses in classroom",
+      "noCoursesAttached": "No courses attached.",
+      "addCourse": "Add course",
+      "courseActions": "Course actions",
+      "removeMentorTitle": "Remove mentor from classroom?",
+      "removeMentorConfirm": "Remove from classroom",
+      "removeMentorDesc": "{{name}} will lose mentor access to this classroom. Their mentor account stays in the organization — you can re-assign them later.",
+      "mentorRemoved": "Mentor removed",
+      "mentorRemovedDesc": "{{name}} is no longer assigned to this classroom.",
+      "couldntRemoveMentor": "Couldn't remove mentor",
+      "detachCourseTitle": "Detach course from classroom?",
+      "detachCourseConfirm": "Detach from classroom",
+      "detachCourseDesc": "{{name}} will be detached from this classroom. Students lose access to its materials, but the course itself stays in the catalog.",
+      "courseDetached": "Course detached",
+      "courseDetachedDesc": "\"{{name}}\" removed from this classroom.",
+      "couldntDetachCourse": "Couldn't detach course",
+      "deleteAnnouncementTitle": "Delete announcement?",
+      "deleteAnnouncementConfirm": "Delete announcement",
+      "deleteAnnouncementDesc": "{{title}} will be permanently removed from this classroom. This action can't be undone.",
+      "announcementUpdated": "Announcement updated",
+      "announcementUpdatedDesc": "\"{{title}}\" has been saved.",
+      "announcementPosted": "Announcement posted",
+      "announcementPostedDesc": "\"{{title}}\" is now visible in this classroom.",
+      "announcementDeleted": "Announcement deleted",
+      "announcementDeletedDesc": "\"{{title}}\" was removed.",
+      "couldntUpdateAnnouncement": "Couldn't update announcement",
+      "couldntPostAnnouncement": "Couldn't post announcement",
+      "couldntDeleteAnnouncement": "Couldn't delete announcement",
+      "comingSoon": "{{tab}} — coming soon",
+      "courseLabelMany": "{{count}} courses",
+      "studentsPane": {
+        "studentsCount_one": "{{count}} student",
+        "studentsCount_other": "{{count}} students",
+        "addStudents": "Add students",
+        "user": "Student",
+        "email": "Email",
+        "status": "Status",
+        "couldntLoad": "Couldn't load students. Try again later.",
+        "noStudents": "No students enrolled yet.",
+        "studentActions": "Student actions",
+        "removeFromClassroom": "Remove from classroom",
+        "removeStudentTitle": "Remove student from classroom?",
+        "removeStudentConfirm": "Remove from classroom",
+        "removeStudentDesc": "{{name}} will lose access to all materials in this classroom. The user account stays in the organization — you can re-enroll them later.",
+        "studentRemoved": "Student removed",
+        "studentRemovedDesc": "{{name}} is no longer enrolled in this classroom.",
+        "couldntRemoveStudent": "Couldn't remove student",
+        "lifecycle": {
+          "INVITED": "Invited",
+          "ACTIVE": "Active",
+          "PAUSED": "Paused",
+          "DROPPED": "Dropped",
+          "GRADUATED": "Graduated"
+        }
+      },
+      "mentorsPane": {
+        "mentorsCount_one": "{{count}} mentor",
+        "mentorsCount_other": "{{count}} mentors",
+        "addMentor": "Add mentor",
+        "couldntLoad": "Couldn't load mentors. Try again later.",
+        "noMentors": "No mentors assigned to this classroom yet.",
+        "mentorActions": "Mentor actions",
+        "removeFromClassroom": "Remove from classroom"
+      },
+      "addStudents": {
+        "addStudents": "Add students",
+        "close": "Close",
+        "searchPlaceholder": "Search organization members by name or email…",
+        "couldntLoad": "Couldn't load organization members. Try again later.",
+        "everyoneIn": "All students are already in this classroom.",
+        "noMatches": "No matches. Try a different search.",
+        "noStudentsTitle": "No students yet",
+        "noStudentsHint": "There are no students in this organization yet. Invite a user from the Users page and grant them the Student role.",
+        "goToUsers": "Go to Users",
+        "add": "Add",
+        "enrolled": "Enrolled",
+        "enrolledDesc": "{{firstName}} {{lastName}} added to this classroom.",
+        "couldntEnroll": "Couldn't enroll member"
+      },
+      "addCourses": {
+        "title": "Add courses",
+        "close": "Close",
+        "searchPlaceholder": "Search courses by name or slug…",
+        "couldntLoad": "Couldn't load courses. Try again later.",
+        "allAttached": "All organization courses are already attached to this classroom.",
+        "noMatches": "No matches. Try a different search.",
+        "noCoursesTitle": "No courses yet",
+        "noCoursesHint": "There are no courses in this organization yet. Create one and then attach it to this classroom.",
+        "createCourse": "Create a course",
+        "draft": "draft",
+        "add": "Add",
+        "courseAdded": "Course added",
+        "courseAddedDesc": "\"{{name}}\" attached to this classroom.",
+        "couldntAttach": "Couldn't attach course"
+      },
+      "announcements": {
+        "title": "Announcements",
+        "loading": "Loading…",
+        "empty": "No announcements yet",
+        "emptyDesc": "Use Announcements to share deadlines, schedule changes, and wins with everyone in this classroom.",
+        "actions": "Announcement actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "post": "Post announcement",
+        "justNow": "just now",
+        "minutesAgo": "{{count}}m ago",
+        "hoursAgo": "{{count}}h ago",
+        "daysAgo": "{{count}}d ago",
+        "statuses": {
+          "DRAFT": "draft",
+          "PUBLISHED": "published",
+          "ARCHIVED": "archived"
+        },
+        "composer": {
+          "editTitle": "Edit announcement",
+          "newTitle": "Post announcement",
+          "saveChanges": "Save changes",
+          "publish": "Publish",
+          "saveDraft": "Save draft",
+          "editingIn": "Editing in ",
+          "postingTo": "Posting to ",
+          "title": "Title",
+          "titlePlaceholder": "e.g. Module 5 deadline extended",
+          "type": "Type",
+          "status": "Status",
+          "content": "Content",
+          "contentPlaceholder": "What do you want everyone in this classroom to know? Markdown is supported.",
+          "scheduledStart": "Scheduled start",
+          "scheduledEnd": "Scheduled end",
+          "pickStart": "Pick start",
+          "pickEnd": "Pick end",
+          "endAfterStart": "End must be after start.",
+          "pinToTop": "Pin to top",
+          "pinToTopSub": "Keeps this announcement above the rest until you unpin it.",
+          "types": {
+            "INFO": "Info",
+            "WARNING": "Warning",
+            "SUCCESS": "Success",
+            "EVENT": "Event",
+            "REMINDER": "Reminder"
+          },
+          "statusOptions": {
+            "DRAFT": "Draft",
+            "PUBLISHED": "Published",
+            "ARCHIVED": "Archived"
+          }
+        }
+      }
+    }
+  },
+  "courses": {
+    "ai": {
+      "title": "Generate course with AI",
+      "generateWithAi": "Generate with AI",
+      "startHeadline": "Describe your course in a sentence",
+      "startHint": "The AI fills in the rest. You can refine before anything is created.",
+      "startPlaceholder": "Intro to Spring Boot for Java devs who never built a web app — 6 modules, with quizzes",
+      "generateCourse": "Generate course",
+      "refineFirst": "Refine first",
+      "chatPlaceholder": "Type your answer…",
+      "send": "Send",
+      "needSentence": "Describe your course first.",
+      "errorTitle": "AI request failed",
+      "errorRetry": "Please try again.",
+      "generateFailed": "Could not generate the course. Please try again.",
+      "doneTitle": "Course created",
+      "generating": "Building your course…",
+      "generatingContent": "Writing modules and lesson content — this can take a minute.",
+      "generatingSkeleton": "Creating the course structure…",
+      "newModule": "New module",
+      "newMaterial": "New lesson",
+      "courseName": "Course name",
+      "courseDesc": "Short description",
+      "outlineSummary": "{{m}} modules · {{l}} lessons",
+      "deleteModule": "Delete module",
+      "deleteMaterial": "Delete lesson",
+      "addMaterial": "Add lesson",
+      "addModule": "Add module",
+      "refinePlaceholder": "Refine: “split module 3”, “add a module on testing”…",
+      "refine": "Refine",
+      "alsoContent": "Also draft each lesson’s content now",
+      "backToChat": "Back to chat",
+      "kind": {
+        "READING": "Reading",
+        "LECTURE": "Lecture",
+        "PRACTICE": "Practice",
+        "QUIZ": "Quiz",
+        "REVIEW": "Review",
+        "OPTIONAL": "Optional"
+      }
+    },
+    "title": "Courses",
+    "openCourse": "Open course",
+    "inProgress": "in progress",
+    "noCoursesYet": "No courses yet.",
+    "noCoursesMatch": "No courses match.",
+    "summary": "{{count}} courses · {{en}} EN · {{ru}} RU",
+    "export": "Export",
+    "newCourse": "New course",
+    "filterAll": "All",
+    "filterEN": "English",
+    "filterRU": "Russian",
+    "searchPlaceholder": "Search courses…",
+    "couldntLoad": "Couldn't load courses. Try again later.",
+    "editor": {
+      "title": "New course",
+      "createCourse": "Create course",
+      "courseNamePlaceholder": "e.g. Spring Boot Fundamentals",
+      "descriptionPlaceholder": "What will students learn in this course?",
+      "publishedSub": "Visible to students enrolled in classrooms using this course",
+      "created": "Course created",
+      "createdMessage": "\"{{name}}\" added to the organization.",
+      "couldntCreate": "Couldn't create course",
+      "card": {
+        "modules": "Modules",
+        "materials": "Materials",
+        "enrolled": "Enrolled",
+        "open": "Open"
+      },
+      "badges": {
+        "published": "published",
+        "draft": "draft",
+        "empty": "empty",
+        "public": "public",
+        "private": "private",
+        "liveReview": "live review",
+        "mentorReview": "mentor review",
+        "hardLock": "hard-lock"
+      },
+      "tabs": {
+        "modulesAndMaterials": "Modules & materials",
+        "settings": "Settings",
+        "enrollments": "Enrollments"
+      },
+      "notFound": "Course not found",
+      "notFoundDesc": "Course \"{{slug}}\" doesn't exist.",
+      "couldntLoad": "Couldn't load course. Try again later.",
+      "couldntLoadModules": "Couldn't load modules. Try again later.",
+      "noModules": "No modules in this course yet.",
+      "addModule": "Add module",
+      "modulesTitle": "Modules",
+      "modulesSummary": "{{modules}} modules · {{materials}} materials",
+      "moduleAriaLabel": "Module {{index}}: {{title}}",
+      "materialsCount": "{{count}} materials",
+      "materialsCountWithDuration": "{{count}} materials · {{minutes}} min",
+      "editModule": "Edit module",
+      "delete": "Delete",
+      "materialsHeading": "Materials",
+      "materialsInModule": "{{count}} in this module",
+      "newMaterial": "New material",
+      "noMaterialsInModule": "No materials in this module yet.",
+      "moduleLabel": "MODULE",
+      "moduleStatsMaterials": "Materials",
+      "moduleStatsDuration": "Duration",
+      "moduleStatsMinutes": "{{count}} min",
+      "menu": {
+        "moreActions": "More actions",
+        "editMaterial": "Edit material",
+        "duplicate": "Duplicate",
+        "removeFromModule": "Remove from module"
+      },
+      "deleteMaterial": {
+        "title": "Delete this material?",
+        "bodyPrefix": "You are about to permanently remove",
+        "bodySuffix": "and all its blocks. Students enrolled in classrooms that include this course will lose access to it. This cannot be undone.",
+        "confirm": "Delete material",
+        "success": "Material removed",
+        "successMsg": "Removed \"{{title}}\" from the module.",
+        "couldntRemove": "Couldn't remove material"
+      },
+      "deleteModule": {
+        "title": "Delete this module?",
+        "bodyPrefix": "You are about to permanently delete",
+        "bodySuffix": "together with all its materials, blocks and submission configs. Students enrolled in classrooms that include this course will lose access to it. This cannot be undone.",
+        "confirm": "Delete module",
+        "success": "Module deleted",
+        "successMsg": "Removed \"{{title}}\" from the course.",
+        "couldntDelete": "Couldn't delete module"
+      },
+      "duplicate": {
+        "success": "Material duplicated",
+        "successMsg": "Created \"{{title}}\".",
+        "couldntDuplicate": "Couldn't duplicate material",
+        "copySuffix": "(copy)"
+      }
+    },
+    "module": {
+      "editTitle": "Edit module",
+      "newTitle": "New module",
+      "saveChanges": "Save changes",
+      "createModule": "Create module",
+      "moduleTitle": "Module title",
+      "moduleTitlePlaceholder": "e.g. Transactions & isolation levels",
+      "description": "Description",
+      "descriptionPlaceholder": "What will students learn in this module?",
+      "published": "Published",
+      "publishedSub": "Visible to students enrolled in classrooms using this course",
+      "hardLock": "Hard-lock this module",
+      "hardLockSub": "Students can't open the next module until this one is fully completed",
+      "saved": "Module saved",
+      "savedMessage": "Updated \"{{title}}\".",
+      "created": "Module created",
+      "createdMessage": "\"{{title}}\" added to the course.",
+      "couldntSave": "Couldn't save module",
+      "couldntCreate": "Couldn't create module"
+    },
+    "material": {
+      "newTitle": "New material",
+      "createMaterial": "Create material",
+      "materialTitle": "Material title",
+      "materialTitlePlaceholder": "e.g. Isolation levels in Postgres",
+      "urlSlug": "URL slug",
+      "urlSlugPlaceholder": "isolation-levels-in-postgres",
+      "slugErr": "Lowercase letters, digits and dashes; min 2 chars; must start with a letter or digit.",
+      "slugHint": "Used in the URL. Auto-derived from the title — edit to override.",
+      "description": "Description",
+      "descriptionPlaceholder": "Short description students see in the reader…",
+      "type": "Type",
+      "typeAriaLabel": "Material type",
+      "estimatedMinutes": "Estimated minutes",
+      "estimatedMinutesPlaceholder": "e.g. 25",
+      "created": "Material created",
+      "createdMessage": "\"{{title}}\" added to the module.",
+      "couldntCreate": "Couldn't create material",
+      "kinds": {
+        "LECTURE": {
+          "label": "Lecture",
+          "desc": "Recorded video / live session"
+        },
+        "READING": {
+          "label": "Reading",
+          "desc": "Article-style content"
+        },
+        "PRACTICE": {
+          "label": "Practice",
+          "desc": "Hands-on exercise"
+        },
+        "QUIZ": {
+          "label": "Quiz",
+          "desc": "Auto-graded questions"
+        },
+        "REVIEW": {
+          "label": "Review",
+          "desc": "Mentor review checkpoint"
+        },
+        "OPTIONAL": {
+          "label": "Optional",
+          "desc": "Extra reading — not required"
+        }
+      }
+    },
+    "enrollments": {
+      "couldntLoad": "Couldn't load classrooms. Try again later.",
+      "noClassrooms": "No classrooms yet",
+      "noClassroomsDesc": "This course isn't included in any classroom. Add it from a classroom's setup page to enrol students.",
+      "usingThisCourse_one": "{{count}} classroom using this course",
+      "usingThisCourse_other": "{{count}} classrooms using this course",
+      "seatsTotal": "{{count}} seats in total",
+      "seatsCount": "{{count}} seats"
+    },
+    "matEditor": {
+      "ai": {
+        "emptyHeadline": "This material is empty",
+        "emptyHint": "Let AI draft it from the title and description — then edit freely.",
+        "instructionsPlaceholder": "Optional: add focus or instructions…",
+        "generate": "Generate",
+        "askFirst": "Ask me first",
+        "askSeed": "Help me write this lesson.",
+        "chatPlaceholder": "Type your answer…",
+        "send": "Send",
+        "generating": "Drafting this lesson… this can take ~30s",
+        "doneToast": "Draft added",
+        "errorTitle": "AI request failed",
+        "errorRetry": "Please try again.",
+        "toolbar": "AI generate",
+        "filledHeadline": "Generate with AI",
+        "filledHint": "AI drafts from the title and description — you choose to append or replace.",
+        "chooseTitle": "Draft ready — apply to the material:",
+        "chooseHint": "This material already has content. Append the draft to the end, or replace everything.",
+        "append": "Append to end",
+        "replace": "Replace all",
+        "cancel": "Cancel"
+      },
+      "material": "Material",
+      "titlePlaceholder": "Untitled material",
+      "descPlaceholder": "Add a short description…",
+      "typeOrSlash": "Type, or press '/' for commands",
+      "deleteBlockTitle": "Delete this block?",
+      "deleteBlockDesc": "This block will be permanently removed from the material.",
+      "invalidSaveBlocked": "Fix the highlighted blocks before saving.",
+      "invalidBadge": "Invalid",
+      "revertBlock": "Revert changes",
+      "turnInto": "Turn into",
+      "blockMoveOrMenu": "Drag to move · click for actions",
+      "edit": "Edit",
+      "preview": "Preview",
+      "previewSize": {
+        "label": "Width",
+        "course": "Course width",
+        "desktop": "Desktop",
+        "tablet": "Tablet",
+        "phone": "Phone"
+      },
+      "leave": {
+        "title": "Unsaved changes",
+        "desc": "You have unsaved changes to this material. Save before leaving?",
+        "save": "Save & leave",
+        "discard": "Leave without saving",
+        "stay": "Stay"
+      },
+      "publish": "Publish",
+      "saved": "Saved",
+      "saving": "Saving…",
+      "unsaved": "Unsaved",
+      "saveNow": "Save now",
+      "savedToast": "Changes saved",
+      "saveFailed": "Couldn't save changes",
+      "deleteFailed": "Couldn't delete material",
+      "deleteMaterial": "Delete material",
+      "deleteHint": "Deleting a material removes it and all its blocks. This can't be undone.",
+      "roBadge": "Read-only",
+      "outline": "Outline",
+      "outlineEmpty": "No blocks yet",
+      "outlineInvalid": "Invalid or incomplete",
+      "outlineChanged": "Unsaved change",
+      "outlineDeleted": "Deleted",
+      "outlineRestore": "Restore block",
+      "jumpTop": "Jump to top",
+      "copy": "Copy",
+      "copied": "Copied",
+      "insp": {
+        "empty": "Select a block to edit its tools.",
+        "richHint": "Click into the text to format it.",
+        "inlineHint": "Edit this block's content directly on the canvas.",
+        "tone": "Tone",
+        "title": "Title",
+        "code": "Code",
+        "buttonsEmpty": "Add buttons in the panel →",
+        "questionsEmpty": "Add questions in the panel →",
+        "duplicate": "Duplicate",
+        "delete": "Delete"
+      },
+      "json": {
+        "toggle": "JSON editor",
+        "copy": "Copy JSON",
+        "synced": "In sync — edits apply live",
+        "readonlyHint": "Read-only — editing is disabled in preview",
+        "invalid": "Invalid JSON",
+        "notArray": "Top level must be an array of blocks",
+        "applyFailed": "Could not apply blocks"
+      },
+      "selBlocks": "blocks",
+      "addBlockOrDel": "Add block · Shift-click to delete",
+      "confirmDel": {
+        "title": "Delete?",
+        "body": "Delete this block? This cannot be undone.",
+        "bodyN": "Delete {n} blocks? This cannot be undone."
+      },
+      "history": {
+        "title": "Change history",
+        "note": "This session only — reset on refresh.",
+        "empty": "No changes yet.",
+        "current": "Current",
+        "restore": "Restore"
+      },
+      "paste": "Paste",
+      "highlight": "Highlight",
+      "highlightClear": "Remove highlight",
+      "markTone": {
+        "dark": "Dark",
+        "bright": "Bright"
+      },
+      "guide": {
+        "title": "How to write a course"
+      },
+      "btn": {
+        "title": "Buttons",
+        "desc": "Up to 3 link buttons in a row",
+        "add": "Add button",
+        "label": "Label",
+        "url": "https://…",
+        "remove": "Remove",
+        "noIcon": "No icon",
+        "primary": "Primary",
+        "secondary": "Secondary",
+        "ghost": "Ghost",
+        "urlInvalid": "Invalid link",
+        "needContent": "Add a label or pick an icon",
+        "empty": "No buttons yet — add one below."
+      },
+      "grid": {
+        "name": "Icon grid",
+        "desc": "A grid of icon cards",
+        "titlePlaceholder": "Title (optional)",
+        "cols": "cols",
+        "addItem": "Add item",
+        "itemTitle": "Title",
+        "itemText": "Description (required)",
+        "icon": "Icon",
+        "link": "https://… (optional)",
+        "linkInvalid": "Invalid link",
+        "descRequired": "Description is required",
+        "minItems": "At least one item",
+        "empty": "No items yet — add one below.",
+        "tone": {
+          "success": "SUCCESS",
+          "info": "INFO",
+          "warning": "WARNING",
+          "danger": "DANGER",
+          "brand": "BRAND",
+          "neutral": "NEUTRAL"
+        }
+      },
+      "reftable": {
+        "name": "Reference table",
+        "desc": "Two columns: description → linked options",
+        "leftHeaderDefault": "I want to…",
+        "rightHeaderDefault": "Best option",
+        "leftHeader": "Left column header",
+        "rightHeader": "Right column header",
+        "left": "Description",
+        "leftRequired": "Description is required",
+        "optLabel": "Label",
+        "optUrl": "https://… (optional)",
+        "or": "or",
+        "sort": "Sort by column",
+        "addRow": "Add row",
+        "addOption": "Option",
+        "minRows": "At least one row",
+        "empty": "No rows yet — add one below."
+      },
+      "tabs": {
+        "name": "Tabs",
+        "desc": "Tabbed container — any blocks per tab",
+        "tab": "Tab",
+        "addTab": "Add tab",
+        "removeTab": "Remove tab",
+        "removeLast": "Remove tabs, keep content",
+        "invalidOne": "A tabs block needs at least 2 tabs. Delete this tab to keep just its content.",
+        "minTabs": "At least one tab",
+        "empty": "No tabs yet.",
+        "delTitle": "Delete this tab?",
+        "delBody": "The tab \"{label}\" has content that will be permanently removed.",
+        "delConfirm": "Delete tab",
+        "limit": "Block limit reached ({max} per tab)"
+      },
+      "accordion": {
+        "name": "Accordion",
+        "desc": "Collapsible sections — any blocks per section",
+        "item": "Section",
+        "titlePh": "Section title",
+        "addItem": "Add section",
+        "removeItem": "Remove section",
+        "removeLast": "Remove accordion, keep content",
+        "invalidMin": "An accordion needs at least 2 sections. Delete this section to keep just its content.",
+        "limit": "Block limit reached ({max} per section)",
+        "expand": "Expand",
+        "collapse": "Collapse",
+        "delTitle": "Delete this section?",
+        "delBody": "The section \"{label}\" has content that will be permanently removed.",
+        "delConfirm": "Delete section"
+      },
+      "steps": {
+        "name": "Steps",
+        "desc": "Numbered steps — a title and content per step",
+        "item": "Step",
+        "titlePh": "Step title",
+        "addItem": "Add step",
+        "removeItem": "Remove step",
+        "removeLast": "Remove steps, keep content",
+        "limit": "Block limit reached ({max} per step)",
+        "orientation": "Orientation",
+        "prev": "Previous step",
+        "next": "Next step",
+        "markerType": "Marker type",
+        "marker": {
+          "number": "Numbers",
+          "letter": "Letters",
+          "dot": "Dots",
+          "icon": "Icons"
+        },
+        "delTitle": "Delete this step?",
+        "delBody": "The step \"{label}\" has content that will be permanently removed.",
+        "delConfirm": "Delete step"
+      },
+      "openapi": {
+        "name": "OpenAPI / Swagger",
+        "desc": "Embed an API reference from a spec (JSON or URL)",
+        "source": "Source",
+        "sourceJson": "Paste JSON",
+        "sourceUrl": "From URL",
+        "urlPh": "https://…/api/v3/api-docs",
+        "jsonPh": "Paste the OpenAPI JSON here…",
+        "apply": "Apply",
+        "loading": "Loading…",
+        "errorJson": "Invalid JSON",
+        "errorFetch": "Could not load the spec",
+        "empty": "No spec yet — add one via “Source”.",
+        "filter": "Filter endpoints…",
+        "noMatch": "No endpoints match",
+        "params": "Parameters",
+        "requestBody": "Request body",
+        "responses": "Responses",
+        "required": "required"
+      },
+      "ribbon": {
+        "name": "Ribbon buttons",
+        "desc": "Chevron banner buttons with optional links",
+        "default": "Button",
+        "placeholder": "Button text",
+        "url": "https://… (optional link)",
+        "add": "Add button",
+        "remove": "Remove",
+        "empty": "No buttons yet — add one below.",
+        "align": "Alignment",
+        "urlInvalid": "Invalid link"
+      },
+      "gallery": {
+        "name": "Image gallery",
+        "desc": "Grid, gallery or carousel of images",
+        "view": {
+          "grid": "Grid",
+          "gallery": "Gallery",
+          "carousel": "Carousel"
+        },
+        "cols": "cols",
+        "url": "Image URL or data:image…",
+        "addUrl": "Paste image URL…",
+        "add": "Add",
+        "upload": "Upload from device",
+        "uploading": "Uploading…",
+        "drag": "Drag to reorder",
+        "caption": "Caption (optional)",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "prev": "Previous",
+        "next": "Next",
+        "empty": "No images yet — add some below.",
+        "badImage": "Image unavailable",
+        "toGallery": "Convert to gallery",
+        "toImage": "Convert to image",
+        "combineTitle": "Combine into a gallery?",
+        "combineBody": "Merge these images into one image gallery.",
+        "combine": "Combine"
+      },
+      "columns": {
+        "name": "2 columns",
+        "desc": "Two-column layout — any blocks per column",
+        "even": "Distribute columns evenly"
+      },
+      "dnd": {
+        "noNestTitle": "Can't place it there",
+        "noNestBody": "Tabs and accordions cannot be nested inside a tab or accordion.",
+        "fullTitle": "No room left",
+        "fullBody": "A tab or section can hold at most {max} blocks."
+      },
+      "callout": {
+        "name": "Callout",
+        "desc": "Coloured note box — text edits like a paragraph",
+        "placeholder": "Write a note…",
+        "pickKind": "Callout type",
+        "kind": {
+          "note": "Note",
+          "info": "Info",
+          "tip": "Tip",
+          "success": "Success",
+          "question": "Question",
+          "important": "Important",
+          "warning": "Warning",
+          "caution": "Caution",
+          "example": "Example",
+          "quote": "Quote",
+          "bug": "Bug",
+          "todo": "To-do"
+        }
+      },
+      "addBlock": "Add block",
+      "emptyTitle": "Start building your material",
+      "emptySub": "Add blocks to compose lessons, practice and checks. Press / anywhere to insert.",
+      "searchBlocks": "Search blocks…",
+      "blockMove": "Drag to reorder",
+      "blockMoveHold": "Hold to drag, then move to reorder",
+      "blockMoveReady": "Drag to reorder",
+      "blockDelete": "Delete block",
+      "pal": {
+        "richtext": "Text",
+        "text": "Text",
+        "heading": "Heading",
+        "image": "Image",
+        "callout": "Callout",
+        "code": "Code",
+        "button_row": "Buttons",
+        "list": "List",
+        "checklist": "Checklist",
+        "quote": "Quote",
+        "table": "Table",
+        "questions": "Mentor questions",
+        "divider": "Divider"
+      },
+      "palGroup": {
+        "basic": "Basic",
+        "media": "Media",
+        "blocks": "Blocks"
+      },
+      "palD": {
+        "richtext": "Rich text — headings, lists, table, code, quote",
+        "text": "Paragraph of body text",
+        "heading": "Section title",
+        "image": "Figure with caption",
+        "callout": "Highlighted note",
+        "code": "Code snippet",
+        "button_row": "Action buttons / links",
+        "list": "Bulleted or numbered list",
+        "checklist": "Task checklist",
+        "quote": "Pull quote",
+        "table": "Rows and columns",
+        "questions": "What the mentor will ask",
+        "divider": "Visual separator"
+      },
+      "kind": {
+        "READING": "Reading",
+        "LECTURE": "Lecture",
+        "PRACTICE": "Practice",
+        "QUIZ": "Quiz",
+        "REVIEW": "Review",
+        "OPTIONAL": "Optional"
+      },
+      "hk": {
+        "title": "Keyboard shortcuts",
+        "save": "Save",
+        "undo": "Undo",
+        "redo": "Redo",
+        "json": "Toggle JSON panel",
+        "preview": "Toggle preview",
+        "outline": "Toggle outline",
+        "nav": "Course materials",
+        "insert": "Insert block",
+        "close": "Close / dismiss"
+      },
+      "nav": {
+        "course": "Course",
+        "open": "Course materials",
+        "empty": "No other materials",
+        "emptyModule": "This module has no materials yet"
+      },
+      "set": {
+        "title": "Material settings",
+        "subtitle": "Slug, type, duration, access and gating.",
+        "identity": "Identity",
+        "slug": "URL slug",
+        "type": "Type",
+        "duration": "Duration",
+        "minutes": "minutes to complete",
+        "access": "Access",
+        "public": "Public",
+        "private": "Private",
+        "publicHint": "Public materials are visible to enrolled students.",
+        "gating": "Gating",
+        "danger": "Danger zone",
+        "display": "Display",
+        "focusMode": "Full-screen editor",
+        "focusModeHint": "Hide the top navigation while editing (⌘⇧F)."
+      },
+      "focusMode": "Full screen",
+      "gating": {
+        "title": "Require mentor approval",
+        "on": "On",
+        "desc": "Students finish this material and send it for review. The next material stays locked until a mentor approves it."
+      },
+      "mode": {
+        "async": "Async review",
+        "asyncDesc": "Mentor reviews submitted work on their own time.",
+        "live": "Live review",
+        "liveDesc": "Student books a live slot with a mentor."
+      },
+      "opt": {
+        "allowFiles": "Allow file uploads",
+        "allowFilesHint": "Students can attach files to their submission.",
+        "requireNote": "Require a note",
+        "requireNoteHint": "Students must write a note when submitting.",
+        "liveSlotDuration": "Slot length",
+        "liveSlotDurationHint": "Length of each mentor-call slot (max 2h).",
+        "liveBookingWindow": "Booking window",
+        "liveBookingWindowHint": "How many days ahead students can book a slot (max 30).",
+        "minutesSuffix": "min",
+        "daysSuffix": "days",
+        "inCatalog": "Show in catalog",
+        "inCatalogHint": "Discoverable in the public course catalog.",
+        "deadlineExt": "Allow deadline extensions",
+        "deadlineExtHint": "Mentors can extend a student's deadline."
+      },
+      "list": {
+        "bulleted": "Bulleted",
+        "numbered": "Numbered"
+      },
+      "img": {
+        "caption": "Caption…",
+        "error": "Image unavailable",
+        "url": "Image URL",
+        "urlPlaceholder": "Paste an image URL…",
+        "replace": "Replace image",
+        "upload": "Upload image",
+        "uploading": "Uploading…",
+        "uploadFailed": "Upload failed — try again."
+      },
+      "tools": {
+        "addItem": "Add item",
+        "removeItem": "Remove",
+        "addRow": "Row",
+        "addCol": "Column",
+        "removeRow": "Row",
+        "removeCol": "Column",
+        "addButton": "Add button",
+        "addQuestion": "Add question",
+        "label": "Label",
+        "url": "URL",
+        "question": "Question",
+        "answer": "Expected answer",
+        "primary": "Primary",
+        "outline": "Outline",
+        "ghost": "Ghost",
+        "language": "Language",
+        "button": "Button",
+        "icon": "Icon (e.g. Terminal)",
+        "urlInvalid": "Use https://… or #anchor",
+        "maxButtons": "Maximum 3 buttons",
+        "copy": "Copy",
+        "copied": "Copied"
+      }
+    },
+    "materialEditor": {
+      "rebuild": {
+        "title": "The material editor is being rebuilt",
+        "body": "We're rebuilding the material editor from scratch for a much smoother editing experience. It will be back here shortly."
+      },
+      "blockErrors": {
+        "title": "Some blocks have errors",
+        "body_one": "Fill in {{count}} required field in the highlighted blocks.",
+        "body_other": "Fill in {{count}} required fields in the highlighted blocks."
+      },
+      "unsavedConfirm": "You have unsaved changes. Leave this page and discard them?",
+      "deleted": "Material deleted",
+      "deletedMessage": "Removed \"{{title}}\".",
+      "couldntDelete": "Couldn't delete material",
+      "titleRequired": "Title is required",
+      "titleRequiredDesc": "Material title cannot be empty.",
+      "invalidSlug": "Invalid slug",
+      "invalidSlugDesc": "Use lowercase letters, digits and hyphens (min 2 chars).",
+      "saved": "Changes saved",
+      "savedNothing": "Nothing to save.",
+      "savedItems": "Saved {{parts}}.",
+      "couldntSave": "Couldn't save changes",
+      "blocksUnit_one": "{{count}} block",
+      "blocksUnit_other": "{{count}} blocks",
+      "gatingSettings": "gating settings",
+      "materialDetails": "material details",
+      "moduleHeader": "{{course}} · Module {{order}} · {{module}}",
+      "title": "Material title",
+      "titlePlaceholder": "Material title",
+      "resetTitle": "Reset title",
+      "reset": "Reset",
+      "slug": "Slug",
+      "slugPlaceholder": "material-slug",
+      "slugAria": "Material slug",
+      "resetSlug": "Reset slug",
+      "delete": "Delete",
+      "discardChanges": "Discard changes",
+      "showPreview": "Show preview",
+      "hidePreview": "Hide preview",
+      "saveChanges": "Save changes",
+      "metaDescription": "Description",
+      "metaDescriptionPlaceholder": "Short description students see in the reader…",
+      "metaType": "Type",
+      "metaMinutes": "Minutes",
+      "metaPublic": "Public",
+      "metaStatus": "Status",
+      "discardField": "Discard {{label}} change",
+      "badges": {
+        "unsaved": "unsaved",
+        "working": "working",
+        "ready": "ready",
+        "public": "Public",
+        "private": "Private",
+        "gatingOn": "gating on",
+        "preview": "preview",
+        "live": "Live review",
+        "async": "Async review"
+      },
+      "blocks": {
+        "title": "Blocks",
+        "summary_one": "{{count}} block",
+        "summary_other": "{{count}} blocks",
+        "unsavedSuffix": " · unsaved",
+        "empty": "No content yet — add your first block to start writing this material.",
+        "addBlock": "Add block",
+        "horizontalRule": "— horizontal rule —",
+        "unsupported": "Unsupported block type: {{type}}",
+        "dragToReorder": "Drag to reorder",
+        "discardBlockChanges": "Discard changes to this block",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "removeBlock": "Remove block",
+        "insertHere": "Insert block here",
+        "toolboxToggle": "Block toolbox",
+        "toolboxTitle": "Blocks",
+        "toolboxHint": "Drag onto the material, or click to add at the end.",
+        "outlineToggle": "Block outline",
+        "outlineTitle": "Outline",
+        "outlineEmpty": "No blocks yet.",
+        "mediaToggle": "Media library"
+      },
+      "media": {
+        "title": "Media",
+        "count_one": "{{count}} file",
+        "count_other": "{{count}} files",
+        "upload": "Upload images",
+        "uploading": "Uploading…",
+        "uploadFailed": "Upload failed",
+        "delete": "Delete",
+        "deleteFailed": "Couldn't delete",
+        "confirmDelete": "Delete this file?",
+        "empty": "No media yet. Upload an image to get started.",
+        "dragHint": "Drag an image onto an image block to use it, or click + to add a new image block.",
+        "insert": "Insert as image block",
+        "prev": "Prev",
+        "next": "Next",
+        "pageOf": "{{page}} / {{total}}"
+      },
+      "preview": {
+        "title": "Preview",
+        "subtitle": "As a student will see it",
+        "empty": "No content yet — add blocks on the left to fill the material.",
+        "yourSubmission": "Your submission",
+        "attachFiles": "Attach files",
+        "noteForReviewer": "Note for your reviewer",
+        "required": "required",
+        "optional": "optional",
+        "dropFiles": "Drop files here",
+        "or": "or",
+        "browse": "browse",
+        "fileTypes": "PDF, Word, Excel, PowerPoint, images, ZIP — up to 5 MB each",
+        "noteHint": "Add a note for your mentor…",
+        "bookSlot": "Book a slot",
+        "submitForReview": "Submit for review",
+        "submitToUnlock": "Submit to unlock",
+        "min": "{{count}} min",
+        "instr": {
+          "closingLive": "Your mentor will go through it with you on a call.",
+          "closingAsync": "Your mentor will review it shortly.",
+          "filesNoteLive": "Attach your work, leave a note, then book a slot with your mentor",
+          "filesNoteAsync": "Attach your work and leave a note for your mentor",
+          "filesLive": "Attach your work, then book a slot with your mentor",
+          "filesAsync": "Attach your work below",
+          "noteLive": "Leave a note about your work, then book a slot with your mentor",
+          "noteAsync": "Leave a note describing your work",
+          "defaultLive": "When you're ready, book a slot with your mentor",
+          "defaultAsync": "When you finish reading, mark this material as submitted"
+        },
+        "requirementHints": {
+          "note": "Leave a note for your mentor first",
+          "files": "Attach at least one file first",
+          "both": "Attach files and leave a note first",
+          "uploading": "Wait until files finish uploading"
+        }
+      },
+      "deleteBlockConfirm": {
+        "title": "Delete this block?",
+        "body": "This block and its content will be removed. You can press Ctrl+Z to undo.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteModal": {
+        "title": "Delete this material?",
+        "bodyPrefix": "You are about to permanently remove",
+        "bodySuffix": "and all its blocks. Students enrolled in classrooms that include this material will lose access. This cannot be undone.",
+        "confirm": "Delete material"
+      },
+      "publishOnModal": {
+        "title": "Make this material public?",
+        "body": "Public materials become visible to every student in classrooms that include this course. Make sure the content and submission settings are final — once published, students may start working on it immediately.",
+        "confirm": "Yes, make public"
+      },
+      "publishOffModal": {
+        "title": "Hide this material from students?",
+        "body": "Switching back to private will hide the material from all classrooms. Students who already started working on it will lose access until it's published again.",
+        "confirm": "Yes, make private"
+      },
+      "gating": {
+        "title": "Require mentor approval to unlock next material",
+        "desc": "When enabled, students complete this material and submit it for review. The next material in the module stays locked until a mentor marks this one as approved.",
+        "discardLabel": "Discard changes to gating settings",
+        "discard": "Discard",
+        "asyncTitle": "Async review",
+        "asyncSub": "Mentor reviews the submission on their own time. Fastest to unlock.",
+        "liveTitle": "Live review session",
+        "liveSub": "Student books a slot on the mentor's calendar and defends the work on a call.",
+        "reviewer": "Reviewer",
+        "anyMentor": "Any mentor in classroom",
+        "assignedMentor": "Assigned mentor",
+        "sla": "SLA",
+        "slaValue": "24 h after submission",
+        "onRejection": "On rejection",
+        "onRejectionValue": "Student revises · mentor re-reviews",
+        "sessionFormat": "Session format",
+        "sessionFormatValue": "Video call · auto-generated link",
+        "reminders": "Reminders",
+        "remindersValue": "24h and 15 min before",
+        "slotDuration": "Slot duration",
+        "minutesUnit": "{{count}} minutes",
+        "bookingWindow": "Booking window",
+        "next1Week": "Next 1 week",
+        "next2Weeks": "Next 2 weeks",
+        "next4Weeks": "Next 4 weeks",
+        "liveInfo": "Student sees a \"Book a slot\" step on the material page. The next material unlocks only after the session is marked complete and approved by the mentor.",
+        "submissionRequirements": "Submission requirements",
+        "allowFiles": "Allow files",
+        "allowFilesSub": "Student can attach files of any type along with the submission.",
+        "requireText": "Require text note",
+        "requireTextSub": "Student must leave a written note explaining the submission."
+      },
+      "blockKinds": {
+        "TEXT": {
+          "label": "Text",
+          "desc": "Paragraph or heading"
+        },
+        "CODE": {
+          "label": "Code",
+          "desc": "Syntax-highlighted block"
+        },
+        "LIST": {
+          "label": "List",
+          "desc": "Bulleted, numbered or checklist"
+        },
+        "CALLOUT": {
+          "label": "Callout",
+          "desc": "Info / warning / error"
+        },
+        "QUIZ": {
+          "label": "Quiz",
+          "desc": "Single-choice question"
+        },
+        "TABLE": {
+          "label": "Table",
+          "desc": "Rows × cells"
+        },
+        "MENTOR_QUESTIONS": {
+          "label": "Mentor questions",
+          "desc": "Topic / question / answer triples"
+        },
+        "CHECKLIST": {
+          "label": "Checklist",
+          "desc": "Items with check / cross / dash"
+        },
+        "ICON_GRID": {
+          "label": "Icon grid",
+          "desc": "Cheat-sheet style cards"
+        },
+        "LINK_CARDS": {
+          "label": "Link cards",
+          "desc": "External resources / further reading"
+        },
+        "BUTTON_ROW": {
+          "label": "Button row",
+          "desc": "Call-to-action buttons"
+        },
+        "VIDEO": {
+          "label": "Video",
+          "desc": "YouTube / Vimeo / file"
+        },
+        "DIVIDER": {
+          "label": "Divider",
+          "desc": "Horizontal rule"
+        },
+        "IMAGE": {
+          "label": "Image",
+          "desc": "Figure with caption"
+        }
+      },
+      "creator": {
+        "addBlock": "Add block",
+        "titlePrefix": "Add",
+        "titleSuffix": "block",
+        "style": "Style",
+        "text": "Text",
+        "textPlaceholder": "Write the paragraph or heading text…",
+        "language": "Language",
+        "code": "Code",
+        "codePlaceholder": "// paste code here",
+        "listType": "List type",
+        "items": "Items",
+        "itemPlaceholder": "Item {{index}}",
+        "removeItem": "Remove item",
+        "addItem": "Add item",
+        "tone": "Tone",
+        "calloutPlaceholder": "Callout body…",
+        "imageUrl": "Image URL",
+        "caption": "Caption",
+        "captionPlaceholder": "Optional caption",
+        "lists": {
+          "BULLET": "Bulleted",
+          "NUMBERED": "Numbered",
+          "CHECKLIST": "Checklist"
+        },
+        "calloutGroups": {
+          "withIcon": "With icon",
+          "flatPanel": "Flat panel (no icon)"
+        },
+        "callouts": {
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error",
+          "success": "Success",
+          "tip": "Tip",
+          "note": "Note",
+          "important": "Important",
+          "question": "Question",
+          "quote": "Quote",
+          "example": "Example",
+          "neutral": "Neutral",
+          "accent": "Accent",
+          "highlight": "Highlight"
+        },
+        "info": {
+          "DIVIDER": "A horizontal rule will be inserted at the end of the material.",
+          "QUIZ": "An empty quiz block will be added — fill in the question, options and the correct answer in the editor below.",
+          "TABLE": "A 2×2 table will be added — fill in cells, add rows or columns from the editor below.",
+          "MENTOR_QUESTIONS": "An empty mentor questions block will be added — fill in topics, questions and reference answers in the editor below.",
+          "CHECKLIST": "An empty checklist will be added — set the title, item text and marker (check / cross / dash) in the editor below.",
+          "ICON_GRID": "An empty icon grid will be added — set title, column count, icon names (lucide), labels and tones in the editor below.",
+          "LINK_CARDS": "An empty link cards block will be added — fill in title, URL, source and kind for each card in the editor below.",
+          "BUTTON_ROW": "An empty button row will be added — set label, icon, variant and URL for each button in the editor below.",
+          "VIDEO": "An empty video block will be added — paste the YouTube/Vimeo URL or direct file link and set the provider in the editor below."
+        }
+      },
+      "editors": {
+        "textStyle": "Text style",
+        "languageAria": "Language",
+        "writeTextPlaceholder": "Write the paragraph or heading text…",
+        "listTypeAria": "List type",
+        "calloutTone": "Callout tone",
+        "calloutTitlePlaceholder": "Title (optional) — e.g. Still drafting",
+        "calloutTitleAria": "Callout title",
+        "calloutBodyPlaceholder": "Callout body…",
+        "questionPlaceholder": "Question…",
+        "markCorrect": "Mark option {{index}} correct",
+        "optionPlaceholder": "Option {{index}}",
+        "removeOption": "Remove option",
+        "removeColumn": "Remove column",
+        "removeRow": "Remove row",
+        "headerCell": "Header {{index}}",
+        "tableCell": "Cell {{row}}.{{col}}",
+        "insertColumn": "Insert column here",
+        "removeQuestion": "Remove question",
+        "topicPlaceholder": "Topic — e.g. Dependency Injection",
+        "questionInputPlaceholder": "Question",
+        "referenceAnswerPlaceholder": "Reference answer (mentor guidance)",
+        "checklistMarkers": {
+          "CHECK": "Check ✓",
+          "CROSS": "Cross ✗",
+          "DASH": "Dash —"
+        },
+        "checklistTitlePlaceholder": "Title (optional) — e.g. By the end of this reading, you will be able to:",
+        "checklistTitleAria": "Checklist title",
+        "marker": "Marker",
+        "removeItem": "Remove item",
+        "iconGridTitlePlaceholder": "Title (optional) — e.g. Anomaly cheat-sheet",
+        "iconGridTitleAria": "Icon grid title",
+        "iconAria": "Icon",
+        "toneAria": "Tone",
+        "labelPlaceholder": "Label",
+        "itemLabelAria": "Item label",
+        "subPlaceholder": "Sub (optional)",
+        "itemSubAria": "Item sub",
+        "tones": {
+          "INFO": "Info",
+          "SUCCESS": "Success",
+          "WARNING": "Warning",
+          "DANGER": "Danger",
+          "BRAND": "Brand",
+          "NEUTRAL": "Neutral"
+        },
+        "linkKinds": {
+          "DOCS": "Docs",
+          "PAPER": "Paper",
+          "ARTICLE": "Article",
+          "VIDEO": "Video",
+          "BOOK": "Book"
+        },
+        "linkCardsTitlePlaceholder": "Title (optional) — e.g. Further reading",
+        "linkCardsTitleAria": "Link cards title",
+        "cardKindAria": "Card kind",
+        "removeCard": "Remove card",
+        "cardTitlePlaceholder": "Card title",
+        "cardTitleAria": "Card title",
+        "cardUrlAria": "Card URL",
+        "cardSourcePlaceholder": "Source (optional) — e.g. postgresql.org",
+        "cardSourceAria": "Card source",
+        "buttonVariants": {
+          "PRIMARY": "Primary",
+          "OUTLINE": "Outline",
+          "GHOST": "Ghost"
+        },
+        "variantAria": "Variant",
+        "buttonIconAria": "Button icon",
+        "clearIcon": "Clear icon",
+        "removeButton": "Remove button",
+        "buttonLabelPlaceholder": "Button label",
+        "buttonLabelAria": "Button label",
+        "buttonUrlAria": "Button URL",
+        "addButton": "Add button",
+        "videoProviders": {
+          "YOUTUBE": "YouTube",
+          "VIMEO": "Vimeo",
+          "FILE": "Direct file"
+        },
+        "videoProviderAria": "Video provider",
+        "durationPlaceholder": "Duration (sec, optional)",
+        "durationAria": "Duration in seconds",
+        "fileUrlPlaceholder": "Direct file URL — https://…/video.mp4",
+        "videoUrlPlaceholder": "Video URL — https://www.youtube.com/watch?v=…",
+        "videoUrlAria": "Video URL",
+        "posterPlaceholder": "Poster URL (optional)",
+        "posterAria": "Poster URL",
+        "captionPlaceholder": "Caption (optional)",
+        "captionAria": "Caption",
+        "imageUrlPlaceholder": "Image URL",
+        "imageUrlAria": "Image URL",
+        "imageCaptionPlaceholder": "Caption",
+        "imageCaptionAria": "Image caption",
+        "imageDropHint": "Or drag an image from the media library on the left.",
+        "noItemsYet": "No items yet — add the first one below.",
+        "addQuestion": "Add question",
+        "addCard": "Add card",
+        "columns": "Columns:"
+      },
+      "formattingToolbar": {
+        "highlight": {
+          "label": "Highlight",
+          "tooltip": "Highlight as code (`monospace` pill, survives save)"
+        }
+      },
+      "quiz": {
+        "addQuestion": "Add question",
+        "addQuestionTitle": "Insert a new quiz block right below this one"
+      },
+      "upload": {
+        "svgNotAllowed": "SVG files aren't allowed — please use PNG / JPG / WebP / GIF."
+      },
+      "callout": {
+        "bodyPlaceholder": "Type your message…"
+      },
+      "insertBelow": "Insert block below",
+      "code": {
+        "copy": "Copy",
+        "copied": "Copied",
+        "copyTitle": "Copy code to clipboard",
+        "format": "Format",
+        "formatTitle": "Pretty-print JSON",
+        "formatError": "Invalid JSON — can't format"
+      },
+      "blockMenu": {
+        "callout": {
+          "title": "Callout",
+          "subtext": "Highlighted box with icon (info, warning, tip, …)",
+          "aliases": "callout, note, info, warning, tip"
+        },
+        "quiz": {
+          "title": "Quiz",
+          "subtext": "Single-question multiple choice",
+          "aliases": "quiz, mcq, question"
+        },
+        "checklist": {
+          "title": "Checklist",
+          "subtext": "Themed list with CHECK / CROSS / DASH markers",
+          "aliases": "checklist, list, check"
+        },
+        "mentorQuestions": {
+          "title": "Mentor questions",
+          "subtext": "Topic / question / answer review prompts",
+          "aliases": "mentor, review, questions"
+        },
+        "iconGrid": {
+          "title": "Icon grid",
+          "subtext": "Grid of cards with Lucide icons",
+          "aliases": "grid, icons, cards"
+        },
+        "linkCards": {
+          "title": "Link cards",
+          "subtext": "External resources (docs, papers, articles, videos, books)",
+          "aliases": "links, resources, references"
+        },
+        "buttonRow": {
+          "title": "Button row",
+          "subtext": "Row of CTA buttons (Primary / Outline / Ghost)",
+          "aliases": "buttons, cta, actions"
+        },
+        "diagram": {
+          "title": "Diagram",
+          "subtext": "Free-form canvas — drag nodes, click to connect, label edges",
+          "aliases": "diagram, flow, chart, map, mermaid, miro, canvas"
+        },
+        "group": "Other"
+      },
+      "diagram": {
+        "header": "Diagram",
+        "counter": "{{nodes}} node{{nodesPl}} · {{edges}} edge{{edgesPl}}",
+        "titlePlaceholder": "Title (optional)",
+        "autoArrange": "Auto arrange",
+        "autoArrangeTitle": "Smart-pick the best layout (tree, forest, circle, grid) based on your edges",
+        "apply": "Apply",
+        "applyTitle": "Recompute node positions from the selected layout",
+        "layouts": {
+          "custom": "Custom (free-form)",
+          "tree": "Tree (top-down from edges)",
+          "forest": "Forest (multiple roots side-by-side)",
+          "grid": "Grid",
+          "circle": "Circle / Cycle",
+          "pipeline": "Pipeline (horizontal chain)"
+        },
+        "connectBanner": "Click another node to draw an arrow. Click the same node again for a self-loop. Click the background to cancel.",
+        "cancel": "Cancel",
+        "hint": "Drag nodes to move · Click a node, then another to connect · Use a layout preset + Apply to auto-arrange.",
+        "nodesSection": "Nodes",
+        "edgesSection": "Edges",
+        "addNode": "Node",
+        "addEdge": "Add",
+        "addEdgePrefix": "Add edge:",
+        "textPlaceholder": "Text",
+        "subPlaceholder": "Sub",
+        "labelPlaceholder": "Label (yes / no / continue / …)",
+        "emptyNodeLabel": "(empty)",
+        "shapeTitle": "Shape",
+        "sizeTitle": "Size",
+        "lineStyleTitle": "Line style",
+        "arrowDirTitle": "Arrow direction",
+        "dragReorderTitle": "Drag to reorder",
+        "removeNode": "Remove node",
+        "removeEdge": "Remove edge",
+        "groupsSection": "Groups (areas)",
+        "addGroup": "Group",
+        "groupLabelPlaceholder": "Group label (e.g. Master, Node, Cluster)",
+        "groupStacked": "Stacked",
+        "groupStackedTitle": "Show 2 offset shadow copies behind — signals multiple instances of this group",
+        "groupMembers": "Members — click chips to toggle:",
+        "removeGroup": "Remove group"
+      }
+    },
+    "settings": {
+      "basics": "Basics",
+      "courseName": "Course name",
+      "description": "Description",
+      "descriptionPlaceholder": "Short description students see in the catalog…",
+      "language": "Language",
+      "slug": "Slug",
+      "slugHint": "Lowercase letters, digits, hyphens; min 2 chars.",
+      "slugPlaceholder": "course-slug",
+      "visibility": "Visibility",
+      "published": "Published",
+      "visibleToStudents": "Visible to enrolled students",
+      "discoverableInCatalog": "Discoverable in catalog",
+      "shownToHR": "Shown to HR when creating a classroom",
+      "pacing": "Pacing",
+      "allowExtensions": "Allow deadline extensions",
+      "mentorsCanExtend": "Mentors can extend deadlines for students",
+      "dangerZone": "Danger zone",
+      "deleteHeading": "Delete this course",
+      "deleteDesc": "Permanently removes the course together with all its modules, materials, blocks and submission configs. Students enrolled in classrooms that include it will lose access. This cannot be undone.",
+      "deleteCourse": "Delete course",
+      "deleteConfirmTitle": "Delete this course?",
+      "deleteConfirmBody": "You are about to permanently delete {{name}}. All its modules, materials, blocks and submission configs will be wiped. Students enrolled in classrooms that include this course will lose access. This cannot be undone.",
+      "saved": "Course saved",
+      "savedMessage": "Updated \"{{name}}\".",
+      "couldntSave": "Couldn't save course",
+      "couldntDelete": "Couldn't delete course",
+      "discardChanges": "Discard changes",
+      "saveChanges": "Save changes",
+      "renameSlug": "Rename slug?",
+      "renameSlugWarning": "Renaming the slug changes this {{kind}}'s URL. Any saved bookmarks, shared links or external references that point to the old URL will break and won't redirect automatically.",
+      "old": "Old:",
+      "new": "New:",
+      "yesRename": "Yes, rename",
+      "deleted": "Course deleted",
+      "deletedMessage": "Removed \"{{name}}\"."
+    }
+  },
+  "courseDetail": {
+    "roadmap": "Roadmap",
+    "modulesProgress": "{{done}} of {{total}} modules done",
+    "modulesTotal": "{{total}} modules · follow the path from top to bottom",
+    "continue": "Continue {{title}}",
+    "startLearning": "Start learning",
+    "notFound": "Course not found",
+    "notFoundDesc": "Course \"{{courseSlug}}\" doesn't exist in classroom \"{{classroomSlug}}\".",
+    "unavailable": "Course unavailable",
+    "unavailableDesc": "This course isn't available in your classroom right now. Ask your mentor or admin if this is unexpected.",
+    "couldntLoad": "Couldn't load course. Try again later.",
+    "noModules": "No modules in this course yet."
+  },
+  "modules": {
+    "title": "Module {{index}}",
+    "materials_one": "{{count}} material",
+    "materials_other": "{{count}} materials",
+    "progress": "{{completed}} of {{total}} complete",
+    "couldntLoad": "Couldn't load materials.",
+    "noMaterials": "No materials in this module yet.",
+    "status": {
+      "passed": "passed",
+      "in_progress": "in progress",
+      "current": "current",
+      "locked": "locked",
+      "overdue": "overdue",
+      "upcoming": "upcoming"
+    },
+    "drawerAriaLabel": "Module materials",
+    "closeDrawer": "Close drawer"
+  },
+  "materials": {
+    "backLabel": "Materials",
+    "openReader": "Open reader",
+    "done": "done",
+    "reading": "reading",
+    "couldntLoad": "Couldn't load material details.",
+    "readFull": "Read the full material",
+    "readFullDesc": "Opens a distraction-free page at 720px.",
+    "open": "Open",
+    "notFound": "Material not found",
+    "notFoundDesc": "Couldn't find material \"{{material}}\" in course \"{{course}}\".",
+    "start": "Start material",
+    "continue": "Continue reading",
+    "complete": "Complete & next",
+    "completeLast": "Mark as complete",
+    "previous": "Previous",
+    "next": "Next material",
+    "lockedTitle": "Locked",
+    "lockedHint": "Complete the previous material to unlock this one.",
+    "readyToStartTitle": "Ready to start?",
+    "readyToStartDesc": "Click Start to begin and unlock the reader.",
+    "completedSubtitle": "You've completed this material — feel free to revisit it.",
+    "startBlocked": "Can't start yet",
+    "completeBlocked": "Couldn't complete material",
+    "requiresReview": "This material needs a mentor review.",
+    "started": "Material started",
+    "completed": "Material completed",
+    "backToCourse": "Back to course",
+    "noContent": "This material has no content yet.",
+    "doneBadge": "Completed",
+    "statuses": {
+      "SUBMITTED": "Submitted",
+      "IN_REVIEW": "In review",
+      "CHANGES_REQUESTED": "Changes requested"
+    },
+    "submission": {
+      "submittedToast": "Sent for review",
+      "startTitle": "Ready to submit?",
+      "startDesc": "Start a draft, attach your work and send it to the mentor.",
+      "startCta": "Start submission",
+      "markDoneTitle": "Finished reading?",
+      "markDoneDesc": "Let the mentor know you've completed this material.",
+      "markDoneCta": "Mark as done",
+      "markDoneToast": "Material marked as done",
+      "startRedoTitle": "Make changes and resubmit",
+      "startRedoDesc": "Address the mentor's feedback and send a new submission.",
+      "startRedoCta": "Start new submission",
+      "submittedAt": "Submitted {{when}}",
+      "yourNote": "Your note",
+      "attachedFiles": "Attached files",
+      "mentorFeedback": "Mentor feedback",
+      "previousAttempt": "Your previous attempt",
+      "download": "Download",
+      "changesRequestedTitle": "Mentor asked for changes",
+      "changesRequestedNoFeedback": "The mentor didn't leave a comment — please re-read the material and try again.",
+      "titles": {
+        "SUBMITTED": "Sent for review",
+        "IN_REVIEW": "Mentor is reviewing",
+        "APPROVED": "Approved",
+        "CHANGES_REQUESTED": "Changes requested",
+        "DRAFT": "Draft"
+      },
+      "statuses": {
+        "SUBMITTED": "Submitted",
+        "IN_REVIEW": "In review",
+        "APPROVED": "Approved",
+        "CHANGES_REQUESTED": "Changes requested",
+        "DRAFT": "Draft"
+      },
+      "errors": {
+        "fileTooLargeTitle": "File too large",
+        "fileTooLarge": "{{name}} is over the 5 MB limit.",
+        "fileTypeTitle": "Unsupported file type",
+        "fileType": "{{name}} has an unsupported type. Allowed: PDF, Word, Excel, PowerPoint, PNG/JPEG/WebP, ZIP.",
+        "uploadFailedTitle": "Upload failed",
+        "uploadFailed": "Couldn't upload the file. Check your connection and try again.",
+        "submitFailedTitle": "Couldn't submit",
+        "alreadyPendingTitle": "Already pending review",
+        "alreadyPending": "You already have a submission for this material under review.",
+        "draftFailedTitle": "Couldn't open a draft",
+        "removeFailedTitle": "Couldn't remove the file",
+        "downloadFailedTitle": "Couldn't open the file"
+      },
+      "booking": {
+        "title": "Meeting details",
+        "mentorFallback": "Mentor"
+      }
+    },
+    "liveBooking": {
+      "title": "Book a live session",
+      "seatsLeft": "{{count}} seat left",
+      "seatsLeft_other": "{{count}} seats left",
+      "groupSession": "Group session on this topic",
+      "confirmTitle": "Confirm booking",
+      "confirmBody": "You're about to book this slot for the live mentor review of the current material.",
+      "confirmMentor": "Mentor",
+      "confirmWhen": "When",
+      "confirmCta": "Book the slot",
+      "bookedToast": "Slot booked",
+      "bookedToastDesc": "{{mentor}} · {{date}}, {{from}} – {{to}}",
+      "empty": {
+        "title": "No available slots right now",
+        "desc": "Try again later — mentors add new slots regularly.",
+        "descWithDays": "No free slots in the next {{count}} day. Check back later — mentors add new ones regularly.",
+        "descWithDays_other": "No free slots in the next {{count}} days. Check back later — mentors add new ones regularly."
+      },
+      "errors": {
+        "noClassroomAccess": "You don't have access to this classroom.",
+        "notFound": "This material couldn't be found.",
+        "alreadyBooked": "You already have an active booking for this material. Open \"My bookings\" to see it.",
+        "alreadyBookedTitle": "You already have a booking",
+        "notLive": "This material doesn't require a live session.",
+        "noWindow": "Booking isn't available — reach out to the course mentors.",
+        "slotFullTitle": "Slot just got taken",
+        "slotFull": "Someone booked this slot before you. The list has been refreshed.",
+        "slotLockedTitle": "Slot no longer available",
+        "slotLocked": "This slot was locked to a different topic. Pick another one.",
+        "slotStartedTitle": "Slot already started",
+        "slotStarted": "This slot has already started. Pick a later one.",
+        "bookFailedTitle": "Couldn't book the slot"
+      }
+    }
+  },
+  "overdue": {
+    "openModule": "Open module",
+    "pastDeadline": "{{module}} past its deadline",
+    "message": "Due {{dueDate}} · Unlock the next module by finishing this one."
+  },
+  "admin": {
+    "dashboard": "Admin dashboard — coming soon"
+  },
+  "placeholder": {
+    "default": "This screen will be built in the next iteration."
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Everyone in your organization. Filter by role or search by name and email.",
+    "filterAll": "All",
+    "filterAdmins": "Admins",
+    "filterHR": "HR",
+    "filterMentors": "Mentors",
+    "filterStudents": "Students",
+    "searchPlaceholder": "Search by name or email",
+    "userColumn": "User",
+    "emailColumn": "Email",
+    "rolesColumn": "Roles",
+    "statusColumn": "Status",
+    "couldntLoad": "Couldn't load users. Try again later.",
+    "noMatches": "No matches",
+    "noUsersYet": "No users yet",
+    "tryDifferentFilter": "Try a different role filter or clear your search.",
+    "inviteFirst": "Invite your first member using the \"Invite user\" button above.",
+    "userActions": "User actions",
+    "removedNote": "User was permanently removed from the organization. No further actions are possible.",
+    "addRoleSection": "Add role",
+    "removeRoleSection": "Remove role",
+    "addAs": "Add as {{role}}",
+    "removeRoleAction": "Remove {{role}} role",
+    "statusSection": "Status",
+    "deactivateFirstHint": "Deactivate the user first to remove them from the organization.",
+    "statuses": {
+      "ACTIVE": "Active",
+      "PENDING": "Pending",
+      "SUSPENDED": "Suspended",
+      "REMOVED": "Removed"
+    },
+    "roles": {
+      "ADMIN": "Admin",
+      "HR": "HR",
+      "MENTOR": "Mentor",
+      "STUDENT": "Student"
+    },
+    "cantChangeRoles": "Can't change roles",
+    "removedFromOrg": "This user has been removed from the organization.",
+    "cantChangeOwnStatus": "Can't change your own status",
+    "userWasRemoved": "User was removed",
+    "deactivateFirst": "Deactivate first",
+    "cantRemoveYourself": "Can't remove yourself",
+    "askAdminDeactivate": "Ask another admin to deactivate or reactivate your account.",
+    "removedCantReactivate": "Removed users can't be reactivated.",
+    "askAdminRemove": "Ask another admin to remove your account.",
+    "deactivateFirstDesc": "Only deactivated users can be removed from the organization.",
+    "roleAdded": "{{role}} role added",
+    "roleAddedDesc": "{{name}} is now {{role}}.",
+    "couldntAddRole": "Couldn't add role",
+    "roleRemoved": "{{role}} role removed",
+    "roleRemovedDesc": "{{name}} no longer holds the {{role}} role.",
+    "couldntRemoveRole": "Couldn't remove role",
+    "userDeactivated": "User deactivated",
+    "userDeactivatedDesc": "{{name}} is no longer active in this organization.",
+    "userActivated": "User activated",
+    "userActivatedDesc": "{{name}} is active in this organization again.",
+    "userRemoved": "User removed",
+    "userRemovedDesc": "{{name}} has been removed from this organization.",
+    "couldntUpdateStatus": "Couldn't update status",
+    "addRoleTitle": "Add {{role}} role?",
+    "addRoleLabel": "Add {{role}} role",
+    "addRoleDesc": "You're about to grant the {{role}} role to {{name}} ({{email}}). This includes:",
+    "confirmRoleGrant": "Confirm role grant",
+    "grantRoleTitle": "Grant {{role}} role to {{name}}?",
+    "removeRoleTitle": "Remove {{role}} role?",
+    "removeRoleLabel": "Remove {{role}} role",
+    "removeRoleDesc": "You're about to take away {{role}}-level access from {{name}} ({{email}}).",
+    "theyWillLose": "They will lose:",
+    "accountStays": "The user account stays in the organization — other roles they hold are preserved.",
+    "confirmRoleRemoval": "Confirm role removal",
+    "typeEmailToRemove": "To remove the {{role}} role from {{name}}, type their email below.",
+    "deactivateTitle": "Deactivate user?",
+    "deactivateUser": "Deactivate user",
+    "deactivateDesc": "{{name}} will be marked as suspended in this organization and lose access to its classrooms. You can reactivate them later.",
+    "activateTitle": "Activate user?",
+    "activateUser": "Activate user",
+    "activateDesc": "{{name}} will be active in this organization again.",
+    "removeFromOrgTitle": "Remove user from organization?",
+    "removeFromOrgDesc": "You're about to permanently remove {{name}} ({{email}}) from this organization.",
+    "removeFromOrgLosing": "They will lose access to all classrooms, courses, and reviews tied to this organization. Their global Orbiter account is kept — only the membership is removed.",
+    "confirmRemoval": "Confirm removal",
+    "removeUser": "Remove user",
+    "typeEmailToConfirm": "This action is irreversible. To confirm removing {{name}}, type their email below.",
+    "perms": {
+      "ADMIN": [
+        "Full settings, billing, and member-management access",
+        "Manage classrooms, courses, mentors, students",
+        "Promote or remove other members"
+      ],
+      "HR": [
+        "Invite and manage organization members",
+        "Create and manage classrooms",
+        "View students and mentors across the org"
+      ],
+      "MENTOR": [
+        "Review submissions in assigned classrooms",
+        "Post announcements to their classrooms",
+        "See progress of their students"
+      ],
+      "STUDENT": [
+        "Enroll into classrooms they are assigned to",
+        "Open materials and submit work"
+      ]
+    },
+    "detail": {
+      "couldntLoad": "Couldn't load user",
+      "tryRefresh": "Try refreshing the page in a moment.",
+      "memberStatuses": {
+        "ACTIVE": "Active",
+        "PENDING": "Pending",
+        "SUSPENDED": "Suspended",
+        "REMOVED": "Removed"
+      },
+      "userStatuses": {
+        "ACTIVE": "Active",
+        "PENDING": "Pending",
+        "DEACTIVATED": "Deactivated"
+      },
+      "memberPrefix": "Member: {{status}}",
+      "userPrefix": "User: {{status}}",
+      "profile": "Profile",
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "roles": "Roles",
+      "memberStatus": "Member status",
+      "userStatus": "User status",
+      "joined": "Joined",
+      "invited": "Invited",
+      "invitedBy": "Invited by",
+      "mentoringClassrooms": "Mentoring classrooms ({{count}})",
+      "enrollments": "Enrollments ({{count}})",
+      "atAGlance": "At a glance",
+      "rolesCount": "Roles",
+      "activeClassroomsMentor": "Active classrooms (mentor)",
+      "enrollmentsStudent": "Enrollments (student)",
+      "dangerZone": "Danger zone",
+      "memberStatusLabel": "Member status",
+      "removedNote": "User was permanently removed from the organization. No further actions are possible.",
+      "cantChangeOwn": "You can't change your own status. Ask another admin to deactivate or remove your account.",
+      "suspendedNote": "This user is currently deactivated. You can reactivate them or remove their membership.",
+      "deactivateNote": "Deactivating revokes access to classrooms. History and comments are preserved.",
+      "deactivateUser": "Deactivate user",
+      "activateUser": "Activate user",
+      "removeUser": "Remove user",
+      "deactivateFirst": "Deactivate first to remove.",
+      "activeStudents_one": "{{count}} active student",
+      "activeStudents_other": "{{count}} active students",
+      "lifecycle": {
+        "INVITED": "invited",
+        "ACTIVE": "active",
+        "PAUSED": "paused",
+        "DROPPED": "dropped",
+        "GRADUATED": "graduated"
+      }
+    },
+    "addMentor": {
+      "addMentor": "Add mentor",
+      "searchMentorsClassroom": "Search mentors by name or email…",
+      "couldntLoadMentors": "Couldn't load mentors. Try again later.",
+      "allMentorsInClassroom": "All mentors are already in this classroom.",
+      "noMentorsTitle": "No mentors yet",
+      "noMentorsHint": "There are no mentors in this organization yet. Invite a user from the Users page and grant them the Mentor role.",
+      "goToUsers": "Go to Users",
+      "noMatches": "No matches. Try a different search.",
+      "add": "Add",
+      "mentorAdded": "Mentor added",
+      "mentorAddedDesc": "{{firstName}} {{lastName}} added to this classroom.",
+      "couldntAddMentor": "Couldn't add mentor"
+    },
+    "inviteUser": {
+      "title": "Invite user",
+      "subtitle": "They'll get an email with a sign-in link. Pick the roles they should have in this organization.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phoneNumber": "Phone number",
+      "rolesLabel": "Roles",
+      "roleHints": {
+        "STUDENT": "Can enroll in classrooms and submit work.",
+        "MENTOR": "Can review submissions and post announcements.",
+        "HR": "Can invite members and manage classrooms.",
+        "ADMIN": "Full control over the organization."
+      },
+      "adminWarning": "ADMIN gives the user full control over the organization, including billing, members and roles. Grant only when necessary.",
+      "sendInvitation": "Send invitation",
+      "invited": "User invited",
+      "invitedDesc": "{{firstName}} {{lastName}} will get an email shortly.",
+      "couldntInvite": "Couldn't invite user",
+      "roleAssignFailed": "Couldn't add the {{role}} role",
+      "memberLookupFailed": "User created, but their organization record wasn't found in time. Assign roles from the user's page."
+    }
+  },
+  "reviewInbox": {
+    "tag": "review board",
+    "title": "Reviews",
+    "subtitle": "Every student submission in one place. Claim work, send it back for changes, or approve it.",
+    "cards_one": "{{count}} card",
+    "cards_other": "{{count}} cards",
+    "view": {
+      "mine": "My queue",
+      "team": "Whole team"
+    },
+    "searchPlaceholder": "Search student or material…",
+    "allClassrooms": "All classrooms",
+    "sort": {
+      "oldest": "Sort · oldest first",
+      "newest": "Sort · newest first"
+    },
+    "claim": "Take",
+    "mine": "Yours",
+    "heldBy": "with {{name}}",
+    "attempt": "Attempt {{n}}",
+    "unknownStudent": "Student",
+    "unknownMentor": "Mentor",
+    "status": {
+      "SUBMITTED": "Submitted",
+      "IN_REVIEW": "In review",
+      "APPROVED": "Approved",
+      "CHANGES_REQUESTED": "Changes requested",
+      "DRAFT": "Draft"
+    },
+    "statusShort": {
+      "approved": "done",
+      "waitingStudent": "waiting on student"
+    },
+    "columns": {
+      "submitted": {
+        "label": "Submitted",
+        "hint": "Awaiting a mentor",
+        "emptyTitle": "Queue clear",
+        "emptyHint": "New submissions land here."
+      },
+      "inprogress": {
+        "label": "In review",
+        "hint": "Currently being reviewed",
+        "emptyTitle": "Nothing claimed",
+        "emptyHint": "Click \"Take\" to start a review."
+      },
+      "revision": {
+        "label": "Needs revision",
+        "hint": "Sent back to the student",
+        "emptyTitle": "Nothing pending",
+        "emptyHint": "Returned work shows up here."
+      },
+      "approved": {
+        "label": "Approved",
+        "hint": "Closed in the last 7 days",
+        "emptyTitle": "Nothing yet",
+        "emptyHint": "Approved submissions land here."
+      }
+    },
+    "detail": {
+      "student": "Student",
+      "submittedAt": "Submitted",
+      "meeting": "Meeting",
+      "mentor": "Mentor: {{name}}",
+      "note": "Student note",
+      "files": "Files",
+      "previousFeedback": "Your previous feedback",
+      "claimedBy": "Claimed by {{name}}",
+      "reviewedBy": "Closed by {{name}} · {{when}}",
+      "download": "Download"
+    },
+    "actions": {
+      "claim": "Take",
+      "release": "Release",
+      "approve": "Approve",
+      "requestChanges": "Request changes"
+    },
+    "dialogs": {
+      "feedbackLabel": "Feedback",
+      "approve": {
+        "title": "Approve submission",
+        "body": "The student will be notified and their material progress will flip to Approved. Feedback is optional.",
+        "placeholder": "What went well? (optional)"
+      },
+      "requestChanges": {
+        "title": "Send back for changes",
+        "body": "The student will see your feedback and can submit a new attempt. Feedback is required.",
+        "placeholder": "What needs fixing or expanding?"
+      }
+    },
+    "toasts": {
+      "claimed": "Submission claimed",
+      "released": "Released back to the queue",
+      "approved": "Submission approved",
+      "changesRequested": "Sent back for changes"
+    },
+    "errors": {
+      "alreadyClaimedTitle": "Already claimed by another mentor",
+      "alreadyClaimed": "Ask them to release it, or open the submission without claiming.",
+      "forbiddenTitle": "Not allowed",
+      "notFoundTitle": "Submission not found",
+      "claimFailedTitle": "Couldn't claim the submission",
+      "releaseFailedTitle": "Couldn't release the submission",
+      "approveFailedTitle": "Couldn't approve",
+      "changesFailedTitle": "Couldn't request changes",
+      "feedbackRequiredTitle": "Feedback is required",
+      "dropForbiddenTitle": "Not allowed — invalid transition"
+    },
+    "dnd": {
+      "notAllowed": "not allowed"
+    },
+    "empty": {
+      "cleanTitle": "Queue is empty — every submission has been picked up",
+      "cleanHint": "When students send new work, it will appear in the Submitted column.",
+      "filteredTitle": "No submissions match these filters",
+      "filteredHint": "Try a different classroom or clear the search.",
+      "clear": "Clear filters"
+    }
+  },
+  "crm": {
+    "tag": "CRM",
+    "bool": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "form": {
+      "required": "Required field",
+      "save": "Save",
+      "saving": "Saving…",
+      "cancel": "Cancel"
+    },
+    "userPicker": {
+      "placeholder": "Select members…",
+      "search": "Search members…",
+      "empty": "No members found.",
+      "loading": "Loading members…"
+    },
+    "errors": {
+      "loadTypes": "Couldn't load record types.",
+      "loadRecords": "Couldn't load records."
+    },
+    "preview": {
+      "open": "Preview",
+      "modalTitle": "Preview · {{name}}",
+      "eyebrow": "Visitor view · how people fill it in",
+      "heading": "{{name}} form",
+      "meta": "{{fields}} fields · {{required}} required",
+      "requiredError": "This field is required.",
+      "empty": "Add some fields first — there's nothing to preview yet.",
+      "backToEditor": "Back to editor",
+      "copyLink": "Copy form link",
+      "copied": "Form link copied",
+      "submit": "Submit",
+      "reset": "Reset preview",
+      "successTitle": "Thanks — we've got it",
+      "successBody": "This is the success state your visitors see after submitting."
+    },
+    "types": {
+      "eyebrow": "Record types",
+      "title": "What does your team need to track?",
+      "subtitle": "Each record type is a kind of thing — students, leads, partner companies. Define the fields once; forms on your site write into them.",
+      "newType": "New record type",
+      "fromTemplate": "From template",
+      "countTypes_one": "type",
+      "countTypes_other": "types",
+      "search": "Search by name…",
+      "fieldsCount_one": "{{count}} field",
+      "fieldsCount_other": "{{count}} fields",
+      "openDocs": "API docs",
+      "noMatch": "No types match \"{{q}}\".",
+      "sort": {
+        "updated": "Most recently updated",
+        "name": "Alphabetical",
+        "fields": "Most fields"
+      },
+      "cols": {
+        "type": "Type",
+        "fields": "Fields",
+        "records": "Records",
+        "updated": "Updated"
+      },
+      "actions": {
+        "menu": "Type actions",
+        "edit": "Edit type",
+        "duplicate": "Duplicate",
+        "openRecords": "Open records",
+        "delete": "Delete…"
+      },
+      "copySuffix": "(copy)",
+      "delete": {
+        "title": "Delete this record type?",
+        "body": "Deleting \"{{name}}\" removes the record type and its field definitions. Records of this type may become inaccessible. This can't be undone.",
+        "confirm": "Delete type"
+      },
+      "toast": {
+        "duplicated": "\"{{name}}\" duplicated.",
+        "duplicateError": "Couldn't duplicate the record type.",
+        "deleted": "\"{{name}}\" deleted.",
+        "deleteError": "Couldn't delete the record type."
+      },
+      "empty": {
+        "title": "Let's set up your first record type.",
+        "cardTitle": "A record type is a kind of thing you collect.",
+        "cardBody": "Define its fields once — name, email, phone, whatever you need — and forms on your website will save into them. Records show up in the table view for your team to work with.",
+        "createScratch": "Create from scratch",
+        "orTemplate": "Or start with a template",
+        "templateFields_one": "field",
+        "templateFields_other": "fields"
+      },
+      "templates": {
+        "student": {
+          "name": "Student",
+          "tagline": "For schools and education centers — name, contact, level, goals."
+        },
+        "lead": {
+          "name": "Lead",
+          "tagline": "Inbound prospect from a landing page or ad form."
+        },
+        "client": {
+          "name": "Client",
+          "tagline": "Paying customer — billing details, plan, status."
+        },
+        "contact": {
+          "name": "Contact",
+          "tagline": "A person you keep in touch with — name, email, company."
+        },
+        "company": {
+          "name": "Company",
+          "tagline": "An organization — website, industry, size, status."
+        },
+        "deal": {
+          "name": "Deal",
+          "tagline": "A sales opportunity — value, stage, close date."
+        },
+        "task": {
+          "name": "Task",
+          "tagline": "Something to do — status, priority, due date."
+        },
+        "event": {
+          "name": "Event registration",
+          "tagline": "Sign-ups for an event — guests, session, dietary needs."
+        },
+        "support": {
+          "name": "Support ticket",
+          "tagline": "An incoming request — priority, status, description."
+        }
+      }
+    },
+    "typeEditor": {
+      "fields": "Fields",
+      "fieldCount_one": "field",
+      "fieldCount_other": "fields",
+      "required": "required",
+      "addField": "Add field",
+      "noFields": "No fields yet",
+      "noFieldsHint": "Add your first field below — start with name and email.",
+      "untitledField": "Untitled",
+      "pickField": "Pick a field to edit",
+      "pickFieldHint": "Or add a new one from the left panel.",
+      "settings": "Field settings",
+      "basics": "Basics",
+      "label": "Label",
+      "labelHint": "This is what people see on the form.",
+      "labelPh": "e.g. First name",
+      "techKey": "Technical key",
+      "keyHint": "Used in JSON payloads. Lowercase letters, digits and underscores.",
+      "keyLockedField": "Locked after the field is created.",
+      "keyCollision": "Another field already uses \"{{key}}\". Keys must be unique.",
+      "relationTitle": "Members",
+      "relationHint": "Choices come from your organization's members — nothing to configure here.",
+      "requiredField": "Required field",
+      "requiredSub": "If on, the form can't be submitted without a value.",
+      "formCopy": "Form copy",
+      "helpText": "Help text",
+      "helpPh": "Shown in small grey text under the field.",
+      "placeholder": "Placeholder",
+      "validation": "Validation",
+      "minLen": "Min. length",
+      "maxLen": "Max. length",
+      "allowedChars": "Allowed characters",
+      "badRegex": "Invalid regular expression",
+      "autoFormat": "Auto-validate format",
+      "autoFormatSub": "Checks that the value looks like name@domain.com.",
+      "alwaysOn": "Always on",
+      "format": "Format",
+      "phoneFormat": "Phone-number format",
+      "range": "Range",
+      "min": "Min.",
+      "max": "Max.",
+      "step": "Step",
+      "options": "Options",
+      "addOption": "Add option",
+      "noOptions": "No options yet. Add the first one to get started.",
+      "optLabel": "Display label",
+      "optionCount_one": "option",
+      "optionCount_other": "options",
+      "removeOption": "Remove option",
+      "minChoices": "Min. choices",
+      "maxChoices": "Max. choices",
+      "duplicate": "Duplicate",
+      "unsaved": "Unsaved changes",
+      "untitled": "Untitled type",
+      "keyLocked": "locked after first ingest",
+      "keyEditable": "editable until first record ingested",
+      "saveChanges": "Save changes",
+      "changeIcon": "Change icon",
+      "pickIcon": "Pick an icon",
+      "createType": "Create type",
+      "created": "Record type created",
+      "saved": "Changes saved",
+      "errNoName": "Give the type a name first.",
+      "errNoKey": "The technical key can't be empty.",
+      "errNoFields": "Add at least one field.",
+      "errFieldIncomplete": "Every field needs a label and a key.",
+      "errDupKeys": "Two fields share the same key — keys must be unique.",
+      "errSave": "Couldn't save the type."
+    },
+    "records": {
+      "back": "Back to types",
+      "badge": "Record type",
+      "newRecord": "New record",
+      "newTitle": "New record",
+      "editTitle": "Edit record",
+      "search": "Search across all fields…",
+      "clearSearch": "Clear search",
+      "selectAll": "Select all rows",
+      "selectRow": "Select row",
+      "openDetail": "Open detail",
+      "editHint": "Double-click to edit",
+      "done": "Done",
+      "clearValue": "Clear",
+      "rows_one": "row",
+      "rows_other": "rows",
+      "selected_one": "selected",
+      "selected_other": "selected",
+      "sort": {
+        "asc": "sorted ascending",
+        "desc": "sorted descending",
+        "none": "not sorted"
+      },
+      "density": {
+        "compact": "Compact",
+        "comfortable": "Comfortable"
+      },
+      "addManually": "Add manually",
+      "edit": "Edit",
+      "delete": "Delete",
+      "bulkDelete": "Delete",
+      "bulkClear": "Clear selection",
+      "created": "Record created",
+      "updated": "Record saved",
+      "deleted_one": "Record deleted",
+      "deleted_other": "Records deleted",
+      "saveError": "Couldn't save the record",
+      "deleteError": "Couldn't delete",
+      "deleteTitle_one": "Delete this record?",
+      "deleteTitle_other": "Delete {{count}} records?",
+      "deleteDesc_one": "This permanently removes the record. It can't be undone.",
+      "deleteDesc_other": "This permanently removes {{count}} records. It can't be undone.",
+      "totalCount_one": "{{count}} record",
+      "totalCount_other": "{{count}} records",
+      "emptyTitle": "No records yet",
+      "emptyHint": "Records appear here as soon as a form posts to",
+      "noFields": "This type has no fields.",
+      "meta": {
+        "externalId": "External id",
+        "createdAt": "Created",
+        "updatedAt": "Updated"
+      },
+      "closePanel": "Close panel",
+      "tabs": {
+        "details": "Details",
+        "source": "Source"
+      },
+      "source": {
+        "cameFrom": "Came from",
+        "endpoint": "Form endpoint",
+        "rawPayload": "Raw payload"
+      },
+      "filter": {
+        "label": "Filter",
+        "title": "Filters",
+        "add": "Add filter",
+        "clearAll": "Clear all",
+        "empty": "No filters yet — add one to narrow the list.",
+        "remove": "Remove filter",
+        "matchLabel": "Match",
+        "matchAll": "all filters",
+        "matchAny": "any filter",
+        "fieldAria": "Filter field",
+        "opAria": "Filter operator",
+        "valueAria": "Filter value"
+      },
+      "columns": {
+        "label": "Columns",
+        "title": "Show columns"
+      },
+      "group": {
+        "label": "Group",
+        "none": "No grouping",
+        "ungrouped": "Ungrouped"
+      },
+      "ops": {
+        "contains": "contains",
+        "notContains": "doesn't contain",
+        "is": "is",
+        "isNot": "is not",
+        "eq": "=",
+        "neq": "≠",
+        "gt": ">",
+        "lt": "<",
+        "hasAny": "has",
+        "hasNone": "doesn't have",
+        "isTrue": "is yes",
+        "isFalse": "is no",
+        "before": "before",
+        "after": "after",
+        "on": "on",
+        "isEmpty": "is empty",
+        "isNotEmpty": "is not empty"
+      },
+      "noMatchTitle": "Nothing matches",
+      "noMatchHint": "Adjust or clear your search and filters.",
+      "clearFilters": "Clear search & filters"
+    }
+  },
+  "permissions": {
+    "title": "Permissions",
+    "managePermissions": "Manage permissions",
+    "noPermissions": "No permissions assigned",
+    "ownerImplicit": "Owner has all permissions implicitly",
+    "granted": "Permission granted",
+    "revoked": "Permission revoked",
+    "couldntUpdate": "Couldn't update permission",
+    "groups": {
+      "ORBITER": "Orbiter",
+      "SCHOOL": "School",
+      "JIRA": "Jira",
+      "MEMBER": "Member",
+      "COURSE": "Course",
+      "MODULE": "Module",
+      "MATERIAL": "Material",
+      "CLASSROOM": "Classroom",
+      "PROJECT": "Project",
+      "TASK": "Task",
+      "CRM_ENTITY": "CRM Records",
+      "CRM_MEMBER": "User Management",
+      "CRM_ADMIN": "Administration"
+    },
+    "actions": {
+      "INVITE": "Invite",
+      "VIEW": "View",
+      "CREATE": "Create",
+      "UPDATE": "Edit",
+      "DELETE": "Delete",
+      "SETTINGS": "Settings",
+      "MANAGE": "Manage members",
+      "MANAGE_PERMISSIONS": "Manage permissions",
+      "MANAGE_ROLES": "Manage roles",
+      "MANAGE_MEMBERS": "Manage members",
+      "MANAGE_COURSES": "Manage courses"
+    },
+    "noAccess": "You don't have sufficient permissions to access this section",
+    "readOnly": "You don't have permission to manage permissions",
+    "selectRole": "Select a role to manage its permissions",
+    "rolePermissions": "Role permissions",
+    "memberOverrides": "Member overrides",
+    "inherited": "From role",
+    "grantOverride": "Extra grant",
+    "revokeOverride": "Revoked",
+    "addGrant": "Grant",
+    "addRevoke": "Revoke",
+    "resetOverride": "Reset",
+    "overrideGranted": "Override granted",
+    "overrideRevoked": "Override revoked",
+    "overrideRemoved": "Override removed",
+    "noOverrides": "No member-level overrides",
+    "pageTitle": "Permissions management",
+    "pageSubtitle": "Configure role-level and member-level permissions",
+    "rolesSection": "Roles",
+    "membersSection": "Members",
+    "searchMembers": "Search by name or email…",
+    "selectMember": "Select a member to view their overrides",
+    "noMembersFound": "No members found",
+    "effectivePermissions": "Effective permissions"
+  },
+  "carizma": {
+    "nav": {
+      "browse": "Browse",
+      "sell": "List your car",
+      "financing": "Financing",
+      "about": "About",
+      "searchPlaceholder": "Search make, model, or city",
+      "signIn": "Sign in",
+      "openAccountMenu": "Open account menu",
+      "addListing": "Add listing"
+    },
+    "menu": {
+      "yourAccount": "Your account",
+      "profile": "Profile",
+      "myCars": "My cars",
+      "saved": "Saved",
+      "messages": "Messages",
+      "savedSearches": "Saved searches",
+      "settings": "Settings",
+      "signOut": "Sign out"
+    },
+    "access": {
+      "chip": "Access required",
+      "title": "You don't have access to Carizma yet.",
+      "body": "Your account is signed in, but none of your organizations include the Carizma product. Browsing and details still work freely without an account.",
+      "info": "We're rolling Carizma out gradually. The \"Request access\" button will be wired up to a backend endpoint shortly — see docs/carizma-todo.md.",
+      "request": "Request access — coming soon",
+      "continueBrowsing": "Continue browsing without an account",
+      "signOut": "Sign out"
+    },
+    "profile": {
+      "loadError": "Couldn't load profile",
+      "tryRefresh": "Try refreshing the page in a moment.",
+      "account": "Account",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "appearance": "Appearance",
+      "appearanceSubtitle": "Light, dark, or follow your system.",
+      "theme": "Theme",
+      "themes": {
+        "light": "Light",
+        "dark": "Dark",
+        "darkBlue": "Dark blue",
+        "system": "System"
+      },
+      "themeError": "Couldn't update theme",
+      "language": "Language",
+      "languageSubtitle": "Saved on your account — applied across every Orbiter product.",
+      "uiLanguage": "UI language",
+      "languages": {
+        "en": "English",
+        "ru": "Русский",
+        "hy": "Հայերեն"
+      },
+      "languageError": "Couldn't update language",
+      "tryAgain": "Try again in a moment.",
+      "password": "Password",
+      "passwordSubtitle": "Update your sign-in password.",
+      "passwordHint": "Choose a strong password you don't reuse elsewhere.",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "passwordUpdated": "Password updated",
+      "wrongCurrent": "Current password is incorrect.",
+      "policyMismatch": "Password doesn't meet the policy.",
+      "passwordsMismatch": "Passwords do not match.",
+      "sameAsCurrent": "New password must differ from current.",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "close": "Close"
+    },
+    "cabinet": {
+      "editProfile": "Edit profile",
+      "listNewCar": "List a new car",
+      "stats": {
+        "listedCars": "Listed cars",
+        "active": "{{count}} active",
+        "totalViews": "Total views",
+        "last30Days": "last 30 days",
+        "inFavorites": "In favorites",
+        "openChats": "Open chats",
+        "unread": "{{count}} unread"
+      },
+      "tabs": {
+        "myCars": "My cars",
+        "saved": "Saved",
+        "recent": "Recently viewed",
+        "searches": "Saved searches",
+        "messages": "Messages",
+        "profile": "Profile",
+        "review": "Review"
+      },
+      "yourListings": "Your listings",
+      "filters": {
+        "all": "All · {{count}}",
+        "active": "Active · {{count}}",
+        "pending": "Pending · {{count}}",
+        "sold": "Sold · {{count}}",
+        "drafts": "Drafts · {{count}}"
+      },
+      "savedSearches": "Saved searches",
+      "emailAlerts": "Get email alerts when matches appear",
+      "savedCars": "Saved cars",
+      "noSavedYet": "No saved cars yet. Tap the heart on any listing.",
+      "noRecentYet": "No recently viewed cars yet. Open any listing to see it here.",
+      "viewAllSaved": "View all saved →",
+      "messages": "Messages",
+      "newCount": "{{count}} new",
+      "openInbox": "Open inbox →",
+      "recentlyViewed": "Recently viewed",
+      "status": {
+        "active": "Active",
+        "pending": "Pending review",
+        "sold": "Sold",
+        "draft": "Draft",
+        "rejected": "Rejected"
+      },
+      "empty": {
+        "title": "No listings yet",
+        "subtitle": "Listings you publish appear here. Start with photos — AI does the heavy lifting from there.",
+        "cta": "List your first car"
+      },
+      "loading": "Loading your listings…",
+      "loadError": "Couldn't load your listings — try refreshing.",
+      "rejectionReason": "Reason: {{reason}}",
+      "row": {
+        "listed": "listed {{date}}",
+        "views": "{{count}} views",
+        "saves": "{{count}} saves",
+        "messages": "{{count}} messages"
+      },
+      "search": {
+        "newPill": "+{{count}} new",
+        "total": "{{count}} total"
+      },
+      "bottomNav": {
+        "home": "Home",
+        "browse": "Browse",
+        "sell": "Sell",
+        "saved": "Saved",
+        "you": "You"
+      }
+    },
+    "sell": {
+      "back": "Back to cabinet",
+      "browse": "Browse cars",
+      "title": "List a new car",
+      "subtitle": "Five quick steps. You can save and continue later.",
+      "stepLabel": "Step {{current}} of {{total}}",
+      "next": "Next",
+      "previous": "Back",
+      "publish": "Publish listing",
+      "publishing": "Publishing…",
+      "saveDraft": "Save as draft",
+      "published": "Listing published",
+      "publishError": "Couldn't publish — try again in a moment.",
+      "steps": {
+        "photos": "Photos",
+        "vehicle": "Vehicle",
+        "specs": "Specs & condition",
+        "pricing": "Pricing & location",
+        "preview": "Preview"
+      },
+      "photos": {
+        "title": "Photos",
+        "subtitle": "First photo becomes the cover. 8–15 photos work best.",
+        "dropzone": "Drop photos here, or click to browse",
+        "dropzoneHint": "JPG or PNG · up to 10 MB each",
+        "primary": "Cover",
+        "remove": "Remove",
+        "min1Error": "Add at least one photo",
+        "upload": {
+          "uploading": "Uploading…",
+          "analyzing": "AI checking…",
+          "ready": "Ready",
+          "failed": "Upload failed",
+          "retry": "Retry",
+          "tooLarge": "Too large (max 10 MB)",
+          "wrongType": "Not an image",
+          "draftFailed": "Could not start your listing — check your connection.",
+          "deleteFailed": "Could not remove the photo — try again."
+        },
+        "flag": {
+          "adultContent": "18+ content",
+          "violence": "Violent content",
+          "lowQuality": "Low quality — re-shoot this photo",
+          "notACar": "Not a real car",
+          "collage": "Collage / multiple cars",
+          "watermark": "Watermark or dealer logo",
+          "duplicate": "Duplicate of another photo",
+          "blockedSummary": "AI flagged this photo. Remove it to continue."
+        },
+        "ai": {
+          "badge": "AI",
+          "title": "AI photo review",
+          "collapsedSummary": "Auto-detection · Quality filter · Privacy protection — tap to learn more",
+          "expand": "Show details",
+          "collapse": "Hide details",
+          "subtitle": "As soon as you upload, our AI scans every photo before you move on. You don't need to do anything — this happens in the background.",
+          "detect": "Detects make, model, year, body type and colour — pre-fills the next steps for you.",
+          "quality": "Rejects any low-quality photo: too dark or blurry, the car covered in heavy dirt or snow, over-edited or heavily filtered shots, and angles that obviously hide damage.",
+          "privacy": "Automatically blurs licence plates and people's faces, so your photos stay private.",
+          "singleCar": "Each photo must show a single car — collages, photo grids and multi-image composites will be rejected.",
+          "duplicates": "Detects duplicate and near-identical photos — only one of each angle is kept so your gallery stays clean.",
+          "watermark": "Detects watermarks, dealer logos and other site overlays — a strong signal the photo was lifted from another listing, so it gets rejected.",
+          "inappropriate": "Rejects 18+ or violent content and anything that isn't a real car (memes, stock images, screenshots).",
+          "consent": "By uploading you confirm the photos are your own and agree to automated review."
+        }
+      },
+      "candidates": {
+        "title": "AI suggestions",
+        "subtitle": "Our AI matched your photos to these cars. Pick one to pre-fill the fields below — you can edit anything afterwards.",
+        "confidence": "{{value}}% match",
+        "pick": "Use these specs",
+        "picked": "Selected",
+        "loading": "Analyzing your photos…",
+        "failed": "AI analysis is not ready yet — try again in a moment, or fill in the fields manually.",
+        "none": "AI couldn't match a car from your photos — fill in the fields manually."
+      },
+      "vehicle": {
+        "title": "Vehicle",
+        "subtitle": "Tell buyers what they're looking at.",
+        "brand": "Brand",
+        "brandPlaceholder": "BMW",
+        "model": "Model",
+        "modelPlaceholder": "M4 Competition",
+        "trim": "Trim (optional)",
+        "trimPlaceholder": "xDrive",
+        "year": "Year",
+        "yearPlaceholder": "2023",
+        "body": "Body type",
+        "color": "Exterior colour",
+        "colorPlaceholder": "Isle of Man Green",
+        "interior": "Interior (optional)",
+        "interiorPlaceholder": "Black Merino"
+      },
+      "specs": {
+        "title": "Specs & condition",
+        "subtitle": "The numbers buyers ask about first.",
+        "mileage": "Mileage (km)",
+        "fuel": "Fuel",
+        "transmission": "Transmission",
+        "power": "Power (hp)",
+        "engine": "Engine",
+        "enginePlaceholder": "3.0L Twin-Turbo I6",
+        "drive": "Drive",
+        "vin": "VIN (optional)",
+        "vinPlaceholder": "WBS33AY07PFP12345"
+      },
+      "pricing": {
+        "title": "Pricing & location",
+        "subtitle": "How much, where, and the story behind the car.",
+        "price": "Price",
+        "currency": "Currency",
+        "oldPrice": "Was (optional)",
+        "oldPriceHint": "If filled and higher than price, listing is marked as Reduced.",
+        "city": "City",
+        "cityPlaceholder": "Yerevan",
+        "description": "Description",
+        "descriptionPlaceholder": "Single-owner, full service history, no paintwork, ceramic-coated last October. Selling because a family car is on the way."
+      },
+      "preview": {
+        "title": "Preview",
+        "subtitle": "This is roughly how your listing will look in the marketplace.",
+        "back": "Make changes",
+        "confirm": "Publish",
+        "agree": "By publishing you confirm the car details are accurate and the photos are your own."
+      },
+      "errors": {
+        "required": "Required",
+        "numberRequired": "Enter a number",
+        "min": "Must be at least {{min}}",
+        "max": "Must be at most {{max}}",
+        "noPhotos": "Add at least one photo before publishing.",
+        "stillUploading": "Wait until all photos finish uploading.",
+        "notACarPhotos": "Upload photos of cars only",
+        "couldNotVerifyPhotos": "Couldn't verify the photos. Please try again later.",
+        "flaggedPhoto": "Some photos were flagged by AI — remove them on the Photos step.",
+        "invalidStatus": "This listing has already been submitted.",
+        "generic": "Couldn't publish — try again in a moment."
+      }
+    },
+    "login": {
+      "orbiterProduct": "An Orbiter product",
+      "welcomeBack": "Welcome back",
+      "eyebrowStep": "· 03 · Welcome back",
+      "heroLine1": "Welcome back.",
+      "heroLine2a": "Your next car",
+      "heroLine2b": "is waiting.",
+      "heroSubtitle": "Browse, save, and message sellers across Armenia and the CIS — without the noise, the spam, or the haggling on a phone call.",
+      "verifiedSellers": "12,400 verified sellers",
+      "everyListingReviewed": "Every listing reviewed",
+      "idProtectedChat": "ID-protected chat",
+      "copyright": "© Orbiter 2026 · Yerevan",
+      "eyebrow": "Sign in to Carizma",
+      "title": "Sign in to your garage",
+      "newToCarizma": "New to Carizma?",
+      "createAccount": "Create an account →",
+      "email": "Email",
+      "password": "Password",
+      "keepSignedIn": "Keep me signed in",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign in",
+      "signingIn": "Signing in…",
+      "orContinueWith": "or continue with",
+      "google": "Google",
+      "telegram": "Telegram",
+      "sms": "SMS",
+      "terms": "By signing in you agree to Carizma's Terms and Privacy. Browse and details work without an account.",
+      "failed": "Sign-in failed. Check your email and password."
+    },
+    "oauth": {
+      "signingIn": "Signing you in…",
+      "failed": "Could not complete sign-in. Please try again.",
+      "missingParams": "The sign-in link is missing required parameters.",
+      "backToLogin": "Back to sign in"
+    },
+    "register": {
+      "eyebrow": "Create your Carizma account",
+      "title": "Join Carizma",
+      "subtitle": "Buy and sell with verified sellers.",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "passwordMismatch": "Passwords do not match.",
+      "failed": "Could not create the account. Please check your details."
+    },
+    "confirm": {
+      "eyebrow": "Verify your email",
+      "title": "Enter the code",
+      "subtitle": "We emailed a code to {{email}}.",
+      "code": "Confirmation code",
+      "submit": "Confirm & sign in",
+      "submitting": "Confirming…",
+      "failed": "The code is invalid or expired.",
+      "backToLogin": "Back to sign in"
+    },
+    "categories": {
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "electric": "Electric",
+      "sport": "Sport",
+      "luxury": "Luxury",
+      "offroad": "Off-road",
+      "vintage": "Vintage",
+      "hatch": "Hatchback",
+      "coupe": "Coupe",
+      "wagon": "Wagon",
+      "pickup": "Pickup"
+    },
+    "home": {
+      "hero": {
+        "live": "Carizma · live in Yerevan",
+        "headline1": "Find your next car.",
+        "headline2": "Without the noise.",
+        "subtitle": "A premium marketplace for the cars worth driving — vetted listings, fair-deal ratings, and proper photography across Armenia and the CIS.",
+        "searchPlaceholder": "Make, model, or city — e.g. BMW M4 Yerevan",
+        "browseCount": "Browse 1,284 cars",
+        "newToday": "47 new listings today",
+        "reviewed24h": "Every listing reviewed within 24h",
+        "scroll": "Scroll",
+        "featuredLive": "Featured · live now"
+      },
+      "stats": {
+        "cars": "Cars on Carizma right now",
+        "carsSub": "across Armenia + CIS",
+        "today": "New listings today",
+        "todaySub": "reviewed under 24 h",
+        "verified": "Verified sellers",
+        "verifiedSub": "ID + phone confirmed",
+        "rating": "Average seller rating",
+        "ratingSub": "from 21,400 transactions"
+      },
+      "featured": {
+        "eyebrow": "Hand-picked",
+        "title": "Featured listings",
+        "viewAll": "View all featured"
+      },
+      "deals": {
+        "eyebrow": "Great deals · 8 km radius",
+        "title": "Deals near you",
+        "location": "Yerevan, AM",
+        "change": "Change"
+      },
+      "editorial": {
+        "eyebrow": "Why list with Carizma",
+        "title": "Sell faster, to people who actually drive.",
+        "body": "Free to list. Verified buyers only. Concierge photography in Yerevan. No fake leads, no commission on private sales.",
+        "list": "List your car",
+        "howItWorks": "How it works"
+      },
+      "recent": {
+        "eyebrow": "Continue browsing",
+        "title": "Recently viewed"
+      },
+      "footer": {
+        "tagline": "An Orbiter product · Yerevan · 2026",
+        "about": "About",
+        "sell": "Sell a car",
+        "concierge": "Concierge",
+        "privacy": "Privacy",
+        "terms": "Terms"
+      },
+      "mobile": {
+        "find": "Find your",
+        "nextCar": "next car.",
+        "withoutNoise": "Without the noise.",
+        "searchPlaceholder": "Make, model, or city",
+        "featured": "Featured",
+        "viewAll": "View all"
+      },
+      "heroV2": {
+        "badge": "Trusted by 10,000+ car buyers",
+        "titlePre": "Find Your",
+        "titleAccent": "Perfect",
+        "titlePost": "Car",
+        "subtitle": "Discover thousands of vehicles from trusted dealers and private sellers near you",
+        "tabAll": "All Cars",
+        "tabNew": "New Cars",
+        "tabUsed": "Used Cars",
+        "anyMake": "Any make",
+        "anyModel": "Any model",
+        "search": "Search cars",
+        "popular": "Popular categories"
+      },
+      "brands": {
+        "title": "Explore our premium brands",
+        "showAll": "Show all brands"
+      },
+      "vehicles": {
+        "title": "Explore all vehicles",
+        "subtitle": "Find your next ride from our curated selection",
+        "viewAll": "View all"
+      },
+      "statsBand": {
+        "cars": "Cars for sale",
+        "reviews": "Dealer reviews",
+        "visitors": "Visitors per day",
+        "dealers": "Verified dealers"
+      },
+      "cta": {
+        "title": "Ready to sell your car?",
+        "body": "List your vehicle today and reach thousands of potential buyers. It's fast, easy, and free to start.",
+        "addListing": "Add listing",
+        "browseCars": "Browse cars"
+      },
+      "footerNav": {
+        "tagline": "Your trusted automotive marketplace. Buy and sell vehicles with confidence.",
+        "company": "Company",
+        "about": "About us",
+        "contact": "Contact",
+        "faq": "FAQs",
+        "vehicles": "Vehicles",
+        "legal": "Legal",
+        "terms": "Terms & Conditions",
+        "privacy": "Privacy policy",
+        "rights": "All rights reserved."
+      }
+    },
+    "browse": {
+      "title": "Browse cars",
+      "results": "{{count}} results",
+      "view": {
+        "grid": "Grid",
+        "list": "List",
+        "map": "Map"
+      },
+      "sort": "Sort",
+      "sortBestDeals": "Best deals first",
+      "sortOptions": {
+        "bestDeals": "Best deals first",
+        "priceAsc": "Price: low to high",
+        "priceDesc": "Price: high to low",
+        "newest": "Newest first",
+        "nearest": "Nearest first"
+      },
+      "saveSearch": "Save search",
+      "searchSaved": "Saved",
+      "pagination": {
+        "showing": "Showing {{from}}–{{to}} of {{total}}",
+        "show": "Show"
+      },
+      "empty": {
+        "title": "No cars found",
+        "sub": "Try adjusting or resetting your filters"
+      },
+      "active": "Active",
+      "resetAll": "Reset all",
+      "sidebar": {
+        "filters": "Filters",
+        "reset": "Reset",
+        "apply": "Apply",
+        "preset": {
+          "electric": "Electric",
+          "premium": "Premium",
+          "under20k": "Under $20k",
+          "greatDeals": "Great deals"
+        },
+        "search": "Search",
+        "searchPlaceholder": "BMW M3, S-Class…",
+        "price": "Price",
+        "min": "MIN",
+        "max": "MAX",
+        "year": "Year",
+        "mileage": "Mileage",
+        "bodyType": "Body type",
+        "fuel": "Fuel",
+        "fuelOptions": {
+          "electric": "Electric",
+          "hybrid": "Hybrid",
+          "petrol": "Petrol",
+          "diesel": "Diesel"
+        },
+        "transmission": "Transmission",
+        "trans": {
+          "all": "All",
+          "auto": "Automatic",
+          "manual": "Manual"
+        },
+        "color": "Color",
+        "brand": "Brand",
+        "brandPlaceholder": "Search brand…",
+        "showMore": "Show 28 more",
+        "showMoreCount": "Show {{count}} more",
+        "showLess": "Show less"
+      },
+      "map": {
+        "carsInView": "38 cars in view",
+        "carsInViewCount": "{{count}} cars in view"
+      },
+      "mobile": {
+        "searchPlaceholder": "BMW, M4, Yerevan",
+        "carsCount": "{{count}} cars",
+        "bestDeals": "Best deals",
+        "filtersCount": "Filters · {{count}}",
+        "showResults": "Show {{count}} cars"
+      }
+    },
+    "details": {
+      "editTitle": "Edit listing",
+      "editSaved": "Changes saved",
+      "editError": "Couldn't save changes",
+      "breadcrumb": "Browse",
+      "featured": "Featured",
+      "reduced": "Reduced · −${{amount}}",
+      "kmAway": "{{distance}} km away",
+      "viewsCount": "{{count}} views",
+      "listedAgo": "Listed {{days}} days ago",
+      "id": "ID",
+      "year": "Year",
+      "mileage": "Mileage",
+      "fuel": "Fuel",
+      "transmission": "Transmission",
+      "trans": "Trans.",
+      "power": "Power",
+      "drive": "Drive",
+      "tabs": {
+        "overview": "Overview",
+        "specifications": "Specifications",
+        "history": "History",
+        "location": "Location",
+        "similar": "Similar cars"
+      },
+      "whatsIncluded": "What's included",
+      "share": "Share",
+      "report": "Report listing",
+      "linkCopied": "Link copied",
+      "fullscreen": "Fullscreen",
+      "close": "Close",
+      "morePhotos": "+{{count}} more",
+      "includes": {
+        "verified": "Verified by Carizma",
+        "serviceHistory": "Service history · {{count}} records",
+        "ownership": "Transparent ownership history",
+        "tour360": "360° online tour",
+        "vinReport": "VIN report",
+        "testDrive": "Test drives welcome"
+      },
+      "calc": {
+        "title": "Financing calculator",
+        "price": "Vehicle price ({{sym}})",
+        "rate": "Interest rate (%)",
+        "period": "Period (months)",
+        "downPayment": "Down payment ({{sym}})",
+        "calculate": "Calculate",
+        "monthly": "Monthly payment",
+        "totalAmount": "Total amount",
+        "totalInterest": "Total interest"
+      },
+      "specs": {
+        "year": "Year",
+        "mileage": "Mileage",
+        "fuel": "Fuel",
+        "transmission": "Transmission",
+        "power": "Power",
+        "drive": "Drive",
+        "engine": "Engine",
+        "body": "Body",
+        "extColor": "Ext. color",
+        "intColor": "Int. color",
+        "vin": "VIN",
+        "curbWeight": "Curb weight"
+      },
+      "historySection": "History · ownership timeline",
+      "history": {
+        "owners": "Owners",
+        "accidents": "Accidents",
+        "serviceRecords": "Service records",
+        "titleStatus": "Title status",
+        "singleOwner": "Single-owner since 2024",
+        "carfaxClean": "Carfax + Carizma clean",
+        "allAtBmw": "All at BMW Yerevan",
+        "clean": "Clean",
+        "log": "Service log"
+      },
+      "location": {
+        "title": "Location",
+        "city": "Yerevan · Kentron",
+        "exactNote": "Exact address shared after first message"
+      },
+      "similarSection": "Similar cars",
+      "panel": {
+        "belowMarket": "$4,200 below market avg for this trim",
+        "reviews": "{{count}} reviews",
+        "responseTime": "Response time",
+        "onCarizma": "On Carizma",
+        "testDrive": "Schedule a test drive",
+        "message": "Message seller",
+        "showPhone": "Show phone number",
+        "protected": "Carizma protected. Never pay before inspecting the car in person and verifying ID."
+      },
+      "mobile": {
+        "listedAgo": "{{distance}} km away · {{days}} days ago",
+        "readMore": "Read more →",
+        "message": "Message",
+        "testDrive": "Test drive"
+      }
+    },
+    "noListing": "Listing not found.",
+    "backToBrowse": "Back to browse →",
+    "review": {
+      "title": "Listing moderation",
+      "subtitle": "Review every listing and approve or reject it.",
+      "filters": {
+        "all": "All",
+        "UNDER_REVIEW": "Under review",
+        "PUBLISHED": "Published",
+        "REJECTED": "Rejected"
+      },
+      "loading": "Loading listings…",
+      "loadError": "Failed to load listings — refresh the page.",
+      "empty": "No listings in this status.",
+      "count": "{{count}} listings",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approving": "Approving…",
+      "rejecting": "Rejecting…",
+      "approved": "Listing published",
+      "rejected": "Listing rejected",
+      "actionError": "Action failed — try again.",
+      "openDetails": "Open details",
+      "rejectTitle": "Reject listing",
+      "rejectReasonLabel": "Reason",
+      "rejectReasonPlaceholder": "Explain why this listing is rejected — shown to the seller.",
+      "rejectConfirm": "Reject listing",
+      "cancel": "Cancel",
+      "detailsTitle": "Listing details",
+      "close": "Close",
+      "noPhotos": "No photos",
+      "sections": {
+        "vehicle": "Vehicle",
+        "specs": "Specifications",
+        "docs": "Documents & history",
+        "equipment": "Equipment",
+        "description": "Description",
+        "timeline": "Timeline",
+        "pricing": "Pricing"
+      },
+      "submittedAt": "Submitted {{date}}",
+      "rejectionReason": "Rejection reason: {{reason}}",
+      "field": {
+        "make": "Make",
+        "model": "Model",
+        "generation": "Generation",
+        "modification": "Modification",
+        "complectation": "Trim",
+        "vehicleType": "Vehicle type",
+        "bodyType": "Body",
+        "year": "Year",
+        "condition": "Condition",
+        "catalogStatus": "Catalog",
+        "mileage": "Mileage",
+        "fuelType": "Fuel",
+        "transmission": "Transmission",
+        "drive": "Drive",
+        "power": "Power",
+        "engine": "Engine",
+        "battery": "Battery",
+        "exteriorColor": "Exterior color",
+        "interiorColor": "Interior color",
+        "interiorMaterial": "Interior",
+        "doors": "Doors",
+        "seats": "Seats",
+        "wheelSide": "Wheel",
+        "vin": "VIN",
+        "chassisNumber": "Chassis no.",
+        "vinValidation": "VIN check",
+        "ownerCount": "Owners",
+        "accidentFree": "Accident-free",
+        "customsCleared": "Customs cleared",
+        "city": "City",
+        "priceNegotiable": "Negotiable",
+        "exchangePossible": "Exchange",
+        "createdAt": "Created",
+        "submittedAt": "Submitted",
+        "publishedAt": "Published",
+        "updatedAt": "Updated"
+      },
+      "common": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    }
+  }
+}

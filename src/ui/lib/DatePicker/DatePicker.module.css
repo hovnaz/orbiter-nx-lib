@@ -1,0 +1,245 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.root[data-full='true'] {
+  width: 100%;
+}
+.root[data-full='false'] {
+  width: auto;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.required {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+/* Trigger row (input wrapper) */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  min-height: 38px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  cursor: text;
+}
+.trigger[data-full='true'] {
+  width: 100%;
+}
+.trigger[data-full='false'] {
+  width: auto;
+}
+.trigger[data-error='true'] {
+  border-color: var(--danger);
+}
+.trigger[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.calendarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.calendarBtn:disabled {
+  cursor: not-allowed;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.clearBtn {
+  display: inline-flex;
+  padding: 2px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.message {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.message[data-error='true'] {
+  color: var(--danger);
+}
+
+/* Popover */
+.popover {
+  position: fixed;
+  top: var(--dp-top);
+  left: var(--dp-left);
+  z-index: 1000;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-lg);
+  padding: 12px;
+  width: 280px;
+  animation: modalIn 160ms var(--ease-out);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.monthLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.weekday {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-muted);
+  padding: 4px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.pad {
+  height: 32px;
+}
+
+.day {
+  height: 32px;
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  opacity: 1;
+}
+.day[data-today='true'] {
+  border-color: var(--teal);
+  color: var(--teal-pressed);
+}
+.day[data-selected='true'] {
+  background: var(--teal);
+  color: var(--text-on-accent);
+  border-color: transparent;
+}
+.day:disabled {
+  color: var(--text-muted);
+  background: transparent;
+  border-color: transparent;
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Time row */
+.timeRow {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.timeLabel {
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 10.5px;
+}
+
+.timeInput {
+  width: 50px;
+  padding: 4px 6px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  text-align: center;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  outline: none;
+}
+
+.timeColon {
+  font-weight: 700;
+}
+
+.timeSpacer {
+  flex: 1;
+}
+
+.doneBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal-pressed);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+}

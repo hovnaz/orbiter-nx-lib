@@ -1,0 +1,33 @@
+.root {
+  display: inline-block;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--dot-color);
+  flex-shrink: 0;
+}
+
+/* Tones */
+.root[data-tone='brand'] {
+  --dot-color: var(--teal);
+}
+.root[data-tone='success'] {
+  --dot-color: var(--success);
+}
+.root[data-tone='warning'] {
+  --dot-color: var(--warning);
+}
+.root[data-tone='danger'] {
+  --dot-color: var(--danger);
+}
+.root[data-tone='info'] {
+  --dot-color: var(--info);
+}
+.root[data-tone='neutral'] {
+  --dot-color: var(--text-muted);
+}
+
+/* Pulse halo — tone colour at ~20% alpha (original was `${color}33`) */
+.root[data-pulse='true'] {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot-color) 20%, transparent);
+}

@@ -1,0 +1,15 @@
+.root {
+  display: inline-block;
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border: 2px solid var(--spinner-track);
+  border-top-color: var(--spinner-color);
+  border-radius: 50%;
+  animation: orbiter-spin 700ms linear infinite;
+}
+
+@keyframes orbiter-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

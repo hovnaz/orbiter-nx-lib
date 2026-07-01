@@ -1,0 +1,22 @@
+.root {
+  /* overflow-x: clip contains full-bleed children (e.g. the material editor's
+     100vw breakout) so the viewport-scrollbar width can't create a stray
+     horizontal scrollbar. `clip` (not `hidden`) keeps overflow-y visible, so it
+     does NOT become a scroll container and sticky headers still pin to the viewport. */
+  min-height: 100vh;
+  background: var(--bg-page);
+  overflow-x: clip;
+}
+
+.main {
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* Chromeless full-screen mode: no main padding/max-width. */
+.main[data-bare='true'] {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}

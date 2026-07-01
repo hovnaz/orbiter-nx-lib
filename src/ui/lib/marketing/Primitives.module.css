@@ -1,0 +1,134 @@
+/* Marketing primitives — co-located styles for Primitives.tsx.
+   Variants/states (breakpoint, onDark, align) live on `data-*` attributes;
+   genuinely dynamic values (width, background, vertical padding, maxWidth)
+   are passed in as CSS custom properties from the .tsx. */
+
+/* ── Container ─────────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--mk-width);
+  margin: 0 auto;
+  width: 100%;
+}
+.container[data-bp='mobile'] {
+  padding: 0 18px;
+}
+.container[data-bp='tablet'] {
+  padding: 0 28px;
+}
+.container[data-bp='desktop'] {
+  padding: 0 32px;
+}
+
+/* ── Section ───────────────────────────────────────────────────────────── */
+.section {
+  background: var(--mk-bg);
+  padding: var(--mk-pad) 0;
+  position: relative;
+}
+
+/* ── Eyebrow ───────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  margin-bottom: 14px;
+  text-align: left;
+}
+.eyebrow[data-align='center'] {
+  text-align: center;
+}
+.eyebrow[data-on-dark='true'] {
+  color: rgba(143, 227, 212, 0.9);
+}
+
+/* ── GradientText ──────────────────────────────────────────────────────── */
+.gradientText {
+  background: linear-gradient(120deg, var(--teal) 0%, var(--teal-light) 45%, var(--gold) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── SectionHeading ────────────────────────────────────────────────────── */
+/* --mk-heading-max is set inline only when a max-width should apply
+   (always for center, or when the maxWidth prop is given); when unset the
+   declaration is invalid and ignored — matching the original `undefined`. */
+.heading {
+  text-align: left;
+  max-width: var(--mk-heading-max);
+  margin-bottom: 44px;
+}
+.heading[data-bp='mobile'] {
+  margin-bottom: 28px;
+}
+.heading[data-align='center'] {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headingTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+.heading[data-bp='mobile'] .headingTitle {
+  font-size: 26px;
+}
+.heading[data-on-dark='true'] .headingTitle {
+  color: var(--text-on-accent);
+}
+
+.headingSubtitle {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 14px 0 0;
+  max-width: 640px;
+}
+.heading[data-bp='mobile'] .headingSubtitle {
+  font-size: 15px;
+}
+.heading[data-on-dark='true'] .headingSubtitle {
+  color: rgba(255, 255, 255, 0.62);
+}
+.heading[data-align='center'] .headingSubtitle {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── HeroBadge ─────────────────────────────────────────────────────────── */
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-soft);
+  border: 1px solid rgba(59, 188, 167, 0.25);
+  color: var(--teal-pressed);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 15px;
+  border-radius: 999px;
+}
+.heroBadge[data-on-dark='true'] {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--teal-lighter);
+}
+
+.heroBadgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}

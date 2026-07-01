@@ -1,0 +1,15 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px 1px 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--teal-pressed);
+  background: var(--teal-soft);
+  border: 1px solid var(--teal);
+  border-radius: var(--r-xs);
+  flex-shrink: 0;
+}
