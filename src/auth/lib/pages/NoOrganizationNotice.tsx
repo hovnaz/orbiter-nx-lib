@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../navigation';
 import { useTranslation } from 'react-i18next';
 import { Building2 } from 'lucide-react';
 import { Button, Card } from '#ui';

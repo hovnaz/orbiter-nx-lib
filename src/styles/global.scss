@@ -340,7 +340,7 @@ em {
   opacity: 0;
 }
 .orbiter-reveal.is-visible {
-  animation: orbiterReveal 0.65s var(--ease-out) both;
+  animation: orbiterReveal 0.65s var(--ease-out) var(--reveal-delay, 0ms) both;
 }
 @keyframes orbiterReveal {
   from {

@@ -6,12 +6,14 @@ import {
   LogOut,
   User as UserIcon,
 } from 'lucide-react';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from '../Avatar/Avatar';
 import { Badge } from '../Badge/Badge';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { OrbitGlyph } from '../OrbitGlyph/OrbitGlyph';
+import s from './Header.module.css';
 
 export interface NavItem {
   key: string;
@@ -83,58 +85,19 @@ export function Header({
   const currentRole = roles.find((r) => r.key === currentRoleKey);
   const showRoleSwitcher = roles.length >= 2 && Boolean(currentRole);
   return (
-    <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 40,
-        height: 64,
-        background: 'var(--bg-translucent)',
-        backdropFilter: 'saturate(180%) blur(14px)',
-        WebkitBackdropFilter: 'saturate(180%) blur(14px)',
-        borderBottom: '1px solid var(--border-subtle)',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          height: '100%',
-          padding: '0 24px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 24,
-        }}
-      >
+    <header className={s.header}>
+      <div className={s.inner}>
         <button
           type="button"
           onClick={onLogoClick}
           aria-label={t('header.goHome')}
           disabled={!onLogoClick}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            padding: 0,
-            background: 'transparent',
-            border: 'none',
-            cursor: onLogoClick ? 'pointer' : 'default',
-            color: 'inherit',
-            font: 'inherit',
-          }}
+          className={s.logo}
+          data-clickable={onLogoClick ? 'true' : undefined}
         >
           <OrbitGlyph size={32} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 800,
-                fontSize: 18,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Orbiter
-            </span>
+          <div className={s.logoText}>
+            <span className={s.brand}>Orbiter</span>
             {productLabel && (
               <Badge tone="brand" variant="soft" size="sm">
                 {productLabel}
@@ -153,27 +116,8 @@ export function Header({
                 onClick={toggle}
                 aria-haspopup="menu"
                 aria-expanded={open}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 4,
-                  padding: '4px 6px 4px 10px',
-                  height: 26,
-                  fontSize: 12,
-                  fontWeight: 700,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  color: 'var(--text-secondary)',
-                  background: open
-                    ? 'var(--bg-section)'
-                    : 'var(--bg-subtle)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--r-sm)',
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                  transition:
-                    'background 120ms var(--ease-out), border-color 120ms var(--ease-out)',
-                }}
+                className={clsx(s.rolePill, s.roleTrigger)}
+                data-open={open ? 'true' : undefined}
               >
                 {currentRole?.label}
                 <ChevronDown size={13} strokeWidth={2.4} />
@@ -191,7 +135,7 @@ export function Header({
                         isCurrent ? (
                           <Check size={14} strokeWidth={2.6} />
                         ) : (
-                          <span style={{ width: 14 }} />
+                          <span className={s.checkSpacer} />
                         )
                       }
                       onClick={() => {
@@ -207,29 +151,10 @@ export function Header({
             )}
           </Dropdown>
         ) : (
-          currentRole && (
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                padding: '4px 10px',
-                height: 26,
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                color: 'var(--text-secondary)',
-                background: 'var(--bg-subtle)',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--r-sm)',
-              }}
-            >
-              {currentRole.label}
-            </span>
-          )
+          currentRole && <span className={s.rolePill}>{currentRole.label}</span>
         )}
 
-        <nav data-tour="tour-nav" style={{ display: 'flex', gap: 4, marginLeft: 8 }}>
+        <nav data-tour="tour-nav" className={s.nav}>
           {navItems.map((item) => {
             const active = isActive(item, currentPath);
             return (
@@ -238,16 +163,8 @@ export function Header({
                 type="button"
                 data-tour={`tour-nav-${item.key.split('/').pop()}`}
                 onClick={() => onNavigate(item.key)}
-                style={{
-                  padding: '8px 12px',
-                  borderRadius: 'var(--r-md)',
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  background: active ? 'var(--bg-section)' : 'transparent',
-                  transition:
-                    'background 120ms var(--ease-out), color 120ms var(--ease-out)',
-                }}
+                className={s.navItem}
+                data-active={active ? 'true' : undefined}
               >
                 {item.label}
               </button>
@@ -255,35 +172,14 @@ export function Header({
           })}
         </nav>
 
-        <div style={{ flex: 1 }} />
+        <div className={s.spacer} />
 
         {onCalendar && (
           <button
             type="button"
             onClick={onCalendar}
             aria-label={t('header.calendar')}
-            style={{
-              width: 36,
-              height: 36,
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 'var(--r-md)',
-              background: 'transparent',
-              color: 'var(--text-secondary)',
-              cursor: 'pointer',
-              border: 'none',
-              padding: 0,
-              transition: 'background 120ms var(--ease-out), color 120ms var(--ease-out)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--bg-section)';
-              e.currentTarget.style.color = 'var(--text-primary)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = 'var(--text-secondary)';
-            }}
+            className={s.iconBtn}
           >
             <Calendar size={18} strokeWidth={2.2} />
           </button>
@@ -295,12 +191,8 @@ export function Header({
               type="button"
               data-tour="tour-nav-profile"
               onClick={toggle}
-              style={{
-                padding: 2,
-                borderRadius: '50%',
-                boxShadow: open ? 'var(--sh-glow)' : 'none',
-                transition: 'box-shadow 120ms var(--ease-out)',
-              }}
+              className={s.avatarBtn}
+              data-open={open ? 'true' : undefined}
             >
               <Avatar name={user.name} size="sm" />
             </button>
@@ -308,17 +200,9 @@ export function Header({
         >
           {({ close }) => (
             <>
-              <div
-                style={{
-                  padding: '10px 12px 8px',
-                  borderBottom: '1px solid var(--border-subtle)',
-                  marginBottom: 6,
-                }}
-              >
-                <div style={{ fontSize: 14, fontWeight: 600 }}>{user.name}</div>
-                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-                  {user.email}
-                </div>
+              <div className={s.menuHeader}>
+                <div className={s.menuName}>{user.name}</div>
+                <div className={s.menuEmail}>{user.email}</div>
               </div>
               <MenuItem
                 icon={<UserIcon size={16} strokeWidth={2.2} />}
@@ -340,13 +224,7 @@ export function Header({
                   {helpLabel ?? 'Help'}
                 </MenuItem>
               )}
-              <div
-                style={{
-                  height: 1,
-                  background: 'var(--border-subtle)',
-                  margin: '6px 4px',
-                }}
-              />
+              <div className={s.menuDivider} />
               <MenuItem
                 icon={<LogOut size={16} strokeWidth={2.2} />}
                 tone="danger"

@@ -1,3 +1,4 @@
+'use client';
 export * from './lib/store';
 export * from './lib/store/slices/authSlice';
 export * from './lib/store/slices/previewSlice';

@@ -1,3 +1,4 @@
+'use client';
 export * from './lib/hooks/useAuth';
 export * from './lib/hooks/usePermissions';
 export * from './lib/hooks/useApplyTheme';
@@ -15,3 +16,4 @@ export * from './lib/pages/NoProductRolesNotice';
 export * from './lib/context/ProductContext';
 export * from './lib/utils/roles';
 export * from './lib/utils/password';
+export * from './lib/navigation';

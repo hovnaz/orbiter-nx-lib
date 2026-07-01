@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
+import s from './ConfirmModal.module.css';
 
 export interface ConfirmModalProps {
   open: boolean;
@@ -53,18 +54,7 @@ export function ConfirmModal({
         </>
       }
     >
-      {description && (
-        <div
-          style={{
-            padding: '20px 24px',
-            fontSize: 13.5,
-            lineHeight: 1.55,
-            color: 'var(--text-secondary)',
-          }}
-        >
-          {description}
-        </div>
-      )}
+      {description && <div className={s.description}>{description}</div>}
     </Modal>
   );
 }

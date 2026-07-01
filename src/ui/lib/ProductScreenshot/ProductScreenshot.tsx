@@ -11,9 +11,11 @@
  */
 
 import { useState, type CSSProperties, type ReactNode } from 'react';
+import clsx from 'clsx';
 import { ImageOff } from 'lucide-react';
 import { BrowserFrame } from '../BrowserFrame';
 import { Reveal, useReducedMotion } from '../marketing/Motion';
+import s from './ProductScreenshot.module.css';
 
 export interface ProductScreenshotProps {
   /** Image URL (served from the app `public/` dir, e.g. `/screenshots/dashboard.webp`). */
@@ -84,62 +86,37 @@ export function ProductScreenshot({
 
   const fallbackPanel = fallback ?? (
     <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 10,
-        width: '100%',
-        aspectRatio: aspectRatio ?? '16 / 10',
-        background:
-          'repeating-linear-gradient(45deg, var(--bg-section) 0 12px, var(--bg-page) 12px 24px)',
-        color: 'var(--text-muted)',
-        textAlign: 'center',
-        padding: 24,
-      }}
+      className={s.fallback}
+      style={
+        aspectRatio ? ({ '--ps-ratio': aspectRatio } as CSSProperties) : undefined
+      }
     >
       <ImageOff size={28} strokeWidth={1.6} />
-      <span style={{ fontSize: 13, fontWeight: 600 }}>Скриншот скоро будет</span>
-      <span style={{ fontSize: 11.5, opacity: 0.8, fontFamily: 'var(--font-mono)' }}>{src}</span>
+      <span className={s.fallbackLabel}>Скриншот скоро будет</span>
+      <span className={s.fallbackSrc}>{src}</span>
     </div>
   );
 
+  const figureStyle = {
+    '--ps-width': typeof width === 'number' ? `${width}px` : width,
+    ...style,
+  } as CSSProperties;
+
+  const frameStyle = {
+    '--ps-shadow': shadow,
+    ...(transform ? { '--ps-tilt': transform } : {}),
+  } as CSSProperties;
+
   const frame = (
-    <figure
-      style={{
-        position: 'relative',
-        maxWidth: width,
-        width: '100%',
-        margin: '0 auto',
-        ...style,
-      }}
-      className={className}
-    >
+    <figure className={clsx(s.root, className)} style={figureStyle}>
       {glowColor && (
         <div
           aria-hidden
-          style={{
-            position: 'absolute',
-            inset: '-12% -8% -16%',
-            borderRadius: '50%',
-            background: glowColor,
-            filter: 'blur(90px)',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
+          className={s.glow}
+          style={{ '--ps-glow': glowColor } as CSSProperties}
         />
       )}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          borderRadius: 'var(--r-lg, 14px)',
-          boxShadow: shadow,
-          transform,
-          transformOrigin: 'center',
-        }}
-      >
+      <div className={s.frame} data-tilt={transform ? '' : undefined} style={frameStyle}>
         <BrowserFrame url={url} elevated={false}>
           {status === 'error' ? (
             fallbackPanel
@@ -158,33 +135,16 @@ export function ProductScreenshot({
                 setStatus('error');
                 onError?.();
               }}
-              style={{
-                display: 'block',
-                width: '100%',
-                height: 'auto',
-                aspectRatio: aspectRatio || undefined,
-                objectFit: aspectRatio ? 'cover' : undefined,
-                objectPosition: 'top center',
-              }}
+              className={s.image}
+              data-ratio={aspectRatio ? '' : undefined}
+              style={
+                aspectRatio ? ({ '--ps-ratio': aspectRatio } as CSSProperties) : undefined
+              }
             />
           )}
         </BrowserFrame>
       </div>
-      {caption && (
-        <figcaption
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            marginTop: 14,
-            textAlign: 'center',
-            fontSize: 13.5,
-            lineHeight: 1.5,
-            color: 'var(--text-secondary)',
-          }}
-        >
-          {caption}
-        </figcaption>
-      )}
+      {caption && <figcaption className={s.caption}>{caption}</figcaption>}
     </figure>
   );
 

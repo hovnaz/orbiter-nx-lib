@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import s from './DatePicker.module.css';
 
 const POPOVER_HEIGHT_ESTIMATE_DATE = 320;
 const POPOVER_HEIGHT_ESTIMATE_DATETIME = 380;
@@ -82,12 +83,12 @@ function parseEditable(
   raw: string,
   withTime: boolean,
 ): ParsedValue | null {
-  const s = raw.trim();
-  if (!s) return null;
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
   const isoRe = /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{1,2}))?$/;
   const dotRe = /^(\d{1,2})[./](\d{1,2})[./](\d{4})(?:[ T](\d{1,2}):(\d{1,2}))?$/;
-  const isoMatch = isoRe.exec(s);
-  const dotMatch = dotRe.exec(s);
+  const isoMatch = isoRe.exec(trimmed);
+  const dotMatch = dotRe.exec(trimmed);
   let y: number;
   let m: number;
   let d: number;
@@ -333,8 +334,7 @@ export function DatePicker({
     return false;
   }
 
-  const showError = error || (draftError ? ' ' : '');
-  const borderColor = showError ? 'var(--danger)' : 'var(--border)';
+  const showError = Boolean(error) || draftError;
 
   const grid: (number | null)[] = [];
   const lead = startOfMonthOffset(view.y, view.m);
@@ -348,80 +348,34 @@ export function DatePicker({
     { month: 'long', year: 'numeric' },
   );
 
-  const triggerStyle: CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 8,
-    width: fullWidth ? '100%' : 'auto',
-    padding: '6px 10px',
-    minHeight: 38,
-    fontSize: 14,
-    fontFamily: 'inherit',
-    color: 'var(--text-primary)',
-    background: 'var(--bg-elevated)',
-    border: `1px solid ${borderColor}`,
-    borderRadius: 'var(--r-sm)',
-    cursor: disabled ? 'not-allowed' : 'text',
-    opacity: disabled ? 0.6 : 1,
-  };
-
-  const inputStyle: CSSProperties = {
-    flex: 1,
-    minWidth: 0,
-    padding: 0,
-    border: 'none',
-    outline: 'none',
-    background: 'transparent',
-    color: 'inherit',
-    font: 'inherit',
-  };
-
   const placeholderText =
     placeholder ?? (withTime ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD');
 
   return (
     <div
       ref={ref}
-      style={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 6,
-        width: fullWidth ? '100%' : 'auto',
-      }}
+      className={s.root}
+      data-full={fullWidth ? 'true' : 'false'}
     >
       {label && (
-        <label
-          htmlFor={id}
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: 'var(--text-primary)',
-          }}
-        >
+        <label htmlFor={id} className={s.label}>
           {label}
-          {required && (
-            <span style={{ color: 'var(--danger)', marginLeft: 2 }}>*</span>
-          )}
+          {required && <span className={s.required}>*</span>}
         </label>
       )}
-      <div ref={triggerRef} style={triggerStyle}>
+      <div
+        ref={triggerRef}
+        className={s.trigger}
+        data-full={fullWidth ? 'true' : 'false'}
+        data-error={showError ? 'true' : undefined}
+        data-disabled={disabled ? 'true' : undefined}
+      >
         <button
           type="button"
           aria-label="Open calendar"
           onClick={() => !disabled && setOpen((o) => !o)}
           disabled={disabled}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'transparent',
-            border: 'none',
-            padding: 0,
-            color: 'var(--text-muted)',
-            cursor: disabled ? 'not-allowed' : 'pointer',
-            flexShrink: 0,
-          }}
+          className={s.calendarBtn}
         >
           <Calendar size={14} strokeWidth={2} />
         </button>
@@ -438,7 +392,7 @@ export function DatePicker({
           onChange={(e) => handleDraftChange(e.target.value)}
           onBlur={handleDraftBlur}
           onFocus={() => setOpen(true)}
-          style={inputStyle}
+          className={s.input}
         />
         {parsed && !disabled && (
           <button
@@ -450,28 +404,14 @@ export function DatePicker({
               setDraftError(false);
               setOpen(false);
             }}
-            style={{
-              display: 'inline-flex',
-              padding: 2,
-              color: 'var(--text-muted)',
-              background: 'transparent',
-              border: 'none',
-              borderRadius: 'var(--r-xs)',
-              cursor: 'pointer',
-              flexShrink: 0,
-            }}
+            className={s.clearBtn}
           >
             <X size={13} strokeWidth={2.2} />
           </button>
         )}
       </div>
       {(hint || error) && (
-        <span
-          style={{
-            fontSize: 11,
-            color: error ? 'var(--danger)' : 'var(--text-muted)',
-          }}
-        >
+        <span className={s.message} data-error={error ? 'true' : undefined}>
           {error || hint}
         </span>
       )}
@@ -482,91 +422,46 @@ export function DatePicker({
           ref={popoverRef}
           role="dialog"
           aria-label={label || 'Date picker'}
-          style={{
-            position: 'fixed',
-            top: popoverPos.top,
-            left: popoverPos.left,
-            zIndex: 1000,
-            background: 'var(--bg-elevated)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--r-lg)',
-            boxShadow: 'var(--sh-lg)',
-            padding: 12,
-            width: 280,
-            animation: 'modalIn 160ms var(--ease-out)',
-          }}
+          className={s.popover}
+          style={
+            {
+              '--dp-top': `${popoverPos.top}px`,
+              '--dp-left': `${popoverPos.left}px`,
+            } as CSSProperties
+          }
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: 8,
-            }}
-          >
+          <div className={s.header}>
             <button
               type="button"
               onClick={() => nudgeMonth(-1)}
               aria-label="Previous month"
-              style={iconBtnStyle}
+              className={s.iconBtn}
             >
               <ChevronLeft size={16} strokeWidth={2.2} />
             </button>
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 700,
-                textTransform: 'capitalize',
-              }}
-            >
-              {monthLabel}
-            </div>
+            <div className={s.monthLabel}>{monthLabel}</div>
             <button
               type="button"
               onClick={() => nudgeMonth(1)}
               aria-label="Next month"
-              style={iconBtnStyle}
+              className={s.iconBtn}
             >
               <ChevronRight size={16} strokeWidth={2.2} />
             </button>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(7, 1fr)',
-              gap: 2,
-              marginBottom: 4,
-            }}
-          >
+          <div className={s.weekdays}>
             {WEEKDAYS.map((w) => (
-              <div
-                key={w}
-                style={{
-                  fontSize: 10.5,
-                  fontWeight: 700,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  textAlign: 'center',
-                  color: 'var(--text-muted)',
-                  padding: '4px 0',
-                }}
-              >
+              <div key={w} className={s.weekday}>
                 {w}
               </div>
             ))}
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(7, 1fr)',
-              gap: 2,
-            }}
-          >
+          <div className={s.grid}>
             {grid.map((d, i) => {
               if (d === null)
-                return <div key={`pad-${i}`} style={{ height: 32 }} />;
+                return <div key={`pad-${i}`} className={s.pad} />;
               const cell: ParsedValue = {
                 y: view.y,
                 m: view.m,
@@ -588,11 +483,9 @@ export function DatePicker({
                   type="button"
                   disabled={out}
                   onClick={() => pickDay(d)}
-                  style={dayBtnStyle({
-                    selected: Boolean(isSelected),
-                    today: isToday,
-                    disabled: out,
-                  })}
+                  className={s.day}
+                  data-selected={isSelected ? 'true' : undefined}
+                  data-today={isToday ? 'true' : undefined}
                 >
                   {d}
                 </button>
@@ -601,28 +494,8 @@ export function DatePicker({
           </div>
 
           {withTime && (
-            <div
-              style={{
-                marginTop: 12,
-                paddingTop: 12,
-                borderTop: '1px solid var(--border-subtle)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                fontSize: 12,
-              }}
-            >
-              <span
-                style={{
-                  fontWeight: 700,
-                  color: 'var(--text-muted)',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontSize: 10.5,
-                }}
-              >
-                Time
-              </span>
+            <div className={s.timeRow}>
+              <span className={s.timeLabel}>Time</span>
               <input
                 type="number"
                 min={0}
@@ -640,9 +513,9 @@ export function DatePicker({
                   emit({ ...parsed, hh: v });
                 }}
                 aria-label="Hours"
-                style={timeInputStyle}
+                className={s.timeInput}
               />
-              <span style={{ fontWeight: 700 }}>:</span>
+              <span className={s.timeColon}>:</span>
               <input
                 type="number"
                 min={0}
@@ -660,21 +533,13 @@ export function DatePicker({
                   emit({ ...parsed, mm: v });
                 }}
                 aria-label="Minutes"
-                style={timeInputStyle}
+                className={s.timeInput}
               />
-              <div style={{ flex: 1 }} />
+              <div className={s.timeSpacer} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: 'var(--teal-pressed)',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '4px 8px',
-                }}
+                className={s.doneBtn}
               >
                 Done
               </button>
@@ -687,64 +552,3 @@ export function DatePicker({
   );
 }
 
-const iconBtnStyle: CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 28,
-  height: 28,
-  padding: 0,
-  background: 'transparent',
-  color: 'var(--text-secondary)',
-  border: '1px solid transparent',
-  borderRadius: 'var(--r-sm)',
-  cursor: 'pointer',
-};
-
-const timeInputStyle: CSSProperties = {
-  width: 50,
-  padding: '4px 6px',
-  fontSize: 13,
-  fontFamily: 'var(--font-mono)',
-  textAlign: 'center',
-  color: 'var(--text-primary)',
-  background: 'var(--bg-elevated)',
-  border: '1px solid var(--border)',
-  borderRadius: 'var(--r-sm)',
-  outline: 'none',
-};
-
-function dayBtnStyle({
-  selected,
-  today,
-  disabled,
-}: {
-  selected: boolean;
-  today: boolean;
-  disabled: boolean;
-}): CSSProperties {
-  let background = 'transparent';
-  let color = 'var(--text-primary)';
-  let border = '1px solid transparent';
-  if (disabled) {
-    color = 'var(--text-muted)';
-  } else if (selected) {
-    background = 'var(--teal)';
-    color = '#fff';
-  } else if (today) {
-    border = '1px solid var(--teal)';
-    color = 'var(--teal-pressed)';
-  }
-  return {
-    height: 32,
-    fontSize: 12.5,
-    fontFamily: 'var(--font-mono)',
-    fontWeight: 600,
-    color,
-    background,
-    border,
-    borderRadius: 'var(--r-sm)',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.4 : 1,
-  };
-}

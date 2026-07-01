@@ -1,3 +1,6 @@
+import type { CSSProperties } from 'react';
+import s from './Avatar.module.css';
+
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface AvatarProps {
@@ -6,14 +9,6 @@ export interface AvatarProps {
   size?: AvatarSize;
   color?: string;
 }
-
-const SIZES: Record<AvatarSize, number> = {
-  xs: 24,
-  sm: 32,
-  md: 40,
-  lg: 48,
-  xl: 64,
-};
 
 const PALETTE = [
   '#3BBCA7',
@@ -41,27 +36,16 @@ function initialsFrom(name: string): string {
 }
 
 export function Avatar({ name = '', src, size = 'md', color }: AvatarProps) {
-  const px = SIZES[size];
   const bg = color ?? (name ? pickColor(name) : 'var(--ink-300)');
   const initials = initialsFrom(name);
 
   return (
     <div
-      style={{
-        width: px,
-        height: px,
-        borderRadius: '50%',
-        background: src ? `url(${src}) center/cover` : bg,
-        color: '#fff',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        fontSize: px * 0.38,
-        letterSpacing: '-0.01em',
-        flexShrink: 0,
-      }}
+      className={s.root}
+      data-size={size}
+      style={
+        { '--avatar-bg': src ? `url(${src}) center/cover` : bg } as CSSProperties
+      }
     >
       {!src && initials}
     </div>

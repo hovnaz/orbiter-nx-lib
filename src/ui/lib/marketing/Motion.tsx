@@ -69,7 +69,7 @@ export function Reveal({ children, delay = 0, className, style }: RevealProps) {
     <div
       ref={ref}
       className={'orbiter-reveal' + (className ? ' ' + className : '')}
-      style={{ animationDelay: delay + 'ms', ...style }}
+      style={{ '--reveal-delay': delay + 'ms', ...style } as CSSProperties}
     >
       {children}
     </div>

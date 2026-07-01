@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import s from './AppLayout.module.css';
 
 export interface AppLayoutProps {
   header?: ReactNode;
@@ -11,13 +12,13 @@ export interface AppLayoutProps {
 
 export function AppLayout({ header, children, maxWidth = 1280, bare = false }: AppLayoutProps) {
   return (
-    // overflow-x: clip contains full-bleed children (e.g. the material editor's
-    // 100vw breakout) so the viewport-scrollbar width can't create a stray
-    // horizontal scrollbar. `clip` (not `hidden`) keeps overflow-y visible, so it
-    // does NOT become a scroll container and sticky headers still pin to the viewport.
-    <div style={{ minHeight: '100vh', background: 'var(--bg-page)', overflowX: 'clip' }}>
+    <div className={s.root}>
       {!bare && header}
-      <main style={bare ? { margin: 0, padding: 0 } : { maxWidth, margin: '0 auto', padding: '32px 24px 80px' }}>
+      <main
+        className={s.main}
+        data-bare={bare ? 'true' : undefined}
+        style={{ '--app-max-width': `${maxWidth}px` } as CSSProperties}
+      >
         {children}
       </main>
     </div>

@@ -1,3 +1,4 @@
+'use client';
 export * from './lib/AppLayout';
 export * from './lib/Avatar';
 export * from './lib/BrowserFrame';

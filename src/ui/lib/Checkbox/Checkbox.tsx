@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react';
 import { Check } from 'lucide-react';
+import s from './Checkbox.module.css';
 
 export interface CheckboxProps {
   checked: boolean;
@@ -20,13 +21,8 @@ export function Checkbox({
   return (
     <label
       htmlFor={inputId}
-      style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: 10,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        opacity: disabled ? 0.6 : 1,
-      }}
+      className={s.root}
+      data-disabled={disabled ? 'true' : undefined}
     >
       <input
         id={inputId}
@@ -34,58 +30,14 @@ export function Checkbox({
         checked={checked}
         disabled={disabled}
         onChange={(e) => onChange(e.target.checked)}
-        style={{
-          position: 'absolute',
-          opacity: 0,
-          pointerEvents: 'none',
-          width: 0,
-          height: 0,
-        }}
+        className={s.input}
       />
-      <span
-        aria-hidden="true"
-        style={{
-          width: 18,
-          height: 18,
-          borderRadius: 4,
-          border: checked ? '1.5px solid var(--teal)' : '1.5px solid var(--border)',
-          background: checked ? 'var(--teal)' : 'var(--bg-elevated)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'var(--bg-elevated)',
-          flexShrink: 0,
-          marginTop: 1,
-          transition:
-            'background 120ms var(--ease-out), border-color 120ms var(--ease-out)',
-        }}
-      >
+      <span aria-hidden="true" className={s.box} data-checked={checked ? 'true' : undefined}>
         {checked && <Check size={12} strokeWidth={3} />}
       </span>
-      <span style={{ flex: 1, minWidth: 0 }}>
-        <span
-          style={{
-            display: 'block',
-            fontSize: 14,
-            fontWeight: 600,
-            color: 'var(--text-primary)',
-          }}
-        >
-          {label}
-        </span>
-        {sub && (
-          <span
-            style={{
-              display: 'block',
-              fontSize: 12,
-              color: 'var(--text-muted)',
-              marginTop: 2,
-              lineHeight: 1.45,
-            }}
-          >
-            {sub}
-          </span>
-        )}
+      <span className={s.text}>
+        <span className={s.label}>{label}</span>
+        {sub && <span className={s.sub}>{sub}</span>}
       </span>
     </label>
   );

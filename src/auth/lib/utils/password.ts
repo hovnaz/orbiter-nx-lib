@@ -1,4 +1,12 @@
-import type { TFunction } from 'i18next';
+/**
+ * Minimal translate function. Intentionally NOT i18next's `TFunction` — typing
+ * the public helper against `TFunction` would bind every caller to one i18next
+ * copy's exact type identity, which breaks across local-linked repos that resolve
+ * their own i18next (e.g. orbiter-nx-carizma). The helper only does key→string
+ * lookups, so a structural `(key: string) => string` is sufficient and any
+ * i18next `t` satisfies it.
+ */
+export type TranslateFn = (key: string) => string;
 
 /** Cognito policy: ≥8 chars, ≥1 lowercase, ≥1 uppercase, ≥1 digit. */
 export const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -22,7 +30,7 @@ export function checkPassword(value: string): PasswordIssue | null {
 
 export function describePasswordIssue(
   issue: PasswordIssue,
-  t: TFunction,
+  t: TranslateFn,
 ): string {
   const parts: string[] = [];
   if (issue.tooShort) parts.push(t('auth.passwordIssue.tooShort'));

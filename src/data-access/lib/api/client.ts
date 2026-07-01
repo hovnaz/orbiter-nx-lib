@@ -10,8 +10,7 @@ export const REFRESH_TOKEN_KEY = 'orbiter:refreshToken';
 export const EMAIL_KEY = 'orbiter:email';
 
 export const API_BASE_URL: string =
-  (import.meta.env?.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ??
-  '/api';
+  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') ?? '/api';
 
 /**
  * Base URL for endpoints that still live on the Orbiter backend after Carizma
@@ -19,10 +18,8 @@ export const API_BASE_URL: string =
  * Defaults to API_BASE_URL so single-backend apps (school, jira) are unchanged.
  */
 export const ORBITER_API_BASE_URL: string =
-  (import.meta.env?.VITE_ORBITER_API_BASE_URL as string | undefined)?.replace(
-    /\/$/,
-    '',
-  ) ?? API_BASE_URL;
+  process.env.NEXT_PUBLIC_ORBITER_API_BASE_URL?.replace(/\/$/, '') ??
+  API_BASE_URL;
 
 /**
  * Paths that must be routed to the Orbiter backend (ORBITER_API_BASE_URL).

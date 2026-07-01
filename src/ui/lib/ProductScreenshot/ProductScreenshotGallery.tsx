@@ -8,6 +8,7 @@ import { type CSSProperties } from 'react';
 import { useViewport, type ViewportBreakpoint } from '../marketing/useViewport';
 import { RevealStagger } from '../marketing/Motion';
 import { ProductScreenshot, type ProductScreenshotProps } from './ProductScreenshot';
+import s from './ProductScreenshotGallery.module.css';
 
 export type ProductScreenshotGalleryItem = Pick<
   ProductScreenshotProps,
@@ -41,12 +42,11 @@ export function ProductScreenshotGallery({
   const ownBp = useViewport();
   const isMobile = (bp ?? ownBp) === 'mobile';
 
-  const gridStyle: CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: isMobile ? '1fr' : `repeat(${columns}, 1fr)`,
-    gap,
+  const gridStyle = {
+    '--psg-gap': typeof gap === 'number' ? `${gap}px` : gap,
+    '--psg-cols': isMobile ? '1fr' : `repeat(${columns}, 1fr)`,
     ...style,
-  };
+  } as CSSProperties;
 
   const shots = items.map((it, i) => (
     <ProductScreenshot
@@ -65,10 +65,14 @@ export function ProductScreenshotGallery({
 
   if (stagger) {
     return (
-      <RevealStagger gap={80} style={gridStyle}>
+      <RevealStagger gap={80} className={s.root} style={gridStyle}>
         {shots}
       </RevealStagger>
     );
   }
-  return <div style={gridStyle}>{shots}</div>;
+  return (
+    <div className={s.root} style={gridStyle}>
+      {shots}
+    </div>
+  );
 }

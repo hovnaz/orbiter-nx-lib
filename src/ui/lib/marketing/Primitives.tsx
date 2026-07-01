@@ -9,6 +9,7 @@
  */
 
 import type { CSSProperties, ReactNode } from 'react';
+import clsx from 'clsx';
 import {
   Building2,
   Calendar,
@@ -25,6 +26,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import type { ViewportBreakpoint } from './useViewport';
+import s from './Primitives.module.css';
 
 // ── icon registry ────────────────────────────────────────────────────────────
 
@@ -77,13 +79,9 @@ export function Container({
 }) {
   return (
     <div
-      style={{
-        maxWidth: width,
-        margin: '0 auto',
-        padding: `0 ${hPad(bp)}px`,
-        width: '100%',
-        ...style,
-      }}
+      className={s.container}
+      data-bp={bp}
+      style={{ '--mk-width': `${width}px`, ...style } as CSSProperties}
     >
       {children}
     </div>
@@ -111,12 +109,14 @@ export function Section({
   return (
     <section
       id={id}
-      style={{
-        background: background ?? 'transparent',
-        padding: `${bp === 'mobile' ? m : d}px 0`,
-        position: 'relative',
-        ...style,
-      }}
+      className={s.section}
+      style={
+        {
+          '--mk-bg': background ?? 'transparent',
+          '--mk-pad': `${bp === 'mobile' ? m : d}px`,
+          ...style,
+        } as CSSProperties
+      }
     >
       {children}
     </section>
@@ -135,17 +135,7 @@ export function Eyebrow({
   align?: 'left' | 'center';
 }) {
   return (
-    <div
-      style={{
-        fontSize: 12,
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '0.16em',
-        color: onDark ? 'rgba(143,227,212,0.9)' : 'var(--teal)',
-        marginBottom: 14,
-        textAlign: align,
-      }}
-    >
+    <div className={s.eyebrow} data-align={align} data-on-dark={onDark ? 'true' : undefined}>
       {children}
     </div>
   );
@@ -153,19 +143,7 @@ export function Eyebrow({
 
 /** Teal→navy gradient text used for accent words in headlines. */
 export function GradientText({ children }: { children: ReactNode }) {
-  return (
-    <span
-      style={{
-        background: 'linear-gradient(120deg, var(--teal) 0%, #6FD3C2 45%, var(--gold) 120%)',
-        WebkitBackgroundClip: 'text',
-        backgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        color: 'transparent',
-      }}
-    >
-      {children}
-    </span>
-  );
+  return <span className={s.gradientText}>{children}</span>;
 }
 
 export function SectionHeading({
@@ -185,49 +163,24 @@ export function SectionHeading({
   align?: 'left' | 'center';
   maxWidth?: number;
 }) {
+  const headingMax = maxWidth ?? (align === 'center' ? 640 : undefined);
   return (
     <div
-      style={{
-        textAlign: align,
-        maxWidth: maxWidth ?? (align === 'center' ? 640 : undefined),
-        margin: align === 'center' ? '0 auto' : undefined,
-        marginBottom: bp === 'mobile' ? 28 : 44,
-      }}
+      className={s.heading}
+      data-bp={bp}
+      data-align={align}
+      data-on-dark={onDark ? 'true' : undefined}
+      style={
+        headingMax != null ? ({ '--mk-heading-max': `${headingMax}px` } as CSSProperties) : undefined
+      }
     >
       {eyebrow && (
         <Eyebrow onDark={onDark} align={align}>
           {eyebrow}
         </Eyebrow>
       )}
-      <h2
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 800,
-          fontSize: bp === 'mobile' ? 26 : 38,
-          lineHeight: 1.12,
-          letterSpacing: '-0.025em',
-          color: onDark ? '#fff' : 'var(--text-primary)',
-          margin: 0,
-          textWrap: 'balance',
-        }}
-      >
-        {title}
-      </h2>
-      {subtitle && (
-        <p
-          style={{
-            fontSize: bp === 'mobile' ? 15 : 17,
-            lineHeight: 1.6,
-            color: onDark ? 'rgba(255,255,255,0.62)' : 'var(--text-secondary)',
-            margin: '14px 0 0',
-            maxWidth: align === 'center' ? 620 : 640,
-            marginLeft: align === 'center' ? 'auto' : undefined,
-            marginRight: align === 'center' ? 'auto' : undefined,
-          }}
-        >
-          {subtitle}
-        </p>
-      )}
+      <h2 className={s.headingTitle}>{title}</h2>
+      {subtitle && <p className={s.headingSubtitle}>{subtitle}</p>}
     </div>
   );
 }
@@ -235,25 +188,8 @@ export function SectionHeading({
 /** Pill badge used in heroes (dot + label). */
 export function HeroBadge({ children, onDark }: { children: ReactNode; onDark?: boolean }) {
   return (
-    <div
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 8,
-        background: onDark ? 'rgba(255,255,255,0.06)' : 'var(--teal-soft)',
-        backdropFilter: onDark ? 'blur(8px)' : undefined,
-        border: onDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(59,188,167,0.25)',
-        color: onDark ? '#8FE3D4' : 'var(--teal-pressed)',
-        fontSize: 12.5,
-        fontWeight: 600,
-        padding: '7px 15px',
-        borderRadius: 999,
-      }}
-    >
-      <span
-        className="orbiter-pulse"
-        style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--teal)' }}
-      />
+    <div className={s.heroBadge} data-on-dark={onDark ? 'true' : undefined}>
+      <span className={clsx('orbiter-pulse', s.heroBadgeDot)} />
       {children}
     </div>
   );

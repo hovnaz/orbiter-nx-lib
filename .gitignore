@@ -5,3 +5,19 @@ dist/
 .DS_Store
 coverage/
 .eslintcache
+.stylelintcache
+
+# editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

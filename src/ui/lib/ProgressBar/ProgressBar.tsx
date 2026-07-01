@@ -1,3 +1,6 @@
+import type { CSSProperties } from 'react';
+import s from './ProgressBar.module.css';
+
 export type ProgressTone = 'brand' | 'success' | 'info' | 'warning';
 
 export interface ProgressBarProps {
@@ -8,13 +11,6 @@ export interface ProgressBarProps {
   showLabel?: boolean;
 }
 
-const COLORS: Record<ProgressTone, string> = {
-  brand: 'var(--teal)',
-  success: 'var(--success)',
-  info: 'var(--info)',
-  warning: 'var(--warning)',
-};
-
 export function ProgressBar({
   value,
   max = 100,
@@ -24,37 +20,16 @@ export function ProgressBar({
 }: ProgressBarProps) {
   const pct = Math.max(0, Math.min(100, (value / max) * 100));
   return (
-    <div style={{ width: '100%' }}>
-      <div
-        style={{
-          width: '100%',
-          height,
-          background: 'var(--border-subtle)',
-          borderRadius: 'var(--r-pill)',
-          overflow: 'hidden',
-        }}
-      >
+    <div className={s.root}>
+      <div className={s.track} style={{ '--h': `${height}px` } as CSSProperties}>
         <div
-          style={{
-            width: `${pct}%`,
-            height: '100%',
-            background: COLORS[tone],
-            borderRadius: 'var(--r-pill)',
-            transition: 'width 360ms var(--ease-out)',
-          }}
+          className={s.fill}
+          data-tone={tone}
+          style={{ '--w': `${pct}%` } as CSSProperties}
         />
       </div>
       {showLabel && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginTop: 6,
-            fontSize: 12,
-            color: 'var(--text-muted)',
-            fontWeight: 500,
-          }}
-        >
+        <div className={s.label}>
           <span>{Math.round(pct)}%</span>
         </div>
       )}

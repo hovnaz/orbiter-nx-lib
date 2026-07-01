@@ -15,7 +15,7 @@
  */
 
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../navigation';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Building2, Check, Link2, Mail, Phone, User } from 'lucide-react';
 import { Button, Input, OrbitGlyph, Spinner } from '#ui';

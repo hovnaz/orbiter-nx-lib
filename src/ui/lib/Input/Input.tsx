@@ -4,6 +4,7 @@ import {
   type InputHTMLAttributes,
   type ReactNode,
 } from 'react';
+import s from './Input.module.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -18,58 +19,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 ) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
-  const borderColor = error ? 'var(--danger)' : 'var(--border)';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: '100%' }}>
+    <div className={s.root}>
       {label && (
-        <label
-          htmlFor={inputId}
-          style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)' }}
-        >
+        <label htmlFor={inputId} className={s.label}>
           {label}
         </label>
       )}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          padding: '10px 12px',
-          background: 'var(--bg-elevated)',
-          border: `1px solid ${borderColor}`,
-          borderRadius: 'var(--r-md)',
-          transition: 'border-color 120ms var(--ease-out), box-shadow 120ms var(--ease-out)',
-        }}
-      >
-        {iconLeft && (
-          <span style={{ color: 'var(--text-muted)', display: 'inline-flex' }}>
-            {iconLeft}
-          </span>
-        )}
+      <div className={s.field} data-error={error ? 'true' : undefined}>
+        {iconLeft && <span className={s.icon}>{iconLeft}</span>}
         <input
           ref={ref}
           id={inputId}
           {...rest}
-          style={{
-            flex: 1,
-            border: 'none',
-            outline: 'none',
-            background: 'transparent',
-            fontSize: 14,
-            fontFamily: 'inherit',
-            color: 'var(--text-primary)',
-            ...style,
-          }}
+          className={s.input}
+          style={style}
         />
       </div>
       {(hint || error) && (
-        <span
-          style={{
-            fontSize: 12,
-            color: error ? 'var(--danger)' : 'var(--text-muted)',
-          }}
-        >
+        <span className={s.message} data-error={error ? 'true' : undefined}>
           {error ?? hint}
         </span>
       )}

@@ -2,6 +2,7 @@ import { useEffect, useId, useState, type ReactNode } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
+import s from './DangerConfirmModal.module.css';
 
 export interface DangerConfirmModalProps {
   open: boolean;
@@ -59,67 +60,25 @@ export function DangerConfirmModal({
             onClick={onConfirm}
             disabled={!canConfirm}
             loading={loading}
-            style={{
-              background: 'var(--coral-pressed, #B91C1C)',
-              borderColor: 'var(--coral-pressed, #B91C1C)',
-            }}
+            className={s.confirmButton}
           >
             {confirmLabel}
           </Button>
         </>
       }
     >
-      <div
-        style={{
-          padding: '20px 24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 14,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 10,
-            padding: 12,
-            background: 'var(--danger-soft)',
-            border: '1px solid var(--danger)',
-            borderRadius: 'var(--r-sm)',
-            color: 'var(--danger-pressed)',
-          }}
-        >
+      <div className={s.body}>
+        <div className={s.warning}>
           <AlertTriangle
             size={18}
             strokeWidth={2.2}
-            style={{ flexShrink: 0, marginTop: 1 }}
+            className={s.warningIcon}
           />
-          <div style={{ fontSize: 13, lineHeight: 1.5 }}>{description}</div>
+          <div className={s.warningText}>{description}</div>
         </div>
-        <label
-          htmlFor={inputId}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            fontSize: 12,
-            fontWeight: 600,
-            color: 'var(--text-secondary)',
-          }}
-        >
+        <label htmlFor={inputId} className={s.label}>
           Type{' '}
-          <code
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 12,
-              background: 'var(--bg-subtle)',
-              padding: '1px 6px',
-              borderRadius: 4,
-              color: 'var(--text-primary)',
-            }}
-          >
-            {confirmKeyword}
-          </code>{' '}
+          <code className={s.keyword}>{confirmKeyword}</code>{' '}
           to confirm:
           <input
             id={inputId}
@@ -130,16 +89,8 @@ export function DangerConfirmModal({
             autoComplete="off"
             autoFocus
             placeholder={confirmKeyword}
-            style={{
-              padding: '8px 10px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 13,
-              border: `1px solid ${matches ? 'var(--success)' : 'var(--border)'}`,
-              borderRadius: 'var(--r-sm)',
-              background: 'var(--bg-elevated)',
-              color: 'var(--text-primary)',
-              outline: 'none',
-            }}
+            className={s.input}
+            data-matches={matches ? 'true' : undefined}
           />
         </label>
       </div>

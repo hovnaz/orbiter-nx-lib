@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
+import s from './Dropdown.module.css';
 
 export interface DropdownTriggerArgs {
   open: boolean;
@@ -41,23 +48,13 @@ export function Dropdown({
   }, []);
 
   return (
-    <div ref={ref} style={{ position: 'relative' }}>
+    <div ref={ref} className={s.root}>
       {trigger({ open, toggle: () => setOpen((o) => !o) })}
       {open && (
         <div
-          style={{
-            position: 'absolute',
-            [align]: 0,
-            top: 'calc(100% + 8px)',
-            background: 'var(--bg-elevated)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--r-lg)',
-            boxShadow: 'var(--sh-lg)',
-            minWidth,
-            padding: 6,
-            zIndex: 50,
-            animation: 'modalIn 180ms var(--ease-out)',
-          }}
+          className={s.menu}
+          data-align={align}
+          style={{ '--dropdown-min-width': `${minWidth}px` } as CSSProperties}
         >
           {typeof children === 'function'
             ? children({ close: () => setOpen(false) })

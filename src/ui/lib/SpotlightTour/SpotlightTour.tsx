@@ -12,6 +12,7 @@
  */
 
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import s from './SpotlightTour.module.css';
 
 interface Box {
   top: number;
@@ -122,34 +123,54 @@ export function SpotlightTour({
       }
     : null;
 
+  const pop = popoverPosition(spot);
+
   return (
-    <div style={containerStyle}>
+    <div className={s.root}>
       {spot ? (
-        <div style={{ ...spotlightStyle, top: spot.top, left: spot.left, width: spot.width, height: spot.height }} />
+        <div
+          className={s.spotlight}
+          style={
+            {
+              '--spot-top': `${spot.top}px`,
+              '--spot-left': `${spot.left}px`,
+              '--spot-width': `${spot.width}px`,
+              '--spot-height': `${spot.height}px`,
+            } as CSSProperties
+          }
+        />
       ) : (
-        <div style={fullDimStyle} />
+        <div className={s.fullDim} />
       )}
 
-      <div style={popoverStyle(spot)}>
-        <div style={popHeaderStyle}>
-          <strong style={{ fontSize: 15 }}>{title}</strong>
-          <button type="button" onClick={onClose} aria-label={labels.exit} title={labels.exit} style={closeStyle}>
+      <div
+        className={s.popover}
+        data-centered={pop ? undefined : 'true'}
+        style={
+          pop
+            ? ({ '--pop-top': `${pop.top}px`, '--pop-left': `${pop.left}px` } as CSSProperties)
+            : undefined
+        }
+      >
+        <div className={s.popHeader}>
+          <strong className={s.title}>{title}</strong>
+          <button type="button" onClick={onClose} aria-label={labels.exit} title={labels.exit} className={s.close}>
             ×
           </button>
         </div>
-        <p style={descStyle}>{desc}</p>
+        <p className={s.desc}>{desc}</p>
         {extra}
-        <div style={footerStyle}>
-          <span style={counterStyle}>
+        <div className={s.footer}>
+          <span className={s.counter}>
             {index + 1} / {total}
           </span>
-          <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+          <div className={s.actions}>
             {!isFirst && (
-              <button type="button" onClick={onPrev} style={secondaryBtnStyle}>
+              <button type="button" onClick={onPrev} className={s.btn} data-variant="secondary">
                 {labels.back}
               </button>
             )}
-            <button type="button" onClick={onNext} style={primaryBtnStyle}>
+            <button type="button" onClick={onNext} className={s.btn} data-variant="primary">
               {isLast ? labels.finish : labels.next}
             </button>
           </div>
@@ -159,45 +180,13 @@ export function SpotlightTour({
   );
 }
 
-const containerStyle: CSSProperties = {
-  position: 'fixed',
-  inset: 0,
-  zIndex: 2147483646,
-  pointerEvents: 'auto',
-};
-
-const spotlightStyle: CSSProperties = {
-  position: 'fixed',
-  borderRadius: 12,
-  boxShadow: '0 0 0 9999px rgba(6, 18, 39, 0.66)',
-  pointerEvents: 'none',
-  transition: 'top 220ms var(--ease-out), left 220ms var(--ease-out), width 220ms var(--ease-out), height 220ms var(--ease-out)',
-};
-
-const fullDimStyle: CSSProperties = {
-  position: 'fixed',
-  inset: 0,
-  background: 'rgba(6, 18, 39, 0.66)',
-  pointerEvents: 'none',
-};
-
-function popoverStyle(spot: Box | null): CSSProperties {
-  const base: CSSProperties = {
-    position: 'fixed',
-    width: POPOVER_WIDTH,
-    maxWidth: 'calc(100vw - 32px)',
-    zIndex: 2147483647,
-    background: 'var(--bg-elevated)',
-    color: 'var(--text-primary)',
-    border: '1px solid var(--border)',
-    borderRadius: 14,
-    boxShadow: 'var(--sh-xl)',
-    padding: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 10,
-  };
-  if (!spot) return { ...base, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+/**
+ * Compute the popover anchor (top/left in px). Returns null when there is no
+ * spotlight rect — the popover then renders centered via CSS. The geometry
+ * depends on window size + spot, so it cannot be expressed as a static class.
+ */
+function popoverPosition(spot: Box | null): { top: number; left: number } | null {
+  if (!spot) return null;
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
@@ -206,42 +195,5 @@ function popoverStyle(spot: Box | null): CSSProperties {
   const top = placeBelow ? below : Math.max(spot.top - POPOVER_EST_HEIGHT - 12, 12);
   let left = spot.left;
   if (left + POPOVER_WIDTH + 16 > vw) left = Math.max(vw - POPOVER_WIDTH - 16, 16);
-  return { ...base, top, left };
+  return { top, left };
 }
-
-const descStyle: CSSProperties = { margin: 0, fontSize: 13, lineHeight: 1.55, color: 'var(--text-secondary)' };
-const footerStyle: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, paddingTop: 4 };
-const counterStyle: CSSProperties = { fontSize: 12, color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, fontFamily: 'var(--font-mono)' };
-const popHeaderStyle: CSSProperties = { display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 };
-const closeStyle: CSSProperties = {
-  flexShrink: 0,
-  width: 28,
-  height: 28,
-  borderRadius: 8,
-  border: '1px solid var(--border)',
-  background: 'transparent',
-  color: 'var(--text-muted)',
-  fontSize: 18,
-  lineHeight: 1,
-  cursor: 'pointer',
-};
-const primaryBtnStyle: CSSProperties = {
-  padding: '7px 16px',
-  fontSize: 13,
-  fontWeight: 600,
-  borderRadius: 8,
-  border: 'none',
-  cursor: 'pointer',
-  background: 'var(--teal)',
-  color: '#fff',
-};
-const secondaryBtnStyle: CSSProperties = {
-  padding: '7px 14px',
-  fontSize: 13,
-  fontWeight: 600,
-  borderRadius: 8,
-  cursor: 'pointer',
-  border: '1px solid var(--border)',
-  background: 'transparent',
-  color: 'var(--text-primary)',
-};

@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { AlertCircle, CheckCircle2, Info, X } from 'lucide-react';
+import s from './Toast.module.css';
 
 export type ToastTone = 'success' | 'danger' | 'info';
 
@@ -30,33 +31,10 @@ interface ToastContextValue {
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
-const TONES: Record<
-  ToastTone,
-  {
-    bg: string;
-    border: string;
-    color: string;
-    Icon: typeof CheckCircle2;
-  }
-> = {
-  success: {
-    bg: 'var(--success-soft)',
-    border: 'var(--success)',
-    color: '#15803D',
-    Icon: CheckCircle2,
-  },
-  danger: {
-    bg: 'var(--danger-soft)',
-    border: 'var(--danger)',
-    color: '#B91C1C',
-    Icon: AlertCircle,
-  },
-  info: {
-    bg: 'var(--info-soft)',
-    border: 'var(--info)',
-    color: '#1D4ED8',
-    Icon: Info,
-  },
+const TONE_ICONS: Record<ToastTone, typeof CheckCircle2> = {
+  success: CheckCircle2,
+  danger: AlertCircle,
+  info: Info,
 };
 
 export interface ToastProviderProps {
@@ -128,18 +106,7 @@ function ToastViewport({
 }>) {
   if (typeof document === 'undefined') return null;
   return createPortal(
-    <div
-      style={{
-        position: 'fixed',
-        top: 16,
-        right: 16,
-        zIndex: 1000,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 8,
-        pointerEvents: 'none',
-      }}
-    >
+    <div className={s.viewport}>
       {toasts.map((t) => (
         <ToastCard
           key={t.id}
@@ -163,8 +130,7 @@ function ToastCard({
   onDismiss: (id: string) => void;
 }>) {
   const { tone, title, description, durationMs, id } = toast;
-  const tones = TONES[tone];
-  const { Icon } = tones;
+  const Icon = TONE_ICONS[tone];
   const duration = durationMs ?? defaultDurationMs;
 
   useEffect(() => {
@@ -174,68 +140,19 @@ function ToastCard({
   }, [duration, id, onDismiss]);
 
   return (
-    <div
-      role="status"
-      style={{
-        pointerEvents: 'auto',
-        display: 'flex',
-        gap: 10,
-        alignItems: 'flex-start',
-        padding: '12px 14px',
-        minWidth: 280,
-        maxWidth: 360,
-        background: 'var(--bg-elevated)',
-        border: `1px solid ${tones.border}`,
-        borderLeft: `4px solid ${tones.border}`,
-        borderRadius: 'var(--r-md)',
-        boxShadow: 'var(--sh-md)',
-        animation: 'fadeInUp 200ms var(--ease-out)',
-      }}
-    >
-      <div
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: '50%',
-          background: tones.bg,
-          color: tones.color,
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
-      >
+    <div role="status" className={s.card} data-tone={tone}>
+      <div className={s.icon} data-tone={tone}>
         <Icon size={16} strokeWidth={2.4} />
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
-          {title}
-        </div>
-        {description && (
-          <div
-            style={{
-              fontSize: 12.5,
-              color: 'var(--text-secondary)',
-              marginTop: 2,
-              lineHeight: 1.45,
-            }}
-          >
-            {description}
-          </div>
-        )}
+      <div className={s.body}>
+        <div className={s.title}>{title}</div>
+        {description && <div className={s.description}>{description}</div>}
       </div>
       <button
         type="button"
         onClick={() => onDismiss(id)}
         aria-label="Dismiss"
-        style={{
-          background: 'transparent',
-          border: 'none',
-          color: 'var(--text-muted)',
-          cursor: 'pointer',
-          padding: 2,
-          display: 'inline-flex',
-        }}
+        className={s.close}
       >
         <X size={14} strokeWidth={2.2} />
       </button>

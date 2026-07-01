@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react';
 import { Check } from 'lucide-react';
+import s from './MultiSelect.module.css';
 
 export interface MultiSelectOption {
   value: string;
@@ -46,22 +47,20 @@ export function MultiSelect({
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: '100%' }}>
+    <div className={s.root}>
       {label && (
-        <span
-          id={labelId}
-          style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-secondary)' }}
-        >
+        <span id={labelId} className={s.label}>
           {label}
         </span>
       )}
       {options.length === 0 ? (
-        <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{emptyText}</span>
+        <span className={s.empty}>{emptyText}</span>
       ) : (
         <div
           role="group"
           aria-labelledby={label ? labelId : undefined}
-          style={{ display: 'flex', flexWrap: 'wrap', gap: 8, opacity: disabled ? 0.6 : 1 }}
+          className={s.group}
+          data-disabled={disabled ? 'true' : undefined}
         >
           {options.map((opt) => {
             const active = selected.has(opt.value);
@@ -73,21 +72,8 @@ export function MultiSelect({
                 aria-checked={active}
                 disabled={disabled}
                 onClick={() => toggle(opt.value)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  padding: '6px 12px',
-                  fontSize: 13,
-                  fontWeight: 600,
-                  borderRadius: 'var(--r-pill, 999px)',
-                  border: `1px solid ${active ? 'var(--teal)' : 'var(--border)'}`,
-                  background: active ? 'var(--teal-soft)' : 'var(--bg-elevated)',
-                  color: active ? 'var(--teal-pressed)' : 'var(--text-secondary)',
-                  cursor: disabled ? 'not-allowed' : 'pointer',
-                  transition:
-                    'background 120ms var(--ease-out), border-color 120ms var(--ease-out), color 120ms var(--ease-out)',
-                }}
+                className={s.pill}
+                data-active={active ? 'true' : undefined}
               >
                 {active && <Check size={12} strokeWidth={3} />}
                 {opt.label}
@@ -97,7 +83,7 @@ export function MultiSelect({
         </div>
       )}
       {(hint || error) && (
-        <span style={{ fontSize: 12, color: error ? 'var(--danger)' : 'var(--text-muted)' }}>
+        <span className={s.message} data-error={error ? 'true' : undefined}>
           {error ?? hint}
         </span>
       )}
