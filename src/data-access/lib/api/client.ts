@@ -9,17 +9,29 @@ export const ACCESS_TOKEN_KEY = 'orbiter:accessToken';
 export const REFRESH_TOKEN_KEY = 'orbiter:refreshToken';
 export const EMAIL_KEY = 'orbiter:email';
 
+/**
+ * Environment default for the API host: the local backend on dev/test stands,
+ * the Orbiter production API on prod. Overridable per-service via the
+ * NEXT_PUBLIC_* env vars below (e.g. if Carizma and Orbiter split hosts).
+ */
+const DEFAULT_API_BASE_URL: string =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.orbiter.am/api'
+    : 'http://localhost:8080/api';
+
 export const API_BASE_URL: string =
-  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') ?? '/api';
+  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') ?? DEFAULT_API_BASE_URL;
 
 /**
- * Base URL for endpoints that still live on the Orbiter backend after Carizma
- * was split into its own microservice (auth/token, user preferences, orgs).
- * Defaults to API_BASE_URL so single-backend apps (school, jira) are unchanged.
+ * Base URL for endpoints that live on the Orbiter backend (auth/token, user
+ * preferences like language, organizations). Auth (login / register / change
+ * password) and language changes are routed here via ORBITER_PATTERNS below.
+ * Defaults to the same env-based host (localhost:8080 on dev, api.orbiter.am on
+ * prod); override with NEXT_PUBLIC_ORBITER_API_BASE_URL when the hosts differ.
  */
 export const ORBITER_API_BASE_URL: string =
   process.env.NEXT_PUBLIC_ORBITER_API_BASE_URL?.replace(/\/$/, '') ??
-  API_BASE_URL;
+  DEFAULT_API_BASE_URL;
 
 /**
  * Paths that must be routed to the Orbiter backend (ORBITER_API_BASE_URL).

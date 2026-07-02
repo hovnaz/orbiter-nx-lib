@@ -1,5 +1,0 @@
-.root {
-  display: grid;
-  gap: var(--psg-gap);
-  grid-template-columns: var(--psg-cols);
-}

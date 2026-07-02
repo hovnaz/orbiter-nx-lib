@@ -4,11 +4,10 @@
  * Listings (search, public detail, draft flow), favorites and recently-viewed
  * history, plus the vehicle catalog (makes, reference dictionaries) all hit real
  * endpoints. Still mock until the backend grows the features: my-cars engagement
- * counters, saved searches and message threads.
+ * counters and saved searches.
  */
 
 import type {
-  AdminListListingsArgs,
   CarizmaAnalysisResponse,
   CarizmaFavoriteToggleResponse,
   CarizmaListingDetailResponse,
@@ -19,7 +18,6 @@ import type {
   CarizmaMakeResponse,
   CarizmaModelResponse,
   CarizmaPhotoResponse,
-  CarizmaRejectListingRequest,
   CarizmaReferenceItem,
   CarizmaReferencesResponse,
   CarizmaSearchPageResponse,
@@ -27,8 +25,11 @@ import type {
   CarListing,
   CarListingDetail,
   CarCurrency,
+  CarizmaCatalogOption,
+  FilterSchema,
+  GetCatalogByUrlArg,
+  GetFilterSchemaArg,
   ListMyListingsArgs,
-  MessageThread,
   MyCarSummary,
   SavedSearch,
 } from '#types';
@@ -184,7 +185,7 @@ export interface CarizmaSearchResult {
   total: number;
 }
 
-// ── Cabinet mocks (no backend yet: favorites, threads, saved searches) ─────
+// ── Cabinet mocks (no backend yet: favorites, saved searches) ─────
 
 const seedMyCars: MyCarSummary[] = [];
 
@@ -194,11 +195,47 @@ const seedSavedSearches: SavedSearch[] = [
   { id: 's3', name: 'Diesel wagons, low km', filters: 'Wagon · Diesel · under 80,000 km', newCount: 0, total: 12 },
 ];
 
-const seedThreads: MessageThread[] = [
-  { id: 't1', name: 'Davit Sargsyan', car: 'BMW M4 Competition', preview: "Hi — is the M Driver's package documentation included?", time: '12:48', unread: 2, online: true, initials: 'DS' },
-  { id: 't2', name: 'Lilit Manukyan', car: 'Porsche Taycan 4S', preview: 'Yes, available this Saturday after 14:00 in Yerevan.', time: '11:02', unread: 0, online: false, initials: 'LM' },
-  { id: 't3', name: 'Tigran Petrosyan', car: 'Land Cruiser 300', preview: 'Sent the bank pre-approval to your inbox.', time: 'Yest.', unread: 0, online: false, initials: 'TP' },
-];
+// ── Filter-schema localStorage cache (30-min TTL, keyed by lang) ─────────────
+// The backend-driven filter schema rarely changes, so we persist it per language
+// with a 30-minute TTL. This survives reloads and avoids re-fetching on every
+// visit; RTK Query's own in-memory cache (keepUnusedDataFor) covers the session.
+
+const SCHEMA_TTL_MS = 30 * 60 * 1000; // 30 minutes
+/** keepUnusedDataFor is seconds — keep the RTK cache alive for the same 30 min. */
+const SCHEMA_KEEP_UNUSED_SECONDS = SCHEMA_TTL_MS / 1000;
+
+function schemaCacheKey(lang: string): string {
+  return `carizma:filter-schema:${lang}`;
+}
+
+interface SchemaCacheEntry {
+  ts: number;
+  data: FilterSchema;
+}
+
+/** Fresh (within TTL) cached schema for a language, or null. Safe on the server. */
+function readSchemaCache(lang: string): FilterSchema | null {
+  if (globalThis.window === undefined) return null;
+  try {
+    const raw = globalThis.localStorage.getItem(schemaCacheKey(lang));
+    if (!raw) return null;
+    const entry = JSON.parse(raw) as SchemaCacheEntry;
+    if (Date.now() - entry.ts < SCHEMA_TTL_MS && entry.data) return entry.data;
+  } catch {
+    /* corrupt entry / storage unavailable — fall through to a network fetch */
+  }
+  return null;
+}
+
+function writeSchemaCache(lang: string, data: FilterSchema): void {
+  if (globalThis.window === undefined) return;
+  try {
+    const entry: SchemaCacheEntry = { ts: Date.now(), data };
+    globalThis.localStorage.setItem(schemaCacheKey(lang), JSON.stringify(entry));
+  } catch {
+    /* quota / private-mode — the in-memory RTK cache still applies */
+  }
+}
 
 // ── RTK Query endpoints ─────────────────────────────────────────────────────
 
@@ -268,6 +305,42 @@ export const carizmaApi = api.injectEndpoints({
       query: () => ({ url: v('/carizma/catalog/references') }),
     }),
 
+    /**
+     * Backend-driven filter schema for the browse/search sidebar, localised by
+     * the active UI language (sent as `Accept-Language`). Two cache layers:
+     *   1. localStorage, 30-min TTL keyed by lang — survives reloads (below);
+     *   2. RTK Query's in-memory cache (keepUnusedDataFor, 30 min) — the session.
+     * The `queryFn` returns the fresh cached copy without hitting the network;
+     * otherwise it fetches via `baseQuery`, persists, and returns.
+     */
+    getFilterSchema: build.query<FilterSchema, GetFilterSchemaArg>({
+      queryFn: async (lang, _api, _extra, baseQuery) => {
+        const cached = readSchemaCache(lang);
+        if (cached) return { data: cached };
+        const res = await baseQuery({
+          url: v('/carizma/catalog/filter-schema'),
+          headers: { 'Accept-Language': lang },
+        });
+        if (res.error) return { error: res.error as AxiosQueryError };
+        const data = res.data as FilterSchema;
+        writeSchemaCache(lang, data);
+        return { data };
+      },
+      keepUnusedDataFor: SCHEMA_KEEP_UNUSED_SECONDS,
+    }),
+
+    /**
+     * Dependent-options lookup by a pre-resolved relative URL (e.g. the
+     * `modelsByMake` link with `{makeId}` already substituted). RTK Query caches
+     * per-arg and dedups concurrent identical requests, so asking for the same
+     * make's models twice never refetches — this IS the dependent-lookup cache.
+     * Short retention (5 min) keeps stale option lists from piling up.
+     */
+    getCatalogByUrl: build.query<CarizmaCatalogOption[], GetCatalogByUrlArg>({
+      query: (url) => ({ url }),
+      keepUnusedDataFor: 300,
+    }),
+
     /** The caller's favorited listings, newest first. */
     listSavedListings: build.query<CarListing[], void>({
       query: () => ({ url: v('/carizma/listings/favorites') }),
@@ -292,11 +365,6 @@ export const carizmaApi = api.injectEndpoints({
     listSavedSearches: build.query<SavedSearch[], void>({
       queryFn: () => ok(seedSavedSearches),
       providesTags: [{ type: 'CarizmaSearch', id: 'LIST' }],
-    }),
-
-    listMessageThreads: build.query<MessageThread[], void>({
-      queryFn: () => ok(seedThreads),
-      providesTags: [{ type: 'CarizmaThread', id: 'LIST' }],
     }),
 
     /** The caller's recently-viewed listings, most recent first (server-tracked). */
@@ -437,81 +505,6 @@ export const carizmaApi = api.injectEndpoints({
             ]
           : [{ type: 'CarizmaMine' as const, id: 'LIST' }],
     }),
-
-    // ── SuperAdmin moderation (review queue) ──────────────────────────────
-    // All five hit /v1/carizma/admin/listings/** behind @RequireSuperAdminRole
-    // (Cognito group SUPER_ADMIN). The review tab lists EVERY listing, opens
-    // full detail in a side panel, and approves/rejects.
-
-    /** Every listing in the system, optionally filtered by status. Kept raw so the
-     *  review cards can show the server status + rejection reason. */
-    listAdminListings: build.query<
-      CarizmaListingsPageResponse,
-      AdminListListingsArgs | void
-    >({
-      query: (arg) => ({
-        url: v('/carizma/admin/listings'),
-        params: {
-          ...(arg?.status ? { status: arg.status } : {}),
-          ...(arg?.limit != null ? { limit: arg.limit } : {}),
-          ...(arg?.offset != null ? { offset: arg.offset } : {}),
-        },
-      }),
-      providesTags: (res) =>
-        res
-          ? [
-              { type: 'CarizmaAdmin' as const, id: 'LIST' },
-              ...res.items.map((l) => ({ type: 'CarizmaAdmin' as const, id: l.id })),
-            ]
-          : [{ type: 'CarizmaAdmin' as const, id: 'LIST' }],
-    }),
-
-    /**
-     * Full detail of a listing in ANY status — drives the review side panel.
-     * Returned RAW (untransformed) so the moderation drawer can show every field
-     * (ref dictionaries, flags, counts, VIN, equipment) — the lossy buyer-facing
-     * `toCarListingDetail` mapping drops most of them.
-     */
-    getAdminListing: build.query<CarizmaListingDetailResponse, { id: string }>({
-      query: ({ id }) => ({
-        url: v(`/carizma/admin/listings/${encodeURIComponent(id)}`),
-      }),
-      providesTags: (_res, _err, arg) => [{ type: 'CarizmaAdmin' as const, id: arg.id }],
-    }),
-
-    /** Approve → PUBLISHED. Refreshes the review queue + public listing caches. */
-    approveListing: build.mutation<CarizmaListingResponse, { id: string }>({
-      query: ({ id }) => ({
-        url: v(`/carizma/admin/listings/${encodeURIComponent(id)}/approve`),
-        method: 'POST',
-      }),
-      invalidatesTags: (_r, _e, { id }) => [
-        { type: 'CarizmaAdmin' as const, id: 'LIST' },
-        { type: 'CarizmaAdmin' as const, id },
-        { type: 'CarListing' as const, id: 'LIST' },
-        { type: 'CarListing' as const, id: 'SEARCH' },
-        { type: 'CarListing' as const, id },
-      ],
-    }),
-
-    /** Reject → REJECTED, with an optional reason shown to the seller. */
-    rejectListing: build.mutation<
-      CarizmaListingResponse,
-      { id: string; body?: CarizmaRejectListingRequest }
-    >({
-      query: ({ id, body }) => ({
-        url: v(`/carizma/admin/listings/${encodeURIComponent(id)}/reject`),
-        method: 'POST',
-        data: body ?? {},
-      }),
-      invalidatesTags: (_r, _e, { id }) => [
-        { type: 'CarizmaAdmin' as const, id: 'LIST' },
-        { type: 'CarizmaAdmin' as const, id },
-        { type: 'CarListing' as const, id: 'LIST' },
-        { type: 'CarListing' as const, id: 'SEARCH' },
-        { type: 'CarListing' as const, id },
-      ],
-    }),
   }),
   overrideExisting: false,
 });
@@ -525,11 +518,12 @@ export const {
   useListMakesQuery,
   useListModelsQuery,
   useListReferencesQuery,
+  useGetFilterSchemaQuery,
+  useGetCatalogByUrlQuery,
   useListSavedListingsQuery,
   useToggleSavedMutation,
   useListMyCarsQuery,
   useListSavedSearchesQuery,
-  useListMessageThreadsQuery,
   useListRecentlyViewedQuery,
   useRecordRecentlyViewedMutation,
   // Real backend hooks (listing draft flow)
@@ -540,9 +534,4 @@ export const {
   useLazyGetListingAnalysisQuery,
   useSubmitListingMutation,
   useListMyListingsQuery,
-  // SuperAdmin moderation
-  useListAdminListingsQuery,
-  useGetAdminListingQuery,
-  useApproveListingMutation,
-  useRejectListingMutation,
 } = carizmaApi;

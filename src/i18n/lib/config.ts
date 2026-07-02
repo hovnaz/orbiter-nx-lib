@@ -27,15 +27,38 @@ function isSupported(value: string): value is Supported {
   return (SUPPORTED as readonly string[]).includes(value);
 }
 
-function readCachedLang(): Supported {
-  if (typeof localStorage === 'undefined') return 'en';
-  try {
-    const raw = localStorage.getItem(LANG_STORAGE_KEY);
-    if (raw && isSupported(raw)) return raw;
-  } catch {
-    /* storage may be unavailable (private mode, sandboxed iframe, etc.) */
+/** Browser UI language, narrowed to a supported code; null if none match. */
+function detectBrowserLang(): Supported | null {
+  if (typeof navigator === 'undefined') return null;
+  const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const raw of candidates) {
+    const code = (raw ?? '').slice(0, 2).toLowerCase();
+    if (isSupported(code)) return code;
   }
-  return 'en';
+  return null;
+}
+
+/**
+ * Client-side UI language resolution order:
+ *   1. the user's explicit cached choice (localStorage),
+ *   2. the browser/computer language (if we support it),
+ *   3. the caller-provided fallback (Carizma passes `hy`).
+ *
+ * IMPORTANT: this reads localStorage/navigator, which only exist on the client.
+ * It must NOT be used for the synchronous `initI18n` language (that would make
+ * the server render one language and the client another → hydration mismatch).
+ * Instead, apply it from a post-mount effect via `i18n.changeLanguage(...)`.
+ */
+export function resolveClientLang(fallback: Supported): Supported {
+  if (typeof localStorage !== 'undefined') {
+    try {
+      const raw = localStorage.getItem(LANG_STORAGE_KEY);
+      if (raw && isSupported(raw)) return raw;
+    } catch {
+      /* storage may be unavailable (private mode, sandboxed iframe, etc.) */
+    }
+  }
+  return detectBrowserLang() ?? fallback;
 }
 
 function writeCachedLang(lang: string): void {
@@ -55,8 +78,14 @@ let initialized = false;
  * Initialize the shared i18next instance. Safe to call multiple times — only
  * the first call wires up the resources, the React bridge, and the
  * localStorage cache listener.
+ *
+ * `defaultLang` is the language used for the initial (SSR + first client) render.
+ * It must be deterministic — the same on server and client — so we do NOT read
+ * localStorage/navigator here. The remembered/browser language is applied later
+ * from a client effect via `resolveClientLang` + `i18n.changeLanguage`.
+ * Defaults to `en`; Carizma passes `hy` so the marketplace renders Armenian first.
  */
-export function initI18n(): typeof i18n {
+export function initI18n(defaultLang: Supported = 'en'): typeof i18n {
   if (initialized) return i18n;
   initialized = true;
   i18n.use(initReactI18next).init({
@@ -65,7 +94,7 @@ export function initI18n(): typeof i18n {
       ru: { translation: ru },
       hy: { translation: hy },
     },
-    lng: readCachedLang(),
+    lng: defaultLang,
     fallbackLng: 'en',
     supportedLngs: SUPPORTED as unknown as string[],
     interpolation: { escapeValue: false },

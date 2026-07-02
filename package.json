@@ -34,11 +34,6 @@
       "import": "./src/i18n/index.ts",
       "default": "./src/i18n/index.ts"
     },
-    "./utils": {
-      "types": "./src/utils/index.ts",
-      "import": "./src/utils/index.ts",
-      "default": "./src/utils/index.ts"
-    },
     "./styles/tokens.css": "./src/styles/orbiter-design-tokens.css",
     "./styles/global.scss": "./src/styles/global.scss",
     "./package.json": "./package.json"
@@ -49,7 +44,6 @@
     "#data-access": "./src/data-access/index.ts",
     "#types": "./src/types/index.ts",
     "#i18n": "./src/i18n/index.ts",
-    "#utils": "./src/utils/index.ts",
     "#styles": "./src/styles/orbiter-design-tokens.css"
   },
   "scripts": {

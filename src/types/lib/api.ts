@@ -1624,7 +1624,6 @@ export interface MyCarSummary {
   status: ListingStatus;
   views: number;
   saves: number;
-  messages: number;
   image?: string;
   placeholderTone?: string;
   placeholderHint?: string;
@@ -1640,17 +1639,6 @@ export interface SavedSearch {
   filters: string;
   newCount: number;
   total: number;
-}
-
-export interface MessageThread {
-  id: string;
-  name: string;
-  car: string;
-  preview: string;
-  time: string;
-  unread: number;
-  online: boolean;
-  initials: string;
 }
 
 // ─── Carizma backend (standalone microservice) ──────────────────────────────
@@ -1732,6 +1720,99 @@ export interface CarizmaModelResponse {
   yearFrom?: number | null;
   yearTo?: number | null;
 }
+
+// ── Backend-driven filter schema (GET /v1/carizma/catalog/filter-schema) ─────
+// The browse/search sidebar is rendered from this schema, so the set of filters,
+// their labels (localised via the Accept-Language header) and their options can
+// change without a frontend release. See `getFilterSchema` in shared-data-access.
+
+/** The control kind the renderer draws for a filter. */
+export type FilterType = 'select' | 'multiselect' | 'range' | 'search' | 'toggle';
+
+/** One selectable option of a select/multiselect/toggle filter. */
+export interface FilterOption {
+  value: string;
+  label: string;
+}
+
+/**
+ * One filter in the schema. Which fields are populated depends on `type`:
+ * select/multiselect/toggle carry `options`; range carries `min`/`max`/`step`
+ * (+ optional `unit`, and `singleBound` when only one edge is adjustable).
+ * `dependsOn` + `optionsLink` describe a dependent lookup (e.g. model←make).
+ */
+export interface FilterDef {
+  key: string;
+  type: FilterType;
+  label: string;
+  options?: FilterOption[];
+  /** Range bounds (type === 'range'). */
+  min?: number;
+  max?: number;
+  step?: number;
+  /** Display unit for a range (e.g. "USD", "km"). */
+  unit?: string;
+  /** When set, the range exposes only this edge (the other stays at the bound). */
+  singleBound?: 'min' | 'max';
+  /** Keys of filters whose options depend on this one (e.g. make → ["model"]). */
+  dependents?: string[];
+  /** The filter key this one's options depend on (e.g. model dependsOn "make"). */
+  dependsOn?: string;
+  /** Name of the `links` entry used to fetch this filter's options. */
+  optionsLink?: string;
+}
+
+/** One parameter of a dependent-options link. */
+export interface LinkParam {
+  name: string;
+  /** Where the param goes (`query` today; `path` reserved). */
+  in: 'query' | 'path';
+  /** The filter key whose current value fills this param. */
+  fromFilter: string;
+  required?: boolean;
+}
+
+/**
+ * A named dependent-options endpoint referenced by `FilterDef.optionsLink`.
+ * `urlTemplate` uses `{paramName}` placeholders filled from the parent filters.
+ */
+export interface LinkDef {
+  method: 'GET';
+  urlTemplate: string;
+  params?: LinkParam[];
+  example?: { request: string };
+}
+
+/** Payload of GET /v1/carizma/catalog/filter-schema (localised by Accept-Language). */
+export interface FilterSchema {
+  /** Changes whenever the filter set changes — a cache-busting key. */
+  version: string;
+  /** The language the labels were rendered in (`hy` | `ru` | `en`). */
+  lang: string;
+  filters: FilterDef[];
+  /** Dependent-options endpoints, keyed by the name used in `optionsLink`. */
+  links?: Record<string, LinkDef>;
+}
+
+/** Supported UI/API language codes for the filter schema. */
+export type CarizmaLang = 'hy' | 'ru' | 'en';
+
+/** Arg of `getFilterSchema` — the active UI language. */
+export type GetFilterSchemaArg = CarizmaLang;
+
+/**
+ * Minimal shape returned by a dependent-options endpoint (e.g. the resolved
+ * `modelsByMake` link). Both catalog makes and models satisfy it, so the
+ * renderer maps `id`→`value` and the localised name→`label` generically.
+ */
+export interface CarizmaCatalogOption {
+  id: string;
+  name: string;
+  nameCyrillic?: string | null;
+}
+
+/** Arg of `getCatalogByUrl` — a pre-resolved relative catalog URL. */
+export type GetCatalogByUrlArg = string;
 
 /**
  * The catalog vehicle a listing is linked to. Lower levels may be null in
@@ -2030,21 +2111,4 @@ export interface ListMyListingsArgs {
   status?: CarizmaListingStatus;
   limit?: number;
   offset?: number;
-}
-
-/**
- * Query params of the SuperAdmin moderation queue
- * (GET /v1/carizma/admin/listings). Same shape as {@link ListMyListingsArgs}
- * but lists EVERY listing rather than only the caller's.
- */
-export interface AdminListListingsArgs {
-  status?: CarizmaListingStatus;
-  limit?: number;
-  offset?: number;
-}
-
-/** Body of the SuperAdmin reject decision (POST .../admin/listings/{id}/reject). */
-export interface CarizmaRejectListingRequest {
-  /** Optional human-readable reason surfaced to the seller. */
-  reason?: string;
 }

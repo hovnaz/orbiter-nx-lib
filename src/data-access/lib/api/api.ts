@@ -22,13 +22,11 @@ export const api = createApi({
     'CarizmaSaved',
     'CarizmaRecent',
     'CarizmaMyCar',
-    'CarizmaThread',
     'CarizmaSearch',
     'CarizmaDraft',
     'CarizmaPhoto',
     'CarizmaAnalysis',
     'CarizmaMine',
-    'CarizmaAdmin',
   ],
   endpoints: () => ({}),
 });

@@ -2994,6 +2994,26 @@
     "effectivePermissions": "Effective permissions"
   },
   "carizma": {
+    "langModal": {
+      "title": "Choose your language",
+      "subtitle": "You can change it anytime at the bottom of the page.",
+      "skip": "Skip"
+    },
+    "footer": {
+      "language": "Language",
+      "orbiterNote": "A product of Orbiter — a family of digital products."
+    },
+    "cookie": {
+      "message": "We use cookies to improve your experience. By continuing to use Carizma, you agree to our cookie processing.",
+      "accept": "Accept",
+      "learnMore": "Learn more"
+    },
+    "orbiterAd": {
+      "eyebrow": "Powered by Orbiter",
+      "title": "Explore the Orbiter platform",
+      "body": "Carizma is one of Orbiter's products — a family of digital tools for teams and businesses. One account, everything connected.",
+      "cta": "Discover Orbiter"
+    },
     "nav": {
       "browse": "Browse",
       "sell": "List your car",
