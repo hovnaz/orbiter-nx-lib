@@ -27,6 +27,7 @@ export const api = createApi({
     'CarizmaPhoto',
     'CarizmaAnalysis',
     'CarizmaMine',
+    'CarizmaPhones',
   ],
   endpoints: () => ({}),
 });

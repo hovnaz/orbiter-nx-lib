@@ -3036,12 +3036,31 @@
     },
     "access": {
       "chip": "Access required",
-      "title": "You don't have access to Carizma yet.",
-      "body": "Your account is signed in, but none of your organizations include the Carizma product. Browsing and details still work freely without an account.",
-      "info": "We're rolling Carizma out gradually. The \"Request access\" button will be wired up to a backend endpoint shortly — see docs/carizma-todo.md.",
-      "request": "Request access — coming soon",
+      "title": "One step left — activate Carizma.",
+      "body": "You're signed in, but Carizma isn't activated on your account yet. Activation is instant and free — sell cars and manage your listings right away. Browsing and details still work without it.",
+      "info": "Access is granted instantly, no approval needed. We'll refresh your session automatically once it's activated.",
+      "request": "Activate access",
+      "success": "Carizma access activated",
+      "error": "Couldn't activate access",
+      "errorHint": "Please try again in a moment.",
       "continueBrowsing": "Continue browsing without an account",
       "signOut": "Sign out"
+    },
+    "phones": {
+      "title": "My phones",
+      "subtitle": "Buyers reach you on the number you attach to a listing.",
+      "empty": "No phone numbers yet — add one below.",
+      "placeholder": "+37491234567",
+      "add": "Add",
+      "addNew": "Add a phone number",
+      "primary": "Primary",
+      "delete": "Delete phone",
+      "confirmDelete": "Delete",
+      "invalid": "Enter a valid number in international format (+37491234567).",
+      "duplicate": "You've already added this number.",
+      "addError": "Couldn't add the number — try again.",
+      "deleteError": "Couldn't delete the number — try again.",
+      "inUse": "This number is attached to an active listing and can't be deleted."
     },
     "profile": {
       "loadError": "Couldn't load profile",
@@ -3131,6 +3150,7 @@
       "status": {
         "active": "Active",
         "pending": "Pending review",
+        "needsChanges": "Changes requested",
         "sold": "Sold",
         "draft": "Draft",
         "rejected": "Rejected"
@@ -3143,6 +3163,7 @@
       "loading": "Loading your listings…",
       "loadError": "Couldn't load your listings — try refreshing.",
       "rejectionReason": "Reason: {{reason}}",
+      "fixResubmit": "Fix & resubmit",
       "row": {
         "listed": "listed {{date}}",
         "views": "{{count}} views",
@@ -3172,7 +3193,7 @@
       "publish": "Publish listing",
       "publishing": "Publishing…",
       "saveDraft": "Save as draft",
-      "published": "Listing published",
+      "published": "Sent for review — we'll notify you once it's approved.",
       "publishError": "Couldn't publish — try again in a moment.",
       "steps": {
         "photos": "Photos",
@@ -3235,7 +3256,8 @@
         "picked": "Selected",
         "loading": "Analyzing your photos…",
         "failed": "AI analysis is not ready yet — try again in a moment, or fill in the fields manually.",
-        "none": "AI couldn't match a car from your photos — fill in the fields manually."
+        "none": "AI couldn't match a car from your photos — fill in the fields manually.",
+        "lowConfidence": "Low confidence — please double-check these details."
       },
       "vehicle": {
         "title": "Vehicle",
@@ -3248,6 +3270,8 @@
         "trimPlaceholder": "xDrive",
         "year": "Year",
         "yearPlaceholder": "2023",
+        "generation": "Generation (optional)",
+        "generationPlaceholder": "Select a generation",
         "body": "Body type",
         "color": "Exterior colour",
         "colorPlaceholder": "Isle of Man Green",
@@ -3265,7 +3289,17 @@
         "enginePlaceholder": "3.0L Twin-Turbo I6",
         "drive": "Drive",
         "vin": "VIN (optional)",
-        "vinPlaceholder": "WBS33AY07PFP12345"
+        "vinPlaceholder": "WBS33AY07PFP12345",
+        "conditionLabel": "Condition (optional)",
+        "conditionPlaceholder": "Select condition",
+        "condition": {
+          "NEW": "New",
+          "EXCELLENT": "Excellent",
+          "GOOD": "Good",
+          "FAIR": "Fair",
+          "NEEDS_REPAIR": "Needs repair",
+          "FOR_PARTS": "For parts"
+        }
       },
       "pricing": {
         "title": "Pricing & location",
@@ -3276,6 +3310,10 @@
         "oldPriceHint": "If filled and higher than price, listing is marked as Reduced.",
         "city": "City",
         "cityPlaceholder": "Yerevan",
+        "phone": {
+          "label": "Contact phone",
+          "required": "Choose a contact phone"
+        },
         "description": "Description",
         "descriptionPlaceholder": "Single-owner, full service history, no paintwork, ceramic-coated last October. Selling because a family car is on the way."
       },
@@ -3567,6 +3605,9 @@
       "editTitle": "Edit listing",
       "editSaved": "Changes saved",
       "editError": "Couldn't save changes",
+      "resubmitTitle": "Fix & resubmit",
+      "resubmit": "Resubmit for review",
+      "resubmitted": "Resubmitted — we'll review it shortly.",
       "breadcrumb": "Browse",
       "featured": "Featured",
       "reduced": "Reduced · −${{amount}}",

@@ -10,6 +10,9 @@ import type {
   NewPasswordRequest,
   OAuthTokenRequest,
   OrganizationsResponse,
+  ProductAccessResponse,
+  RefreshRequest,
+  RefreshResponse,
   RegisterOrganizationRequest,
   RegisterRequest,
   ThemePreference,
@@ -17,7 +20,7 @@ import type {
 } from '#types';
 import { api } from './api';
 import { v } from './version';
-import { patchUser, selectUser } from '../store/slices/authSlice';
+import { patchUser, selectUser, setTokens } from '../store/slices/authSlice';
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -90,6 +93,49 @@ export const authApi = api.injectEndpoints({
         method: 'POST',
         data: body,
       }),
+    }),
+    /**
+     * Instant self-service Carizma access: adds the CARIZMA Cognito group to
+     * the caller (idempotent) and creates the missing `orbiter_user` row for
+     * native sign-ups. The freshly-granted group is NOT in the current access
+     * token — call `refreshSession` right AFTER this succeeds (strictly in
+     * that order: the refresh itself depends on the row this endpoint creates).
+     */
+    requestCarizmaAccess: build.mutation<ProductAccessResponse, void>({
+      query: () => ({
+        url: v('/auth/access/carizma'),
+        method: 'POST',
+        data: {},
+      }),
+    }),
+    /**
+     * Re-issues the access token from the refresh token and stores it via
+     * `setTokens`. Cognito's refresh flow returns NO new refresh token, so the
+     * current one is preserved (`setTokens` skips a falsy refreshToken), and
+     * the token is updated in whichever storage already holds it — the same
+     * localStorage/sessionStorage remember-me semantics as the 401 interceptor
+     * in `client.ts` (`onRefreshSuccess` → `setTokens`).
+     */
+    refreshSession: build.mutation<RefreshResponse, RefreshRequest>({
+      query: (body) => ({
+        url: v('/auth/refresh'),
+        method: 'POST',
+        data: body,
+      }),
+      invalidatesTags: ['Auth'],
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(
+            setTokens({
+              accessToken: data.accessToken,
+              refreshToken: data.refreshToken || undefined,
+            }),
+          );
+        } catch {
+          // Failure is surfaced to the caller via the mutation result.
+        }
+      },
     }),
     me: build.query<User, { orgId?: string } | void>({
       query: (arg) => {
@@ -177,6 +223,8 @@ export const {
   useForgotPasswordMutation,
   useConfirmResetMutation,
   useChangePasswordMutation,
+  useRequestCarizmaAccessMutation,
+  useRefreshSessionMutation,
   useMeQuery,
   useLazyMeQuery,
   useOrganizationsQuery,

@@ -71,6 +71,8 @@ const PUBLIC_PATHS = [
 const ORG_AGNOSTIC_PATTERNS: RegExp[] = [
   /\/auth\/forgot-password\b/,
   /\/auth\/confirm-reset\b/,
+  // Self-service product access (e.g. /auth/access/carizma) is per-user.
+  /\/auth\/access\//,
   /\/organizations\b/,
   // user-self preference endpoints — backend checks userId == authenticated user
   /\/users\/[^/]+\/language\b/,

@@ -159,6 +159,18 @@ export interface RefreshRequest {
 
 export type RefreshResponse = LoginResponse;
 
+/**
+ * Response of `POST /v1/auth/access/carizma` — instant self-service product
+ * access. `granted` is true when the CARIZMA Cognito group is on the account
+ * after the call; `alreadyMember` when the caller's token already carried it.
+ * The frontend must call `POST /v1/auth/refresh` afterwards so the new access
+ * token actually includes the group.
+ */
+export interface ProductAccessResponse {
+  granted: boolean;
+  alreadyMember: boolean;
+}
+
 /** Response of `GET /v1/auth/oauth/google` — Hosted UI authorize URL to redirect to. */
 export interface AuthorizationUrlResponse {
   url: string;
@@ -1522,7 +1534,13 @@ export type CarFuel = 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';
 export type CarTransmission = 'Automatic' | 'Manual';
 export type CarDrive = 'FWD' | 'RWD' | 'AWD';
 export type CarCurrency = 'USD' | 'AMD' | 'RUB';
-export type ListingStatus = 'active' | 'pending' | 'sold' | 'draft' | 'rejected';
+export type ListingStatus =
+  | 'active'
+  | 'pending'
+  | 'needs_changes'
+  | 'sold'
+  | 'draft'
+  | 'rejected';
 export type ListingSort =
   | 'best_deals'
   | 'price_asc'
@@ -1611,6 +1629,10 @@ export interface CarListingDetail extends CarListing {
   history: OwnershipPeriod[];
   service: ServiceRecord[];
   seller: CarSeller;
+  /** Seller's contact number (E.164) — the listing's chosen phone, falling back to the account phone; null hides the call action. */
+  contactPhone?: string | null;
+  /** Id of the chosen contact phone (one of GET /me/phones); carried through edit/resubmit so it isn't reset. */
+  contactPhoneId?: string | null;
   views: number;
   daysListed: number;
 }
@@ -1629,7 +1651,7 @@ export interface MyCarSummary {
   placeholderHint?: string;
   /** ISO timestamp — used as the "listed" date when present. */
   updatedAt?: string;
-  /** Moderator note for `rejected` listings; otherwise undefined. */
+  /** Moderator note for `rejected` / `needs_changes` listings; otherwise undefined. */
   rejectionReason?: string | null;
 }
 
@@ -1654,6 +1676,7 @@ export interface SavedSearch {
 export type CarizmaListingStatus =
   | 'DRAFT'
   | 'UNDER_REVIEW'
+  | 'NEEDS_CHANGES'
   | 'PUBLISHED'
   | 'REJECTED';
 
@@ -1697,6 +1720,8 @@ export interface CarizmaReferencesResponse {
   interiorMaterials: CarizmaReferenceItem[];
   regions?: CarizmaReferenceItem[];
   cities?: CarizmaCityResponse[];
+  /** Equipment options dictionary (vehicle_option), as standard reference items. */
+  options?: CarizmaReferenceItem[];
 }
 
 /** Catalog make/brand (GET /v1/carizma/catalog/makes). */
@@ -1710,7 +1735,11 @@ export interface CarizmaMakeResponse {
   popular: boolean;
 }
 
-/** Catalog model under a make (GET /v1/carizma/catalog/models?makeId=). */
+/**
+ * Catalog model under a make (GET /v1/carizma/catalog/models?makeId=&year=).
+ * Optional `year` narrows to models whose production range contains it
+ * (a NULL bound on the server = open range).
+ */
 export interface CarizmaModelResponse {
   id: string;
   makeId: string;
@@ -1719,6 +1748,31 @@ export interface CarizmaModelResponse {
   nameCyrillic?: string | null;
   yearFrom?: number | null;
   yearTo?: number | null;
+}
+
+/**
+ * Catalog generation under a model
+ * (GET /v1/carizma/catalog/generations?modelId=&year=).
+ */
+export interface CarizmaGenerationResponse {
+  id: string;
+  modelId: string;
+  name: string;
+  slug: string;
+  yearStart?: number | null;
+  /** null = still produced (open range). */
+  yearStop?: number | null;
+  restyle: boolean;
+}
+
+/**
+ * Payload of GET /v1/carizma/catalog/years?makeId=&modelId= — production
+ * years, descending. With `modelId`: union of its generations' ranges
+ * (fallback to the model's yearFrom..yearTo); make-only: min..max over its
+ * models (open upper bound = current year).
+ */
+export interface CarizmaYearsResponse {
+  years: number[];
 }
 
 // ── Backend-driven filter schema (GET /v1/carizma/catalog/filter-schema) ─────
@@ -1872,6 +1926,10 @@ export interface CarizmaListingResponse {
   currency?: CarCurrency | null;
   exchangePossible?: boolean | null;
   priceNegotiable?: boolean | null;
+  /** Chosen contact phone id (one of GET /v1/carizma/me/phones); null → account number. */
+  contactPhoneId?: string | null;
+  /** Display phone: the chosen number, falling back to the owner's account phone. */
+  contactPhone?: string | null;
   createdAt: string;
   updatedAt: string;
   submittedAt?: string | null;
@@ -1901,7 +1959,10 @@ export interface CarizmaListingSummaryResponse {
   createdAt: string;
   updatedAt: string;
   publishedAt?: string | null;
-  /** Populated only when status === 'REJECTED'. */
+  /**
+   * Latest moderation feedback: the reject reason for REJECTED listings, or
+   * the requested-changes comment for NEEDS_CHANGES ones. (Historic JSON name.)
+   */
   rejectionReason?: string | null;
 }
 
@@ -1962,7 +2023,8 @@ export interface CarizmaListingSearchArgs {
 export interface CarizmaListingOptionResponse {
   code: string;
   name: string;
-  nameCyrillic?: string | null;
+  nameRu?: string | null;
+  nameHy?: string | null;
   /** SAFETY / COMFORT / MULTIMEDIA / EXTERIOR / INTERIOR / OTHER. */
   category?: string | null;
 }
@@ -2023,7 +2085,13 @@ export interface CarizmaVehicleEngine {
   fuel: string;
 }
 
-/** One candidate from the AI's flat ranked candidate list. */
+/**
+ * One candidate from the AI's flat ranked candidate list. `body`,
+ * `engine.fuel`, `transmission`, `color` and `interiorColor` carry ref_*
+ * codes (e.g. "sedan", "gasoline", "automatic", "black"). The catalog ids are
+ * resolved server-side (exact/fuzzy match into the vehicle catalog) and are
+ * null when no confident match exists; older cached analyses may omit them.
+ */
 export interface CarizmaVehicleCandidate {
   confidence: number;
   make: string;
@@ -2034,6 +2102,13 @@ export interface CarizmaVehicleCandidate {
   transmission: string;
   trim?: string | null;
   color: string;
+  interiorColor?: string | null;
+  makeId?: string | null;
+  modelId?: string | null;
+  generationId?: string | null;
+  modificationId?: string | null;
+  /** Display name of the resolved generation (e.g. "IV (XV70)"). */
+  generationName?: string | null;
 }
 
 export interface CarizmaAnalysisColor {
@@ -2047,6 +2122,10 @@ export interface CarizmaAnalysisResponse {
   color: CarizmaAnalysisColor | null;
   estimatedMileageKm: number | null;
   damageDetected: boolean;
+  /** AI-estimated overall condition; null when undeterminable (older caches omit it). */
+  condition?: CarizmaVehicleCondition | null;
+  /** Free-text damaged areas (e.g. "front bumper"); empty when no damage seen. */
+  damagedAreas?: string[];
   readyForSubmission: boolean;
 }
 
@@ -2062,15 +2141,22 @@ export type CarizmaVehicleCondition =
 export type CarizmaWheelSide = 'LEFT' | 'RIGHT';
 
 /**
- * Submits a draft for moderation. Vehicle identity is either a catalog link
- * (`modificationId`, optionally `complectationId`) or a free-text fallback
- * (`fallbackMake`+`fallbackModel`, which moves the listing to PENDING_CATALOG
- * for admin curation). Dictionary fields take ref_* codes from
- * GET /v1/carizma/catalog/references (e.g. exteriorColor: "black").
+ * Submits a draft for moderation. Vehicle identity, in priority order:
+ *  1. `modificationId` (optionally `complectationId`) — full catalog link;
+ *  2. `makeId`+`modelId` (+ optional `generationId`) — partial catalog link
+ *     (LINKED; fallback fields cleared; generation auto-resolved from `year`
+ *     when omitted). `makeId` without `modelId` → 422;
+ *  3. free-text fallback (`fallbackMake`+`fallbackModel`) — moves the listing
+ *     to PENDING_CATALOG for admin curation.
+ * Dictionary fields take ref_* codes from GET /v1/carizma/catalog/references
+ * (e.g. exteriorColor: "black").
  */
 export interface CarizmaSubmitListingRequest {
   modificationId?: string | null;
   complectationId?: string | null;
+  makeId?: string | null;
+  modelId?: string | null;
+  generationId?: string | null;
   fallbackMake?: string | null;
   fallbackModel?: string | null;
   /** 17-character VIN; omit unless complete. */
@@ -2105,6 +2191,24 @@ export interface CarizmaSubmitListingRequest {
   currency: CarCurrency;
   exchangePossible?: boolean | null;
   priceNegotiable?: boolean | null;
+  /** One of the caller's saved phones (GET /v1/carizma/me/phones); must be owned by the caller. */
+  contactPhoneId?: string | null;
+}
+
+/** One saved contact phone (GET /v1/carizma/me/phones). */
+export interface CarizmaUserPhoneResponse {
+  id: string;
+  /** E.164, e.g. +37491234567. */
+  phoneNumber: string;
+  primary: boolean;
+  createdAt: string;
+}
+
+/** Body of POST /v1/carizma/me/phones. Duplicate number for the user → 409. */
+export interface CarizmaAddPhoneRequest {
+  /** E.164 (`+` followed by 6–15 digits). */
+  phoneNumber: string;
+  primary?: boolean;
 }
 
 export interface ListMyListingsArgs {

@@ -8,8 +8,10 @@
  */
 
 import type {
+  CarizmaAddPhoneRequest,
   CarizmaAnalysisResponse,
   CarizmaFavoriteToggleResponse,
+  CarizmaGenerationResponse,
   CarizmaListingDetailResponse,
   CarizmaListingResponse,
   CarizmaListingSearchArgs,
@@ -22,6 +24,8 @@ import type {
   CarizmaReferencesResponse,
   CarizmaSearchPageResponse,
   CarizmaSubmitListingRequest,
+  CarizmaUserPhoneResponse,
+  CarizmaYearsResponse,
   CarListing,
   CarListingDetail,
   CarCurrency,
@@ -144,6 +148,8 @@ function toCarListingDetail(res: CarizmaListingDetailResponse): CarListingDetail
       city: l.locationCity ?? '',
       initials: 'CS',
     },
+    contactPhone: l.contactPhone ?? null,
+    contactPhoneId: l.contactPhoneId ?? null,
     views: 0,
     daysListed: daysSince(l.publishedAt ?? l.createdAt),
   };
@@ -292,11 +298,44 @@ export const carizmaApi = api.injectEndpoints({
       query: () => ({ url: v('/carizma/catalog/makes') }),
     }),
 
-    /** Catalog models under a make — the model filter (depends on the chosen make). */
-    listModels: build.query<CarizmaModelResponse[], { makeId: string }>({
-      query: ({ makeId }) => ({
+    /**
+     * Catalog models under a make — the model filter and the sell-wizard
+     * cascade. Optional `year` narrows to models whose production range
+     * contains it (open range on a NULL bound).
+     */
+    listModels: build.query<
+      CarizmaModelResponse[],
+      { makeId: string; year?: number }
+    >({
+      query: ({ makeId, year }) => ({
         url: v('/carizma/catalog/models'),
-        params: { makeId },
+        params: { makeId, ...(year != null ? { year } : {}) },
+      }),
+    }),
+
+    /** Catalog generations under a model; optional `year` filters by yearStart/yearStop. */
+    listGenerations: build.query<
+      CarizmaGenerationResponse[],
+      { modelId: string; year?: number }
+    >({
+      query: ({ modelId, year }) => ({
+        url: v('/carizma/catalog/generations'),
+        params: { modelId, ...(year != null ? { year } : {}) },
+      }),
+    }),
+
+    /**
+     * Production years for a make (optionally narrowed to a model), descending —
+     * powers the Year step of the sell-wizard cascade (Brand → Year → Model →
+     * Generation). Consumers fall back to a static list when this errors.
+     */
+    listCatalogYears: build.query<
+      CarizmaYearsResponse,
+      { makeId: string; modelId?: string }
+    >({
+      query: ({ makeId, modelId }) => ({
+        url: v('/carizma/catalog/years'),
+        params: { makeId, ...(modelId ? { modelId } : {}) },
       }),
     }),
 
@@ -457,9 +496,13 @@ export const carizmaApi = api.injectEndpoints({
         method: 'POST',
         data: body,
       }),
+      // CarListing:id also covers the raw getListingEdit cache — a NEEDS_CHANGES
+      // resubmit goes through this mutation, and the edit form must not keep
+      // serving the pre-resubmit payload.
       invalidatesTags: (_r, _e, { listingId }) => [
         { type: 'CarizmaMine', id: 'LIST' },
         { type: 'CarizmaDraft', id: listingId },
+        { type: 'CarListing', id: listingId },
       ],
     }),
 
@@ -483,6 +526,34 @@ export const carizmaApi = api.injectEndpoints({
         { type: 'CarListing', id: 'SEARCH' },
         { type: 'CarizmaMine', id: 'LIST' },
       ],
+    }),
+
+    // ── Contact phones (no SMS verification; the first number is seeded ──
+    //    from the Cognito profile on onboarding).
+
+    /** The caller's saved contact phones. */
+    listMyPhones: build.query<CarizmaUserPhoneResponse[], void>({
+      query: () => ({ url: v('/carizma/me/phones') }),
+      providesTags: [{ type: 'CarizmaPhones', id: 'LIST' }],
+    }),
+
+    /** Adds a phone (E.164). Duplicate number for the caller → 409. */
+    addPhone: build.mutation<CarizmaUserPhoneResponse, CarizmaAddPhoneRequest>({
+      query: (body) => ({
+        url: v('/carizma/me/phones'),
+        method: 'POST',
+        data: body,
+      }),
+      invalidatesTags: [{ type: 'CarizmaPhones', id: 'LIST' }],
+    }),
+
+    /** Deletes a phone. Referenced by a non-REJECTED listing → 409 (keep it until then). */
+    deletePhone: build.mutation<void, { phoneId: string }>({
+      query: ({ phoneId }) => ({
+        url: v(`/carizma/me/phones/${encodeURIComponent(phoneId)}`),
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'CarizmaPhones', id: 'LIST' }],
     }),
 
     listMyListings: build.query<
@@ -517,6 +588,8 @@ export const {
   useUpdateListingMutation,
   useListMakesQuery,
   useListModelsQuery,
+  useListGenerationsQuery,
+  useListCatalogYearsQuery,
   useListReferencesQuery,
   useGetFilterSchemaQuery,
   useGetCatalogByUrlQuery,
@@ -534,4 +607,8 @@ export const {
   useLazyGetListingAnalysisQuery,
   useSubmitListingMutation,
   useListMyListingsQuery,
+  // Contact phones
+  useListMyPhonesQuery,
+  useAddPhoneMutation,
+  useDeletePhoneMutation,
 } = carizmaApi;
