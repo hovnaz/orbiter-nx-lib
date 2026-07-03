@@ -3327,14 +3327,25 @@
         "trim": "Комплектация (необязательно)",
         "trimPlaceholder": "xDrive",
         "year": "Год",
-        "yearPlaceholder": "2023",
+        "yearPlaceholder": "Выберите год",
+        "yearAiHint": "AI: примерно {{from}}–{{to}}",
+        "pickModelFirst": "Сначала выберите модель",
         "generation": "Поколение (необязательно)",
         "generationPlaceholder": "Выберите поколение",
+        "configuration": "Конфигурация кузова",
+        "configurationPlaceholder": "Выберите конфигурацию",
+        "modification": "Модификация / двигатель",
+        "modificationPlaceholder": "Выберите модификацию",
+        "modificationHint": "Автоматически задаёт двигатель, мощность, топливо, коробку и привод.",
         "body": "Кузов",
         "color": "Цвет кузова",
         "colorPlaceholder": "Isle of Man Green",
         "interior": "Салон (необязательно)",
-        "interiorPlaceholder": "Black Merino"
+        "interiorPlaceholder": "Black Merino",
+        "brandSearch": "Поиск марок",
+        "modelSearch": "Поиск моделей",
+        "pickBrandFirst": "Сначала выберите марку",
+        "notInCatalog": "Моей машины нет в списке (ввести марку/модель вручную)"
       },
       "specs": {
         "title": "Характеристики",
@@ -3343,6 +3354,8 @@
         "fuel": "Топливо",
         "transmission": "Коробка",
         "power": "Мощность (л.с.)",
+        "hpSuffix": "л.с.",
+        "fromModification": "Задано выбранной модификацией",
         "engine": "Двигатель",
         "enginePlaceholder": "3.0L Twin-Turbo I6",
         "drive": "Привод",
@@ -3357,6 +3370,30 @@
           "FAIR": "Удовлетворительное",
           "NEEDS_REPAIR": "Требует ремонта",
           "FOR_PARTS": "На запчасти"
+        },
+        "drivePlaceholder": "Выберите привод",
+        "fuelPlaceholder": "Выберите топливо",
+        "interiorMaterial": "Материал салона",
+        "interiorMaterialPlaceholder": "Выберите материал",
+        "wheelSideLabel": "Руль",
+        "wheelSide": {
+          "LEFT": "Левый",
+          "RIGHT": "Правый"
+        },
+        "doors": "Двери",
+        "seats": "Места",
+        "owners": "Владельцы",
+        "select": "Выбрать",
+        "customsCleared": "Растаможен",
+        "accidentFree": "Без аварий",
+        "options": "Опции и оборудование",
+        "optionCategory": {
+          "SAFETY": "Безопасность",
+          "COMFORT": "Комфорт",
+          "MULTIMEDIA": "Мультимедиа",
+          "EXTERIOR": "Экстерьер",
+          "INTERIOR": "Салон",
+          "OTHER": "Прочее"
         }
       },
       "pricing": {
@@ -3373,7 +3410,12 @@
           "required": "Выберите контактный телефон"
         },
         "description": "Описание",
-        "descriptionPlaceholder": "Один владелец, полная сервисная история, без покраски, керамика в октябре. Продаю потому что в семье ожидается семейный автомобиль."
+        "descriptionPlaceholder": "Один владелец, полная сервисная история, без покраски, керамика в октябре. Продаю потому что в семье ожидается семейный автомобиль.",
+        "region": "Регион",
+        "regionPlaceholder": "Выберите регион",
+        "pickRegionFirst": "Сначала выберите регион",
+        "negotiable": "Торг уместен",
+        "exchange": "Возможен обмен"
       },
       "preview": {
         "title": "Превью",
@@ -3387,14 +3429,44 @@
         "numberRequired": "Введите число",
         "min": "Минимум {{min}}",
         "max": "Максимум {{max}}",
+        "positive": "Должно быть больше 0",
+        "maxLength": "Не более {{max}} символов",
+        "vinLength": "VIN должен содержать ровно 17 символов",
         "noPhotos": "Добавьте хотя бы одно фото перед публикацией.",
         "stillUploading": "Дождитесь окончания загрузки всех фото.",
         "notACarPhotos": "Загрузите только фотографии автомобилей",
         "couldNotVerifyPhotos": "Не удалось проверить фотографии. Попробуйте позже.",
         "flaggedPhoto": "Некоторые фото отклонены AI — удалите их на шаге «Фото».",
         "invalidStatus": "Это объявление уже отправлено на проверку.",
-        "generic": "Не удалось опубликовать — попробуйте ещё раз."
-      }
+        "generic": "Не удалось опубликовать — попробуйте ещё раз.",
+        "fillRequired": "Заполните все обязательные поля."
+      },
+      "search": "Поиск",
+      "noResults": "Ничего не найдено",
+      "clearSearch": "Очистить поиск",
+      "ai": {
+        "filled": "ИИ",
+        "filledHint": "Заполнено по фото — проверьте.",
+        "block": {
+          "title": "Заполнить по фото",
+          "subtitle": "Пусть AI распознает машину по фото и заполнит пустые поля. Всё можно потом отредактировать.",
+          "fill": "Заполнить по фото (AI)",
+          "retry": "Повторить",
+          "loading": "Ждём ответ от AI…",
+          "recognized": "Распознано: {{make}} {{model}} {{years}} · уверенность {{confidence}}%",
+          "noVehicle": "Не удалось распознать машину по фото — заполните поля вручную.",
+          "error": "Не удалось выполнить AI-проверку — попробуйте ещё раз или заполните поля вручную.",
+          "needPhoto": "Сначала загрузите хотя бы одно фото.",
+          "warnNotACar": "На некоторых фото, похоже, не машина.",
+          "warnLowQuality": "Некоторые фото низкого качества.",
+          "warnWatermark": "На некоторых фото, похоже, есть водяной знак."
+        }
+      },
+      "eyebrow": "Новое объявление",
+      "subtitleSingle": "Заполните поля ниже. Добавьте фото — и AI подставит остальное.",
+      "submit": "Отправить на модерацию",
+      "requiredField": "Обязательное поле",
+      "requiredLegend": "— обязательные поля"
     },
     "login": {
       "orbiterProduct": "Продукт Orbiter",
@@ -3689,7 +3761,6 @@
       },
       "whatsIncluded": "Что входит",
       "share": "Поделиться",
-      "report": "Пожаловаться",
       "linkCopied": "Ссылка скопирована",
       "fullscreen": "На весь экран",
       "close": "Закрыть",
@@ -3748,18 +3819,13 @@
       "panel": {
         "belowMarket": "$4 200 ниже средней по этой комплектации",
         "reviews": "{{count}} отзывов",
-        "responseTime": "Время ответа",
         "onCarizma": "На Carizma с",
-        "testDrive": "Записаться на тест-драйв",
-        "message": "Написать продавцу",
         "showPhone": "Показать телефон",
         "protected": "Защита Carizma. Никогда не платите до осмотра авто лично и проверки документов."
       },
       "mobile": {
         "listedAgo": "{{distance}} км · {{days}} дней назад",
-        "readMore": "Подробнее →",
-        "message": "Написать",
-        "testDrive": "Тест-драйв"
+        "readMore": "Подробнее →"
       }
     },
     "noListing": "Объявление не найдено.",

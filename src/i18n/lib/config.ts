@@ -61,15 +61,33 @@ export function resolveClientLang(fallback: Supported): Supported {
   return detectBrowserLang() ?? fallback;
 }
 
+/** Persist the resolved language to a cookie so the SERVER can read it on the
+ * next request and render the first paint in the right language (no Armenian
+ * flash / no hydration mismatch on Suspense boundaries). Mirrors the
+ * localStorage cache; both are written together on every `languageChanged`. */
+function writeCookieLang(normalized: Supported): void {
+  if (typeof document === 'undefined') return;
+  try {
+    // 1 year; Lax is enough (same-site navigations), Secure omitted so it also
+    // works on http://localhost during dev.
+    const maxAge = 60 * 60 * 24 * 365;
+    document.cookie = `${LANG_STORAGE_KEY}=${normalized}; path=/; max-age=${maxAge}; SameSite=Lax`;
+  } catch {
+    /* cookies may be disabled — localStorage still covers the client */
+  }
+}
+
 function writeCachedLang(lang: string): void {
-  if (typeof localStorage === 'undefined') return;
   const normalized = lang.toLowerCase();
   if (!isSupported(normalized)) return;
-  try {
-    localStorage.setItem(LANG_STORAGE_KEY, normalized);
-  } catch {
-    /* ignore quota / private-mode failures */
+  if (typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, normalized);
+    } catch {
+      /* ignore quota / private-mode failures */
+    }
   }
+  writeCookieLang(normalized);
 }
 
 let initialized = false;

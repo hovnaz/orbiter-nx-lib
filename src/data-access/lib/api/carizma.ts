@@ -10,8 +10,14 @@
 import type {
   CarizmaAddPhoneRequest,
   CarizmaAnalysisResponse,
+  CarizmaVehicleCandidate,
+  CarizmaVehicleEngine,
+  CarizmaWheelSide,
+  CarizmaComplectationResponse,
+  CarizmaConfigurationResponse,
   CarizmaFavoriteToggleResponse,
   CarizmaGenerationResponse,
+  CarizmaModificationResponse,
   CarizmaListingDetailResponse,
   CarizmaListingResponse,
   CarizmaListingSearchArgs,
@@ -243,6 +249,126 @@ function writeSchemaCache(lang: string, data: FilterSchema): void {
   }
 }
 
+// ── Analysis legacy-format adapter ──────────────────────────────────────────
+// Compatibility shim for the OLD backend build: the current contract returns
+// `vehicle: CarizmaVehicleCandidate | null` (with yearFrom/yearTo), but the
+// legacy build returns a flat `vehicleCandidates[]` — one row per year, and
+// sometimes "fragmented" (make/model in one row, body/engine/color in others).
+// We merge those into a single vehicle so the UI works with either shape.
+// Safe to delete once every backend serves the new `vehicle` field.
+
+/** A legacy candidate row — every field optional, unknown-safe (no `any`). */
+interface LegacyVehicleCandidate {
+  confidence?: number | null;
+  make?: string | null;
+  model?: string | null;
+  year?: number | null;
+  yearFrom?: number | null;
+  yearTo?: number | null;
+  body?: string | null;
+  engine?: Partial<CarizmaVehicleEngine> | null;
+  transmission?: string | null;
+  trim?: string | null;
+  color?: string | null;
+  interiorColor?: string | null;
+  driveType?: string | null;
+  vehicleType?: string | null;
+  interiorMaterial?: string | null;
+  doorsCount?: number | null;
+  seatsCount?: number | null;
+  wheelSide?: CarizmaWheelSide | null;
+  makeId?: string | null;
+  modelId?: string | null;
+  generationId?: string | null;
+  modificationId?: string | null;
+  generationName?: string | null;
+}
+
+/** Raw analysis payload as it may arrive from either backend build. */
+interface RawAnalysisResponse extends Omit<CarizmaAnalysisResponse, 'vehicle'> {
+  vehicle?: CarizmaVehicleCandidate | null;
+  vehicleCandidates?: LegacyVehicleCandidate[] | null;
+}
+
+/** First non-null/undefined value from the sources, for a given picker. */
+function coalesce<T>(
+  sources: readonly LegacyVehicleCandidate[],
+  pick: (c: LegacyVehicleCandidate) => T | null | undefined,
+): T | undefined {
+  for (const c of sources) {
+    const v = pick(c);
+    if (v !== null && v !== undefined) return v;
+  }
+  return undefined;
+}
+
+/** Merge legacy candidate fragments into a single CarizmaVehicleCandidate. */
+function mergeLegacyCandidates(
+  candidates: readonly LegacyVehicleCandidate[],
+): CarizmaVehicleCandidate {
+  // Base = highest-confidence fragment (fall back to the first row).
+  const base = candidates.reduce((best, c) =>
+    (c.confidence ?? 0) > (best.confidence ?? 0) ? c : best,
+  );
+  // Order sources base-first so the strongest fragment wins ties.
+  const sources = [base, ...candidates.filter((c) => c !== base)];
+
+  // yearFrom/yearTo across every year hint (year, yearFrom, yearTo).
+  const years: number[] = [];
+  for (const c of candidates) {
+    for (const y of [c.year, c.yearFrom, c.yearTo]) {
+      if (typeof y === 'number') years.push(y);
+    }
+  }
+  const yearFrom = years.length ? Math.min(...years) : undefined;
+  const yearTo = years.length ? Math.max(...years) : undefined;
+
+  const engine: CarizmaVehicleEngine = {
+    displacement: coalesce(sources, (c) => c.engine?.displacement) ?? '',
+    cylinders: coalesce(sources, (c) => c.engine?.cylinders) ?? 0,
+    fuel: coalesce(sources, (c) => c.engine?.fuel) ?? '',
+    powerHp: coalesce(sources, (c) => c.engine?.powerHp) ?? null,
+  };
+
+  return {
+    confidence: base.confidence ?? 0,
+    make: coalesce(sources, (c) => c.make) ?? '',
+    model: coalesce(sources, (c) => c.model) ?? '',
+    yearFrom: yearFrom ?? null,
+    yearTo: yearTo ?? null,
+    body: coalesce(sources, (c) => c.body) ?? '',
+    engine,
+    transmission: coalesce(sources, (c) => c.transmission) ?? '',
+    trim: coalesce(sources, (c) => c.trim) ?? null,
+    color: coalesce(sources, (c) => c.color) ?? '',
+    interiorColor: coalesce(sources, (c) => c.interiorColor) ?? null,
+    driveType: coalesce(sources, (c) => c.driveType) ?? null,
+    vehicleType: coalesce(sources, (c) => c.vehicleType) ?? null,
+    interiorMaterial: coalesce(sources, (c) => c.interiorMaterial) ?? null,
+    doorsCount: coalesce(sources, (c) => c.doorsCount) ?? null,
+    seatsCount: coalesce(sources, (c) => c.seatsCount) ?? null,
+    wheelSide: coalesce(sources, (c) => c.wheelSide) ?? null,
+    makeId: coalesce(sources, (c) => c.makeId) ?? null,
+    modelId: coalesce(sources, (c) => c.modelId) ?? null,
+    generationId: coalesce(sources, (c) => c.generationId) ?? null,
+    modificationId: coalesce(sources, (c) => c.modificationId) ?? null,
+    generationName: coalesce(sources, (c) => c.generationName) ?? null,
+  };
+}
+
+/**
+ * Normalize an analysis payload to the current contract: prefer the new
+ * `vehicle` field; otherwise fold the legacy `vehicleCandidates[]` (grouped by
+ * make/model, with make-less rows treated as fragments) into a single vehicle.
+ */
+function normalizeAnalysis(raw: RawAnalysisResponse): CarizmaAnalysisResponse {
+  const { vehicleCandidates, vehicle, ...rest } = raw;
+  if (vehicle !== undefined) return { ...rest, vehicle: vehicle ?? null };
+
+  const candidates = vehicleCandidates ?? [];
+  return { ...rest, vehicle: candidates.length ? mergeLegacyCandidates(candidates) : null };
+}
+
 // ── RTK Query endpoints ─────────────────────────────────────────────────────
 
 export const carizmaApi = api.injectEndpoints({
@@ -336,6 +462,34 @@ export const carizmaApi = api.injectEndpoints({
       query: ({ makeId, modelId }) => ({
         url: v('/carizma/catalog/years'),
         params: { makeId, ...(modelId ? { modelId } : {}) },
+      }),
+    }),
+
+    /** Body configurations of a generation — first level of the sell-form modification cascade. */
+    listConfigurations: build.query<CarizmaConfigurationResponse[], { generationId: string }>({
+      query: ({ generationId }) => ({
+        url: v('/carizma/catalog/configurations'),
+        params: { generationId },
+      }),
+    }),
+
+    /**
+     * Modifications (engine/drivetrain variants) of a configuration. Powers the
+     * sell-form "Modification / engine" select — each option pins
+     * engine/power/fuel/transmission/drive on the listing.
+     */
+    listModifications: build.query<CarizmaModificationResponse[], { configurationId: string }>({
+      query: ({ configurationId }) => ({
+        url: v('/carizma/catalog/modifications'),
+        params: { configurationId },
+      }),
+    }),
+
+    /** Complectations (trims) of a modification. */
+    listComplectations: build.query<CarizmaComplectationResponse[], { modificationId: string }>({
+      query: ({ modificationId }) => ({
+        url: v('/carizma/catalog/complectations'),
+        params: { modificationId },
       }),
     }),
 
@@ -482,6 +636,7 @@ export const carizmaApi = api.injectEndpoints({
           `/carizma/listings/${encodeURIComponent(listingId)}/analysis`,
         ),
       }),
+      transformResponse: (res: RawAnalysisResponse) => normalizeAnalysis(res),
       providesTags: (_r, _e, { listingId }) => [
         { type: 'CarizmaAnalysis', id: listingId },
       ],
@@ -590,6 +745,9 @@ export const {
   useListModelsQuery,
   useListGenerationsQuery,
   useListCatalogYearsQuery,
+  useListConfigurationsQuery,
+  useListModificationsQuery,
+  useListComplectationsQuery,
   useListReferencesQuery,
   useGetFilterSchemaQuery,
   useGetCatalogByUrlQuery,

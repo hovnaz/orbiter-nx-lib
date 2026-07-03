@@ -1696,6 +1696,8 @@ export interface CarizmaReferenceItem {
   nameHy?: string | null;
   hex?: string | null;
   sortOrder?: number | null;
+  /** For equipment options only: SAFETY / COMFORT / MULTIMEDIA / EXTERIOR / INTERIOR / OTHER. */
+  category?: string | null;
 }
 
 /** A ref_city option (GET /v1/carizma/catalog/references → cities). */
@@ -1720,8 +1722,14 @@ export interface CarizmaReferencesResponse {
   interiorMaterials: CarizmaReferenceItem[];
   regions?: CarizmaReferenceItem[];
   cities?: CarizmaCityResponse[];
-  /** Equipment options dictionary (vehicle_option), as standard reference items. */
+  /** Equipment options dictionary (vehicle_option), as standard reference items (carry `category`). */
   options?: CarizmaReferenceItem[];
+  /** Overall vehicle condition dictionary (codes map to CarizmaVehicleCondition). */
+  conditions?: CarizmaReferenceItem[];
+  /** Steering wheel side dictionary (codes: LEFT / RIGHT → CarizmaWheelSide). */
+  wheelSides?: CarizmaReferenceItem[];
+  /** Supported currencies dictionary (codes map to CarCurrency). */
+  currencies?: CarizmaReferenceItem[];
 }
 
 /** Catalog make/brand (GET /v1/carizma/catalog/makes). */
@@ -1773,6 +1781,58 @@ export interface CarizmaGenerationResponse {
  */
 export interface CarizmaYearsResponse {
   years: number[];
+}
+
+/**
+ * Catalog body configuration under a generation
+ * (GET /v1/carizma/catalog/configurations?generationId=).
+ */
+export interface CarizmaConfigurationResponse {
+  id: string;
+  generationId: string;
+  bodyType?: CarizmaReferenceItem | null;
+  doorsCount?: number | null;
+}
+
+/**
+ * Catalog modification (engine/drivetrain variant) under a configuration
+ * (GET /v1/carizma/catalog/modifications?configurationId=). Selecting one
+ * pins engine/power/fuel/transmission/drive on the listing, so the sell-form
+ * "Modification / engine" select builds its label from these fields.
+ */
+export interface CarizmaModificationResponse {
+  id: string;
+  configurationId: string;
+  name: string;
+  slug: string;
+  engineDisplacementCc?: number | null;
+  powerHp?: number | null;
+  powerKw?: number | null;
+  torqueNm?: number | null;
+  fuelType?: CarizmaReferenceItem | null;
+  transmissionType?: CarizmaReferenceItem | null;
+  gearsCount?: number | null;
+  driveType?: CarizmaReferenceItem | null;
+  cylinders?: number | null;
+  acceleration0100?: number | null;
+  topSpeedKmh?: number | null;
+  fuelConsumptionMixed?: number | null;
+  emissionClass?: string | null;
+  wheelSide?: CarizmaWheelSide | null;
+}
+
+/**
+ * Catalog complectation (trim/equipment package) under a modification
+ * (GET /v1/carizma/catalog/complectations?modificationId=).
+ */
+export interface CarizmaComplectationResponse {
+  id: string;
+  modificationId: string;
+  name: string;
+  slug: string;
+  priceFrom?: number | null;
+  priceTo?: number | null;
+  currency?: CarCurrency | null;
 }
 
 // ── Backend-driven filter schema (GET /v1/carizma/catalog/filter-schema) ─────
@@ -2083,6 +2143,8 @@ export interface CarizmaVehicleEngine {
   displacement: string;
   cylinders: number;
   fuel: string;
+  /** AI-estimated power in horsepower; null when undeterminable. */
+  powerHp?: number | null;
 }
 
 /**
@@ -2096,13 +2158,25 @@ export interface CarizmaVehicleCandidate {
   confidence: number;
   make: string;
   model: string;
-  year: number;
+  /** First production year of the recognised generation; null when undeterminable. */
+  yearFrom?: number | null;
+  /** Last production year of the recognised generation; null when still produced/undeterminable. */
+  yearTo?: number | null;
   body: string;
   engine: CarizmaVehicleEngine;
   transmission: string;
   trim?: string | null;
   color: string;
   interiorColor?: string | null;
+  /** ref_drive_type code (e.g. "fwd", "awd"); null when undeterminable. */
+  driveType?: string | null;
+  /** ref_vehicle_type code (e.g. "car", "suv"); null when undeterminable. */
+  vehicleType?: string | null;
+  /** ref_interior_material code (e.g. "leather", "fabric"); null when undeterminable. */
+  interiorMaterial?: string | null;
+  doorsCount?: number | null;
+  seatsCount?: number | null;
+  wheelSide?: CarizmaWheelSide | null;
   makeId?: string | null;
   modelId?: string | null;
   generationId?: string | null;
@@ -2118,7 +2192,8 @@ export interface CarizmaAnalysisColor {
 
 export interface CarizmaAnalysisResponse {
   photos: CarizmaPhotoAnalysisResponse[];
-  vehicleCandidates: CarizmaVehicleCandidate[];
+  /** The single best AI-recognised vehicle, or null when nothing was matched. */
+  vehicle: CarizmaVehicleCandidate | null;
   color: CarizmaAnalysisColor | null;
   estimatedMileageKm: number | null;
   damageDetected: boolean;
@@ -2182,6 +2257,8 @@ export interface CarizmaSubmitListingRequest {
   accidentFree?: boolean | null;
   customsCleared?: boolean | null;
   wheelSide?: CarizmaWheelSide | null;
+  /** Equipment option codes (from GET references → options). */
+  optionCodes?: string[] | null;
   /** ref_city code the backend binds (the real field name). */
   cityCode?: string | null;
   locationCity?: string | null;

@@ -3269,14 +3269,25 @@
         "trim": "Trim (optional)",
         "trimPlaceholder": "xDrive",
         "year": "Year",
-        "yearPlaceholder": "2023",
+        "yearPlaceholder": "Select a year",
+        "yearAiHint": "AI: around {{from}}–{{to}}",
+        "pickModelFirst": "Pick a model first",
         "generation": "Generation (optional)",
         "generationPlaceholder": "Select a generation",
+        "configuration": "Body configuration",
+        "configurationPlaceholder": "Select a configuration",
+        "modification": "Modification / engine",
+        "modificationPlaceholder": "Select a modification",
+        "modificationHint": "Sets the engine, power, fuel, gearbox and drive automatically.",
         "body": "Body type",
         "color": "Exterior colour",
         "colorPlaceholder": "Isle of Man Green",
         "interior": "Interior (optional)",
-        "interiorPlaceholder": "Black Merino"
+        "interiorPlaceholder": "Black Merino",
+        "brandSearch": "Search brands",
+        "modelSearch": "Search models",
+        "pickBrandFirst": "Pick a brand first",
+        "notInCatalog": "My car isn't in the list (enter make/model manually)"
       },
       "specs": {
         "title": "Specs & condition",
@@ -3285,6 +3296,8 @@
         "fuel": "Fuel",
         "transmission": "Transmission",
         "power": "Power (hp)",
+        "hpSuffix": "hp",
+        "fromModification": "Set from the chosen modification",
         "engine": "Engine",
         "enginePlaceholder": "3.0L Twin-Turbo I6",
         "drive": "Drive",
@@ -3299,6 +3312,30 @@
           "FAIR": "Fair",
           "NEEDS_REPAIR": "Needs repair",
           "FOR_PARTS": "For parts"
+        },
+        "drivePlaceholder": "Select drive",
+        "fuelPlaceholder": "Select fuel",
+        "interiorMaterial": "Interior material",
+        "interiorMaterialPlaceholder": "Select material",
+        "wheelSideLabel": "Steering wheel",
+        "wheelSide": {
+          "LEFT": "Left (LHD)",
+          "RIGHT": "Right (RHD)"
+        },
+        "doors": "Doors",
+        "seats": "Seats",
+        "owners": "Owners",
+        "select": "Select",
+        "customsCleared": "Customs cleared",
+        "accidentFree": "No accidents",
+        "options": "Options & equipment",
+        "optionCategory": {
+          "SAFETY": "Safety",
+          "COMFORT": "Comfort",
+          "MULTIMEDIA": "Multimedia",
+          "EXTERIOR": "Exterior",
+          "INTERIOR": "Interior",
+          "OTHER": "Other"
         }
       },
       "pricing": {
@@ -3315,7 +3352,12 @@
           "required": "Choose a contact phone"
         },
         "description": "Description",
-        "descriptionPlaceholder": "Single-owner, full service history, no paintwork, ceramic-coated last October. Selling because a family car is on the way."
+        "descriptionPlaceholder": "Single-owner, full service history, no paintwork, ceramic-coated last October. Selling because a family car is on the way.",
+        "region": "Region",
+        "regionPlaceholder": "Select a region",
+        "pickRegionFirst": "Pick a region first",
+        "negotiable": "Price negotiable",
+        "exchange": "Exchange possible"
       },
       "preview": {
         "title": "Preview",
@@ -3329,14 +3371,44 @@
         "numberRequired": "Enter a number",
         "min": "Must be at least {{min}}",
         "max": "Must be at most {{max}}",
+        "positive": "Must be greater than 0",
+        "maxLength": "Must be at most {{max}} characters",
+        "vinLength": "VIN must be exactly 17 characters",
         "noPhotos": "Add at least one photo before publishing.",
         "stillUploading": "Wait until all photos finish uploading.",
         "notACarPhotos": "Upload photos of cars only",
         "couldNotVerifyPhotos": "Couldn't verify the photos. Please try again later.",
         "flaggedPhoto": "Some photos were flagged by AI — remove them on the Photos step.",
         "invalidStatus": "This listing has already been submitted.",
-        "generic": "Couldn't publish — try again in a moment."
-      }
+        "generic": "Couldn't publish — try again in a moment.",
+        "fillRequired": "Please fill in all required fields."
+      },
+      "search": "Search",
+      "noResults": "Nothing found",
+      "clearSearch": "Clear search",
+      "ai": {
+        "filled": "AI",
+        "filledHint": "Filled from your photos — please double-check.",
+        "block": {
+          "title": "Fill from photos",
+          "subtitle": "Let our AI recognise the car from your photos and pre-fill the empty fields. You can edit anything afterwards.",
+          "fill": "Fill from photos (AI)",
+          "retry": "Retry",
+          "loading": "Waiting for AI…",
+          "recognized": "Recognized: {{make}} {{model}} {{years}} · {{confidence}}% confidence",
+          "noVehicle": "Couldn't recognise the car from the photos — fill in the fields manually.",
+          "error": "AI check couldn't run — try again in a moment, or fill in the fields manually.",
+          "needPhoto": "Upload at least one photo first.",
+          "warnNotACar": "Some photos don't look like a car.",
+          "warnLowQuality": "Some photos are low quality.",
+          "warnWatermark": "Some photos look watermarked."
+        }
+      },
+      "eyebrow": "New listing",
+      "subtitleSingle": "Fill in the details below. Add photos and let AI pre-fill the rest.",
+      "submit": "Submit for moderation",
+      "requiredField": "Required field",
+      "requiredLegend": "— required fields"
     },
     "login": {
       "orbiterProduct": "An Orbiter product",
@@ -3631,7 +3703,6 @@
       },
       "whatsIncluded": "What's included",
       "share": "Share",
-      "report": "Report listing",
       "linkCopied": "Link copied",
       "fullscreen": "Fullscreen",
       "close": "Close",
@@ -3690,18 +3761,13 @@
       "panel": {
         "belowMarket": "$4,200 below market avg for this trim",
         "reviews": "{{count}} reviews",
-        "responseTime": "Response time",
         "onCarizma": "On Carizma",
-        "testDrive": "Schedule a test drive",
-        "message": "Message seller",
         "showPhone": "Show phone number",
         "protected": "Carizma protected. Never pay before inspecting the car in person and verifying ID."
       },
       "mobile": {
         "listedAgo": "{{distance}} km away · {{days}} days ago",
-        "readMore": "Read more →",
-        "message": "Message",
-        "testDrive": "Test drive"
+        "readMore": "Read more →"
       }
     },
     "noListing": "Listing not found.",

@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { AlertCircle, CheckCircle2, Info, X } from 'lucide-react';
+import { useHydrated } from '../useHydrated';
 import s from './Toast.module.css';
 
 export type ToastTone = 'success' | 'danger' | 'info';
@@ -104,7 +105,14 @@ function ToastViewport({
   defaultDurationMs: number;
   onDismiss: (id: string) => void;
 }>) {
-  if (typeof document === 'undefined') return null;
+  // The viewport is a portal into document.body, which only exists on the
+  // client. Rendering it during SSR (or the first client render, before
+  // hydration) would make the server HTML — nothing here — disagree with the
+  // client, causing a hydration mismatch. Gate on hydration so both the server
+  // and the initial client render output null, then portal in.
+  const hydrated = useHydrated();
+
+  if (!hydrated) return null;
   return createPortal(
     <div className={s.viewport}>
       {toasts.map((t) => (
