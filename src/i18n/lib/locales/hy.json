@@ -211,12 +211,18 @@
       "cta": "Իմանալ Orbiter-ի մասին"
     },
     "nav": {
+      "home": "Գլխավոր",
       "browse": "Դիտել",
       "sell": "Տեղադրել ձեր մեքենան",
       "financing": "Ֆինանսավորում",
       "about": "Մեր մասին",
+      "search": "Որոնում",
       "searchPlaceholder": "Որոնեք մակնիշ, մոդել կամ քաղաք",
       "signIn": "Մուտք",
+      "register": "Ստեղծել հաշիվ",
+      "menu": "Ընտրացանկ",
+      "openMenu": "Բացել ընտրացանկը",
+      "closeMenu": "Փակել ընտրացանկը",
       "openAccountMenu": "Բացել հաշվի ընտրացանկը",
       "addListing": "Ավելացնել հայտարարություն"
     },
@@ -371,6 +377,7 @@
         "total": "{{count}} ընդամենը"
       },
       "bottomNav": {
+        "label": "Հիմնական նավիգացիա",
         "home": "Գլխավոր",
         "browse": "Դիտել",
         "sell": "Վաճառել",
@@ -819,6 +826,7 @@
       },
       "active": "Ակտիվ",
       "resetAll": "Վերակայել բոլորը",
+      "removeFilter": "Հեռացնել զտիչը",
       "sidebar": {
         "filters": "Ֆիլտրեր",
         "reset": "Վերակայել",
@@ -853,6 +861,10 @@
         "color": "Գույն",
         "brand": "Մակնիշ",
         "brandPlaceholder": "Որոնել մակնիշ…",
+        "model": {
+          "label": "Մոդել",
+          "pickParent": "Նախ ընտրեք մակնիշը"
+        },
         "showMore": "Ցույց տալ ևս 28-ը",
         "showMoreCount": "Ցույց տալ ևս {{count}}-ը",
         "showLess": "Ցույց տալ ավելի քիչ"
@@ -866,7 +878,8 @@
         "carsCount": "{{count}} մեքենա",
         "bestDeals": "Լավագույն առաջարկներ",
         "filtersCount": "Ֆիլտրեր · {{count}}",
-        "showResults": "Ցույց տալ {{count}} մեքենա"
+        "showResults": "Ցույց տալ {{count}} մեքենա",
+        "closeFilters": "Փակել զտիչները"
       }
     },
     "details": {

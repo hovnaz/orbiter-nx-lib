@@ -3015,12 +3015,18 @@
       "cta": "Discover Orbiter"
     },
     "nav": {
+      "home": "Home",
       "browse": "Browse",
       "sell": "List your car",
       "financing": "Financing",
       "about": "About",
+      "search": "Search",
       "searchPlaceholder": "Search make, model, or city",
       "signIn": "Sign in",
+      "register": "Create account",
+      "menu": "Menu",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
       "openAccountMenu": "Open account menu",
       "addListing": "Add listing"
     },
@@ -3175,6 +3181,7 @@
         "total": "{{count}} total"
       },
       "bottomNav": {
+        "label": "Main navigation",
         "home": "Home",
         "browse": "Browse",
         "sell": "Sell",
@@ -3623,6 +3630,7 @@
       },
       "active": "Active",
       "resetAll": "Reset all",
+      "removeFilter": "Remove filter",
       "sidebar": {
         "filters": "Filters",
         "reset": "Reset",
@@ -3657,6 +3665,10 @@
         "color": "Color",
         "brand": "Brand",
         "brandPlaceholder": "Search brand…",
+        "model": {
+          "label": "Model",
+          "pickParent": "Select a brand first"
+        },
         "showMore": "Show 28 more",
         "showMoreCount": "Show {{count}} more",
         "showLess": "Show less"
@@ -3670,7 +3682,8 @@
         "carsCount": "{{count}} cars",
         "bestDeals": "Best deals",
         "filtersCount": "Filters · {{count}}",
-        "showResults": "Show {{count}} cars"
+        "showResults": "Show {{count}} cars",
+        "closeFilters": "Close filters"
       }
     },
     "details": {

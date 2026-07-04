@@ -3073,12 +3073,18 @@
       "cta": "Узнать об Orbiter"
     },
     "nav": {
+      "home": "Главная",
       "browse": "Каталог",
       "sell": "Разместить авто",
       "financing": "Финансирование",
       "about": "О нас",
+      "search": "Поиск",
       "searchPlaceholder": "Марка, модель или город",
       "signIn": "Войти",
+      "register": "Создать аккаунт",
+      "menu": "Меню",
+      "openMenu": "Открыть меню",
+      "closeMenu": "Закрыть меню",
       "openAccountMenu": "Открыть меню аккаунта",
       "addListing": "Разместить"
     },
@@ -3233,6 +3239,7 @@
         "total": "всего {{count}}"
       },
       "bottomNav": {
+        "label": "Основная навигация",
         "home": "Главная",
         "browse": "Каталог",
         "sell": "Продать",
@@ -3681,6 +3688,7 @@
       },
       "active": "Активно",
       "resetAll": "Сбросить всё",
+      "removeFilter": "Убрать фильтр",
       "sidebar": {
         "filters": "Фильтры",
         "reset": "Сбросить",
@@ -3715,6 +3723,10 @@
         "color": "Цвет",
         "brand": "Марка",
         "brandPlaceholder": "Поиск марки…",
+        "model": {
+          "label": "Модель",
+          "pickParent": "Сначала выберите марку"
+        },
         "showMore": "Ещё 28",
         "showMoreCount": "Ещё {{count}}",
         "showLess": "Свернуть"
@@ -3728,7 +3740,8 @@
         "carsCount": "{{count}} авто",
         "bestDeals": "Сначала выгодные",
         "filtersCount": "Фильтры · {{count}}",
-        "showResults": "Показать {{count}} авто"
+        "showResults": "Показать {{count}} авто",
+        "closeFilters": "Закрыть фильтры"
       }
     },
     "details": {
